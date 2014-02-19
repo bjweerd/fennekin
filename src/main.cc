@@ -79,6 +79,8 @@ namespace fennekin
     // Menu items
     GtkAction* menuitem_quit;
     GtkAction* menuitem_about;
+    GtkAction* menuitem_help_issues;
+    GtkAction* menuitem_help_wiki;
     GtkAction* menuitem_file_new;
     GtkAction* menuitem_file_open;
     GtkAction* menuitem_file_save;
@@ -103,6 +105,8 @@ namespace fennekin
       // menu items
       menuitem_quit = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_quit"));
       menuitem_about = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about"));
+      menuitem_help_issues = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_issues"));
+      menuitem_help_wiki = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_wiki"));
       menuitem_file_new = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_new"));
       menuitem_file_open = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_open"));
       menuitem_file_save = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_save"));
@@ -131,6 +135,8 @@ namespace fennekin
       // menu events
       g_signal_connect(menuitem_quit, "activate", G_CALLBACK(on_quit_event), nullptr);
       g_signal_connect(menuitem_about, "activate", G_CALLBACK(on_about_event), nullptr);
+      g_signal_connect(menuitem_help_issues, "activate", G_CALLBACK(on_help_issues_event), nullptr);
+      g_signal_connect(menuitem_help_wiki, "activate", G_CALLBACK(on_help_wiki_event), nullptr);
       g_signal_connect(menuitem_file_new, "activate", G_CALLBACK(on_file_new_event), nullptr);
       g_signal_connect(menuitem_file_open, "activate", G_CALLBACK(on_file_open_event), nullptr);
       g_signal_connect(menuitem_file_save, "activate", G_CALLBACK(on_file_save_event), nullptr);
@@ -540,6 +546,19 @@ namespace fennekin
       gtk_dialog_run(GTK_DIALOG (dialog));
       gtk_widget_destroy(dialog);
     }  
+
+    void browse_url(const gchar* url)
+    {
+      GError* error = nullptr;
+      gtk_show_uri(gtk_widget_get_screen(GTK_WIDGET(window)), url, GDK_CURRENT_TIME, &error);
+    }
+
+    static void on_help_issues_event(GtkWidget* widget, gpointer data) {
+      main_window->browse_url(PACKAGE_URL "issues");
+    }
+    static void on_help_wiki_event(GtkWidget* widget, gpointer data) {
+      main_window->browse_url(PACKAGE_URL "wiki");
+    }
 
     static void on_web_view_notify_load_status_event(WebKitWebView *web_view, GParamSpec *pspec, void* context) 
     {
