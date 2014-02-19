@@ -1,0 +1,1762 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="twitter" query="http://twitter.com/search?q=$term"/>
+
+    <engineset name="en">
+        <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+        <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+        <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_term is:free"/>
+        <engine name="google news" query="http://news.google.com/news?q=$encoded_term"/>
+        <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+        <engine name="google code search" query="http://www.google.com/codesearch?q=$encoded_term"/>
+        <engine name="google trends" query="http://www.google.com/trends?q=$encoded_term"/>
+        <engine name="yahoo search" query="http://search.yahoo.com/search?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;cop=mss&amp;ei=UTF-8"/>
+        <engine name="yahoo images" query="http://images.search.yahoo.com/search/images?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-web"/>
+        <engine name="yahoo video" query="http://video.search.yahoo.com/search/video?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-img"/>
+        <engine name="yahoo audio" query="http://audio.search.yahoo.com/search/audio?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-vid"/>
+        <engine name="yahoo news" query="http://news.search.yahoo.com/search/news?p=$term"/>
+        <engine name="ask.com" query="http://www.ask.com/web?q=$term&amp;qsrc=0&amp;o=312&amp;l=dir"/>
+        <engine name="microsoft search" query="http://search.live.com/results.aspx?q=$term&amp;mkt=en-us&amp;FORM=LVSP"/>
+        <engine name="microsoft images" query="http://search.live.com/images/results.aspx?q=$term&amp;FORM=BIRE"/>
+        <engine name="microsoft news" query="http://search.live.com/news/results.aspx?q=$term&amp;FORM=BNIR"/>
+        <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+        <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_term"/>
+        <engine name="amazon" query="http://www.amazon.com/exec/obidos/search-handle-url/102-5846975-8081707?%5Fencoding=UTF8&amp;dym=0&amp;search-type=ss&amp;index=stripbooks%3Arelevance-above&amp;field-keywords=$term"/>
+        <engine name="ebay" query="http://search.ebay.com/search/search.dll?satitle=$term"/>
+        <engine name="ilocal.nl" query="http://www.ilocal.nl/WebSearchServlet?isf=priority&amp;iso=A&amp;ips=20&amp;dts=false&amp;iv1=1&amp;loc=1&amp;distance=10&amp;pcode=&amp;iqk2=not+nonHQ&amp;iqf2=branches&amp;iqt2=fq&amp;tid=NewSearch&amp;iqk1=$term"/>
+        <engine name="technorati.com" query="http://www.technorati.com/search/$term"/>
+        <engine name="del.icio.us" query="http://del.icio.us/search/?fr=del_icio_us&amp;p=$term&amp;type=all"/>
+    </engineset>
+    <engineset name="computer">
+        <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+        <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+        <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+        <engine name="google news" query="http://news.google.com/news?q=$encoded_term"/>
+        <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_term is:free"/>
+        <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+        <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_term"/>
+        <engine name="alexa.com" query="http://alexa.com/search?q=$term"/>
+        <engine name="imdb" query="http://www.imdb.com/find?q=$term"/>
+        <engine name="amazon" query="http://www.amazon.com/exec/obidos/search-handle-url/102-5846975-8081707?%5Fencoding=UTF8&amp;dym=0&amp;search-type=ss&amp;index=stripbooks%3Arelevance-above&amp;field-keywords=$term"/>
+        <engine name="ebay" query="http://search.ebay.com/search/search.dll?satitle=$term"/>
+        <engine name="google-en($term+&apos;news&apos;)" query="http://www.google.com/search?hl=en&amp;q=$encoded_term news"/>
+        <engine name="google-en($term+&apos;forum&apos;)" query="http://www.google.com/search?hl=en&amp;q=$encoded_term forum"/>
+        <engine name="Koders search" query="http://koders.com/default.aspx?s=$term"/>
+        <engine name="google CODE search" query="http://www.google.com/codesearch?q=$encoded_term"/>
+        <engine name="mininova" query="http://www.mininova.org/search/?search=$term"/>
+        <engine name="isohunt" query="http://isohunt.com/torrents.php?ihq=$term"/>
+        <engine name="piratebay" query="http://thepiratebay.org/search.php?q=$term"/>
+        <engine name="torrentspy" query="http://ts.searching.com/search.asp?query=$term"/>
+        <engine name="bsod&apos;s wiki" query="https://wiki.superstring.nl/cgi-bin/wiki.pl?$term"/>
+        <engine name="bsod&apos;s mindmap" query="http://mindmap.superstring.nl/search.php?q=$term"/>
+        <engine name="bsod&apos;s whois" query="http://www.synssans.nl/whois/?q=$term"/>
+        <engine name="bugmenot" query="http://bugmenot.com/view.php?url=$term"/>
+        <engine name="lonely-planet" query="http://www.lonelyplanet.com/worldguide/destinations/search?criteria=$term"/>
+    </engineset>
+
+    <term name="Academic disciplines" engineset="en">
+        <engine name="science search" query="http://www.scirus.com/srsapp/search?q=$encoded_term"/>
+        <engine name="google search: $term+&apos;news&apos;" query="http://www.google.com/search?hl=en&amp;q=$encoded_term news"/>
+        <engine name="google search: $term+&apos;forum&apos;" query="http://www.google.com/search?hl=en&amp;q=$encoded_term forum"/>
+        <engine name="google trends" query="http://www.google.com/trends?q=$encoded_term"/>
+        <engine name="arXiv" query="http://front.math.ucdavis.edu/search/$encoded_term"/>
+        <term name="Environment">
+            <term name="Sea level rise"/>
+            <term name="Sea level"/>
+            <term name="Global warming"/>
+            <term name="Svante Arrhenius"/>
+            <term name="Climate sensitivity"/>
+        </term>
+        <term name="Mathematics">
+            <engine name="math world" query="http://mathworld.wolfram.com/search/?q=$term"/>
+            <term name="History of mathematics">
+                <term name="Lebombo bone"/>
+                <term name="Ishango bone"/>
+                <term name="Lo Shu Square"/>
+                <term name="Egyptian calendar"/>
+                <term name="Moscow and Rhind Mathematical Papyri"/>
+                <term name="Shatapatha Brahmana"/>
+                <term name="Berlin papyrus"/>
+                <term name="Vulgar fraction"/>
+                <term name="Sulba Sutras"/>
+                <term name="Pythagoras"/>
+                <term name="Astadhyayi"/>
+                <term name="Eudoxus of Cnidus"/>
+                <term name="Aristotle"/>
+                <term name="Euclid"/>
+                <term name="Brahmi numeral"/>
+                <term name="Eratosthenes"/>
+                <term name="Apollonius of Perga"/>
+                <term name="Hipparchus"/>
+                <term name="Indian numerals"/>
+            </term>
+            <term name="Modern mathematics">
+                <term name="Grigori Perelman">
+                    <term name="Poincarè Conjecture"/>
+                    <term name="Geometrization conjecture"/>
+                    <term name="Ricci flow"/>
+                </term>
+                <term name="Clay Mathematics Institute">
+                    <term name="Complexity classes P and NP"/>
+                </term>
+                <term name="Gödel&apos;s incompleteness theorems"/>
+                <term name="Model theory"/>
+                <term name="Set theory">
+                    <term name="Continuum hypothesis"/>
+                    <term name="Zermelo–Fraenkel set theory"/>
+                    <term name="Axiom of choice"/>
+                    <term name="Axiom of constructibility"/>
+                </term>
+                <term name="Shimura-Taniyama-Weil conjecture"/>
+            </term>
+            <term name="Mathematical proof">
+                <term name="Computer-assisted proof"/>
+            </term>
+            <term name="Algebra">
+                <term name="Group Theory">
+                    <term name="Groups">
+                        <term name="Abelian Group"/>
+                        <term name="Additive Group"/>
+                        <term name="Affine Group"/>
+                        <term name="Algebra Loop"/>
+                        <term name="Artinian Group"/>
+                        <term name="Automorphism Group"/>
+                        <term name="Betti Group"/>
+                        <term name="Bimonster"/>
+                        <term name="Brauer Group"/>
+                        <term name="Cartan Subgroup"/>
+                        <term name="Classical Groups"/>
+                        <term name="Closed Subgroup"/>
+                        <term name="Cohomotopy Group"/>
+                        <term name="Commutator Subgroup"/>
+                        <term name="Compact Lie Group"/>
+                        <term name="Conjugate Subgroup"/>
+                        <term name="Continuous Group"/>
+                        <term name="Coxeter Group"/>
+                        <term name="Decomposition Group"/>
+                        <term name="Discrete Group"/>
+                        <term name="Elliptic Group Modulo"/>
+                        <term name="Euclidean Group"/>
+                        <term name="Fitting Subgroup"/>
+                        <term name="Frattini Subgroup"/>
+                        <term name="Free Abelian Group"/>
+                        <term name="Free Group"/>
+                        <term name="Free Semigroup"/>
+                        <term name="Fundamental Group"/>
+                        <term name="Group Ring"/>
+                        <term name="Hamiltonian Group"/>
+                        <term name="Homeomorphism Group"/>
+                        <term name="Homology Group"/>
+                        <term name="Infinite Group"/>
+                        <term name="Inner Automorphism Group"/>
+                        <term name="Isoclinic Groups"/>
+                        <term name="Isotropy Group"/>
+                        <term name="Kleinian Group"/>
+                        <term name="Kummer Group"/>
+                        <term name="Local Subgroup"/>
+                        <term name="Metabelian Group"/>
+                        <term name="Metacyclic Group"/>
+                        <term name="Modular Group Gamma"/>
+                        <term name="Modular Group Gamma0"/>
+                        <term name="Modular Group Lambda"/>
+                        <term name="Monodromy Group"/>
+                        <term name="Multiplicative Group"/>
+                        <term name="Nilpotent Group"/>
+                        <term name="Noncommutative Group"/>
+                        <term name="Normal Subgroup"/>
+                        <term name="Outer Automorphism Group"/>
+                        <term name="Perfect Group"/>
+                        <term name="Polycyclic Group"/>
+                        <term name="Polyhedral Group"/>
+                        <term name="Primitive Group"/>
+                        <term name="Projective Space"/>
+                        <term name="Proper Subgroup"/>
+                        <term name="Quasi-Unipotent Group"/>
+                        <term name="Quotient Group"/>
+                        <term name="Ree Group"/>
+                        <term name="Rotation Group"/>
+                        <term name="Selmer Group"/>
+                        <term name="Simple Group"/>
+                        <term name="Solvable Group"/>
+                        <term name="Subnormal Subgroup"/>
+                        <term name="Transformation Group"/>
+                        <term name="Transitive Group"/>
+                        <term name="Unimodular Group"/>
+                        <term name="Unitary Group"/>
+                        <term name="Valuation Group"/>
+                        <term name="Zero Group"/>
+                    </term>
+                    <term name="Finite groups">
+                        <term name="Abhyankars Conjecture"/>
+                        <term name="Alternating Group"/>
+                        <term name="Baby Monster Group"/>
+                        <term name="Bipolyhedral Group"/>
+                        <term name="Burnside Problem"/>
+                        <term name="Cauchy-Frobenius Lemma"/>
+                        <term name="Cayleys Group Theorem"/>
+                        <term name="Character Table"/>
+                        <term name="Characteristic Factor"/>
+                        <term name="Chevalley Groups"/>
+                        <term name="Classification Theorem of Finite Groups"/>
+                        <term name="Conway Groups"/>
+                        <term name="Crystallographic Point Groups"/>
+                        <term name="Cycle Graph"/>
+                        <term name="Cycle Index"/>
+                        <term name="Cyclic Group"/>
+                        <term name="Dihedral Group"/>
+                        <term name="Dimensionality Theorem"/>
+                        <term name="Discrete Group"/>
+                        <term name="Feit-Thompson Theorem"/>
+                        <term name="Finite Group D3"/>
+                        <term name="Finite Group D4"/>
+                        <term name="Finite Group Q8"/>
+                        <term name="Finite Group Z2 Z2 Z2"/>
+                        <term name="Finite Group Z2 Z2"/>
+                        <term name="Finite Group Z2 Z4"/>
+                        <term name="Finite Group Z2"/>
+                        <term name="Finite Group Z3"/>
+                        <term name="Finite Group Z4"/>
+                        <term name="Finite Group Z5"/>
+                        <term name="Finite Group Z6"/>
+                        <term name="Finite Group Z7"/>
+                        <term name="Finite Group Z8"/>
+                        <term name="Finite Group"/>
+                        <term name="Finite Group"/>
+                        <term name="Fischer Groups"/>
+                        <term name="Galois Group"/>
+                        <term name="General Linear Group"/>
+                        <term name="General Orthogonal Group"/>
+                        <term name="General Unitary Group"/>
+                        <term name="Group Order"/>
+                        <term name="Hall-Janko Group"/>
+                        <term name="Harada-Norton Group"/>
+                        <term name="Held Group"/>
+                        <term name="Hermann-Mauguin Symbol"/>
+                        <term name="Higman-Sims Group"/>
+                        <term name="Icosahedral Group"/>
+                        <term name="Janko Groups"/>
+                        <term name="Jordan-Hoelder Theorem"/>
+                        <term name="Kronecker Basis Theorem"/>
+                        <term name="Kronecker Decomposition Theorem"/>
+                        <term name="Lattice Groups"/>
+                        <term name="Lie-Type Group"/>
+                        <term name="Local Group Theory"/>
+                        <term name="Lyons Group"/>
+                        <term name="Mathieu Groups"/>
+                        <term name="McLaughlin Group"/>
+                        <term name="Modulo Multiplication Group"/>
+                        <term name="Monster Group"/>
+                        <term name="Octahedral Group"/>
+                        <term name="ONan Group"/>
+                        <term name="p-Elementary Subgroup"/>
+                        <term name="p-Group"/>
+                        <term name="p-Prime Group"/>
+                        <term name="Pair Group"/>
+                        <term name="Permutation Group"/>
+                        <term name="Point Groups"/>
+                        <term name="Prime Group"/>
+                        <term name="Projective General Linear Group"/>
+                        <term name="Projective General Orthogonal Group"/>
+                        <term name="Projective General Unitary Group"/>
+                        <term name="Projective Special Linear Group"/>
+                        <term name="Projective Special Orthogonal Group"/>
+                        <term name="Projective Special Unitary Group"/>
+                        <term name="Projective Symplectic Group"/>
+                        <term name="Quasisimple Group"/>
+                        <term name="Quaternion Group"/>
+                        <term name="Rudvalis Group"/>
+                        <term name="Schur Multiplier"/>
+                        <term name="Simple Group"/>
+                        <term name="Space Groups"/>
+                        <term name="Special Linear Group"/>
+                        <term name="Sporadic Group"/>
+                        <term name="Stochastic Group"/>
+                        <term name="Suzuki Group"/>
+                        <term name="Sylow p-Subgroup"/>
+                        <term name="Sylow Theorems"/>
+                        <term name="Symmetric Group"/>
+                        <term name="Tetrahedral Group"/>
+                        <term name="Thompson Group"/>
+                        <term name="Tits Group"/>
+                        <term name="Transposition Group"/>
+                        <term name="Triangular Symmetry Group"/>
+                        <term name="Trivial Group"/>
+                        <term name="Viergruppe"/>
+                        <term name="Wallpaper Groups"/>
+                        <term name="Weyl Group"/>
+                    </term>
+                    <term name="General group theory">
+                        <term name="Eilenberg-MacLane Space"/>
+                        <term name="Erdos-Turan Theorem"/>
+                        <term name="Erlanger Program"/>
+                        <term name="Group Automorphism"/>
+                        <term name="Group Block"/>
+                        <term name="Group Commutator Series"/>
+                        <term name="Group Homomorphism"/>
+                        <term name="Group Kernel"/>
+                        <term name="Group Lower Central Series"/>
+                        <term name="Higher Dimensional Group Theory"/>
+                        <term name="Jordans Symmetric Group Theorem"/>
+                        <term name="Orbifold"/>
+                        <term name="p-Group"/>
+                        <term name="Peter-Weyl Theorem"/>
+                        <term name="Plethysm"/>
+                        <term name="Pontryagin Duality"/>
+                        <term name="Positive Definite Function"/>
+                        <term name="Primitive Group Action"/>
+                        <term name="Schoenflies Symbol"/>
+                        <term name="Stone-vonNeumann Theorem"/>
+                        <term name="Symmetry Operation"/>
+                    </term>
+                    <term name="Group-like objects">
+                        <term name="Algebra Loop"/>
+                        <term name="Braun Conjecture"/>
+                        <term name="Building"/>
+                        <term name="Commutative Monoid"/>
+                        <term name="Free Idempotent Monoid"/>
+                        <term name="Frobenius Reciprocity"/>
+                        <term name="Groupoid"/>
+                        <term name="Hypergroup"/>
+                        <term name="Inverse Semigroup"/>
+                        <term name="Lie Groupoid"/>
+                        <term name="Monoid"/>
+                        <term name="Pseudogroup"/>
+                        <term name="Quasigroup"/>
+                        <term name="Semigroup"/>
+                        <term name="Semigroup Algebra"/>
+                        <term name="Submonoid"/>
+                        <term name="Topological Groupoid"/>
+                        <term name="Witt Geometry"/>
+                    </term>
+                    <term name="Group operations">
+                        <term name="Abelianization"/>
+                        <term name="Butterfly Lemma"/>
+                        <term name="Direct Summand"/>
+                        <term name="Effective Action"/>
+                        <term name="External Tensor Product"/>
+                        <term name="Faithful Group Action"/>
+                        <term name="Free Action"/>
+                        <term name="Freely"/>
+                        <term name="Group Action"/>
+                        <term name="Group Algebra"/>
+                        <term name="Group Direct Product"/>
+                        <term name="Group Direct Sum"/>
+                        <term name="Group Homomorphism"/>
+                        <term name="Inner Automorphism"/>
+                        <term name="Outer Automorphism"/>
+                        <term name="Representation Tensor Product"/>
+                        <term name="Transitive Group Action"/>
+                        <term name="Zero Map"/>
+                    </term>
+                    <term name="Group properties">
+                        <term name="Abelian"/>
+                        <term name="Action"/>
+                        <term name="Additive Identity"/>
+                        <term name="Additive Inverse"/>
+                        <term name="Antiautomorphism"/>
+                        <term name="Antihomomorphism"/>
+                        <term name="Aschbachers Component Theorem"/>
+                        <term name="Betti Number"/>
+                        <term name="Burnsides Conjecture"/>
+                        <term name="Butterfly Lemma"/>
+                        <term name="Cayley Graph"/>
+                        <term name="Centralizer"/>
+                        <term name="Character Table"/>
+                        <term name="Cokernel"/>
+                        <term name="Component"/>
+                        <term name="Composition Series"/>
+                        <term name="Conjugacy Class Order"/>
+                        <term name="Conjugacy Class"/>
+                        <term name="Conjugate Element"/>
+                        <term name="Connected Group"/>
+                        <term name="Coset"/>
+                        <term name="Crystallography Restriction"/>
+                        <term name="Cycle Index"/>
+                        <term name="Difference Set Order"/>
+                        <term name="Difference Set"/>
+                        <term name="Finitely Generated"/>
+                        <term name="First Multiplier Theorem"/>
+                        <term name="Frattini Extension"/>
+                        <term name="Frattini Factor"/>
+                        <term name="Galois Representation"/>
+                        <term name="Galois Theorem"/>
+                        <term name="Galois Theory"/>
+                        <term name="Group Center"/>
+                        <term name="Group Character"/>
+                        <term name="Group Convolution"/>
+                        <term name="Group Fixed Point"/>
+                        <term name="Group Generators"/>
+                        <term name="Group Homology"/>
+                        <term name="Group Involution"/>
+                        <term name="Group Orbit"/>
+                        <term name="Group Orthogonality Theorem"/>
+                        <term name="Group Rank"/>
+                        <term name="Group Residue Theorem"/>
+                        <term name="Group Torsion"/>
+                        <term name="Identity Element"/>
+                        <term name="Invariant Series"/>
+                        <term name="Invertible Element"/>
+                        <term name="Isogeny"/>
+                        <term name="Isomorphic Groups"/>
+                        <term name="Itos Theorem"/>
+                        <term name="Lagranges Group Theorem"/>
+                        <term name="Left Coset"/>
+                        <term name="Locally Compact Group"/>
+                        <term name="Lp-Balance Theorem"/>
+                        <term name="Moebius Problem"/>
+                        <term name="Mulliken Symbols"/>
+                        <term name="Multiplicative Inverse"/>
+                        <term name="Nettos Conjecture"/>
+                        <term name="Non-Abelian"/>
+                        <term name="Normal Series"/>
+                        <term name="Normalizer"/>
+                        <term name="Orthogonal Group Representations"/>
+                        <term name="Polya Polynomial"/>
+                        <term name="Primary Representation"/>
+                        <term name="Quasithin Theorem"/>
+                        <term name="Rearrangement Theorem"/>
+                        <term name="Right Coset"/>
+                        <term name="Schurs Representation Lemma"/>
+                        <term name="Semidirect Product"/>
+                        <term name="Semisimple Element"/>
+                        <term name="Short Exact Sequence"/>
+                        <term name="Signalizer Functor Theorem"/>
+                        <term name="Socle"/>
+                        <term name="Stabilizer"/>
+                        <term name="Strongly Embedded Theorem"/>
+                        <term name="Tightly Embedded"/>
+                        <term name="Unipotent"/>
+                        <term name="von Dycks Theorem"/>
+                        <term name="Zero Element"/>
+                    </term>
+                    <term name="Lie theory">
+                        <term name="Lie algebra">
+                            <term name="Adjoint Representation"/>
+                            <term name="Ados Theorem"/>
+                            <term name="Borel Algebra"/>
+                            <term name="Cartan Algebra"/>
+                            <term name="Cartan Matrix"/>
+                            <term name="Cartan Subalgebra"/>
+                            <term name="Casimir Operator"/>
+                            <term name="Commutator"/>
+                            <term name="Derivation Algebra"/>
+                            <term name="Dynkin Diagram"/>
+                            <term name="Engels Theorem"/>
+                            <term name="Exceptional Lie Algebra"/>
+                            <term name="Highest Weight Theorem"/>
+                            <term name="Iwasawas Theorem"/>
+                            <term name="Jacobi Identities"/>
+                            <term name="Killing Form"/>
+                            <term name="Lie Algebra Commutator Series"/>
+                            <term name="Lie Algebra Lower Central Series"/>
+                            <term name="Lie Algebra Positive Root"/>
+                            <term name="Lie Algebra Radical"/>
+                            <term name="Lie Algebra Rank"/>
+                            <term name="Lie Algebra Representation"/>
+                            <term name="Lie Algebra Root"/>
+                            <term name="Lie Algebra SimpleRoot"/>
+                            <term name="Lie Algebra Weight"/>
+                            <term name="Lie Algebroid"/>
+                            <term name="Lie Bracket"/>
+                            <term name="Lie Product"/>
+                            <term name="Lie Subalgebra"/>
+                            <term name="Macdonalds Constant Term Conjecture"/>
+                            <term name="Nilpotent Lie Algebra"/>
+                            <term name="Orthogonal Lie Algebra"/>
+                            <term name="Poincare Birkhoff Witt Theorem"/>
+                            <term name="Reduced Root System"/>
+                            <term name="Root Lattice"/>
+                            <term name="Root System"/>
+                            <term name="Semisimple Lie Algebra"/>
+                            <term name="Simple Lie Algebra"/>
+                            <term name="Solvable Lie Algebra"/>
+                            <term name="Special Lie Algebra"/>
+                            <term name="Special Linear Lie Algebra"/>
+                            <term name="Split Solvable Lie Algebra"/>
+                            <term name="Structure Constant"/>
+                            <term name="Symplectic Lie Algebra"/>
+                            <term name="Weight Lattice"/>
+                            <term name="Weyl Group"/>
+                            <term name="WeylChamber"/>
+                            <term name="Weyls Denominator Formula"/>
+                        </term>
+                        <term name="Lie groups">
+                            <term name="Alternating Group"/>
+                            <term name="Associated Vector Bundle"/>
+                            <term name="Borel Group"/>
+                            <term name="Borel Subalgebra"/>
+                            <term name="Chevalley Groups"/>
+                            <term name="Commutator"/>
+                            <term name="Compact Lie Group"/>
+                            <term name="Exponential Map"/>
+                            <term name="Flag Manifold"/>
+                            <term name="Homogeneous Space"/>
+                            <term name="Jacobi Identities"/>
+                            <term name="Lie Group Adjoint Representation"/>
+                            <term name="Lie Group Quotient Space"/>
+                            <term name="Lie Group"/>
+                            <term name="Lie-Type Group"/>
+                            <term name="Nil Geometry"/>
+                            <term name="Nilmanifold"/>
+                            <term name="Nilpotent Lie Group"/>
+                            <term name="Principal Bundle"/>
+                            <term name="Semisimple Lie Group"/>
+                            <term name="Sol Geometry"/>
+                            <term name="Solvable Lie Group"/>
+                            <term name="Special Linear Group"/>
+                            <term name="Special Unitary Group"/>
+                            <term name="Topological Group"/>
+                            <term name="Twisted Chevalley Groups"/>
+                        </term>
+                    </term>
+                    <term name="Matrix groups">
+                        <term name="General Linear Group"/>
+                        <term name="Heisenberg Group"/>
+                        <term name="Lie-Type Group"/>
+                        <term name="Linear Algebraic Group"/>
+                        <term name="Lorentz Group"/>
+                        <term name="Maschkes Theorem"/>
+                        <term name="Matrix Group"/>
+                        <term name="Metaplectic Group"/>
+                        <term name="Orthogonal Group"/>
+                        <term name="Quaternionic Unitary Group"/>
+                        <term name="Special Linear Group"/>
+                        <term name="Special Orthogonal Group"/>
+                        <term name="Special Unitary Group"/>
+                        <term name="Spin Group"/>
+                        <term name="Symplectic Group"/>
+                    </term>
+                    <term name="Representation theory">
+                        <term name="Alternating Representation"/>
+                        <term name="Borel Weyl Theorem"/>
+                        <term name="Cartan Decomposition"/>
+                        <term name="External Tensor Product"/>
+                        <term name="Group Representation"/>
+                        <term name="Group Representation Restriction"/>
+                        <term name="Induced Representation"/>
+                        <term name="Irreducible Representation"/>
+                        <term name="Nilpotent Lie Group Representation"/>
+                        <term name="Representation Ring"/>
+                        <term name="Representation Tensor Product"/>
+                        <term name="Solvable Lie Group Representation"/>
+                        <term name="Standard Representation"/>
+                        <term name="Trivial Representation"/>
+                        <term name="Unitary Representation"/>
+                        <term name="Virtual Character"/>
+                    </term>
+                </term>
+                <term name="Boolean algebra">
+                    <term name="Heyting algebra"/>
+                    <term name="Kleene algebra"/>
+                </term>
+                <term name="Linear algebra"/>
+                <term name="Algebraic Geometry"/>
+            </term>
+            <term name="Mathematical logic">
+                <term name="Classical logic"/>
+                <term name="Intuitionistic logic"/>
+                <term name="Modal logic"/>
+                <term name="Continuum hypothesis"/>
+                <term name="Multi-valued logic"/>
+            </term>
+            <term name="Calculus"/>
+            <term name="Geometry">
+                <term name="Vector space"/>
+                <term name="Projective Geometry"/>
+            </term>
+            <term name="Analysis">
+                <term name="Functional analysis"/>
+            </term>
+            <term name="Topology"/>
+            <term name="Number theory"/>
+        </term>
+        <term name="Computer science">
+            <term name="Programming paradigm"/>
+            <term name="Information theory"/>
+            <term name="Unicode"/>
+            <term name="Cryptography"/>
+            <term name="Data compression"/>
+            <term name="Quantum computer"/>
+            <term name="Grid computing">
+                <term name="Globus Toolkit"/>
+                <term name="Seti@Home"/>
+            </term>
+            <term name="Lambda calculus"/>
+            <term name="Basic Linear Algebra Subprograms"/>
+            <term name="Parallel computing">
+                <term name="Superscalar"/>
+            </term>
+        </term>
+        <term name="Physics">
+            <term name="History of Physics">
+                <term name="Newton"/>
+                <term name="Einstein"/>
+            </term>
+            <term name="Mathematical physics"/>
+            <term name="Quantum mechanics">
+                <term name="Quantum entanglement"/>
+                <term name="Quantum information"/>
+                <term name="Quantum cryptography"/>
+                <term name="Quantum teleportation"/>
+                <term name="Quantum computation"/>
+            </term>
+        </term>
+        <term name="Humanities">
+            <term name="Philosophy">
+                <term name="Philosophers">
+                    <term name="Socrates"/>
+                    <term name="Plato"/>
+                    <term name="Aristotle"/>
+                    <term name="Immanuel Kant"/>
+                    <term name="Georg Wilhelm Friedrich Hegel"/>
+                    <term name="Friedrich Nietzsche">
+                        <term name="God is dead"/>
+                        <term name="Master-Slave Morality"/>
+                        <term name="Übermensch">
+                            <term name="Polymath">
+                                <term name="Desiderius Erasmus"/>
+                            </term>
+                            <term name="Johann Wolfgang von Goethe"/>
+                        </term>
+                        <term name="Nihilism"/>
+                        <term name="Thus Spoke Zarathustra"/>
+                        <term name="Beyond Good and Evil"/>
+                        <term name="The Twilight of the Idols"/>
+                    </term>
+                    <term name="Baruch Spinoza"/>
+                </term>
+                <term name="Logic">
+                    <term name="Fallacy">
+                        <term name="Ad hominem"/>
+                        <term name="Amphibology"/>
+                        <term name="Appeal to authority"/>
+                        <term name="Argumentum ad populum"/>
+                        <term name="Appeal to consequences"/>
+                        <term name="Appeal to emotion">
+                            <term name="Appeal to fear"/>
+                            <term name="Appeal to flattery"/>
+                            <term name="Argumentum ad populum"/>
+                            <term name="Appeal to pity"/>
+                            <term name="Appeal to ridicule"/>
+                            <term name="Appeal to spite"/>
+                            <term name="Two wrongs make a right"/>
+                            <term name="Wishful thinking"/>
+                        </term>
+                        <term name="Appeal to motive"/>
+                        <term name="Appeal to novelty"/>
+                        <term name="Appeal to probability"/>
+                        <term name="Appeal to tradition"/>
+                        <term name="Argument from fallacy"/>
+                        <term name="Argument from ignorance"/>
+                        <term name="Argument from silence"/>
+                        <term name="Argumentum ad baculum"/>
+                        <term name="Argumentum ad crumenam"/>
+                        <term name="Argumentum ad lazarum"/>
+                        <term name="Ad nauseam"/>
+                        <term name="Base rate fallacy"/>
+                        <term name="Argumentum ad populum"/>
+                        <term name="Begging the question"/>
+                        <term name="Cartesian circle"/>
+                        <term name="Conjunction fallacy"/>
+                        <term name="Correlative-based fallacies">
+                            <term name="Fallacy of many questions"/>
+                            <term name="False dilemma"/>
+                            <term name="Denying the correlative"/>
+                            <term name="Suppressed correlative"/>
+                        </term>
+                        <term name="Dicto simpliciter">
+                            <term name="Fallacy of accident"/>
+                            <term name="Converse accident"/>
+                        </term>
+                        <term name="Equivocation"/>
+                        <term name="False analogy"/>
+                        <term name="False premise"/>
+                        <term name="Fallacy of distribution">
+                            <term name="Fallacy of composition"/>
+                            <term name="Fallacy of division"/>
+                            <term name="Ecological fallacy"/>
+                        </term>
+                        <term name="Faulty generalization">
+                            <term name="Biased sample"/>
+                            <term name="Hasty generalization"/>
+                            <term name="Overwhelming exception"/>
+                            <term name="Misleading vividness"/>
+                        </term>
+                        <term name="Gambler&apos;s fallacy"/>
+                        <term name="Inverse gambler&apos;s fallacy"/>
+                        <term name="Genetic fallacy"/>
+                        <term name="Association fallacy"/>
+                        <term name="Historian&apos;s fallacy"/>
+                        <term name="Homunculus argument"/>
+                        <term name="If-by-whiskey"/>
+                        <term name="Ignoratio elenchi"/>
+                        <term name="Statistic fallacy">
+                            <term name="Biased sample"/>
+                            <term name="Correlation implies causation"/>
+                            <term name="Prosecutor&apos;s fallacy"/>
+                            <term name="Bayesian inference"/>
+                        </term>
+                        <term name="Invalid proof"/>
+                        <term name="Lump of labour fallacy"/>
+                        <term name="Meaningless statement"/>
+                        <term name="Middle ground"/>
+                        <term name="Naturalistic fallacy"/>
+                        <term name="Negative proof"/>
+                        <term name="Non sequitur">
+                            <term name="Affirming the consequent"/>
+                            <term name="Denying the antecedent"/>
+                        </term>
+                        <term name="No true Scotsman"/>
+                        <term name="Package-deal fallacy"/>
+                        <term name="Pathetic fallacy"/>
+                        <term name="Perfect solution fallacy"/>
+                        <term name="Poisoning the well"/>
+                        <term name="Proof by verbosity"/>
+                        <term name="Questionable cause">
+                            <term name="Correlation implies causation"/>
+                            <term name="Fallacy of the single cause"/>
+                            <term name="Joint effect"/>
+                            <term name="Post hoc ergo propter hoc"/>
+                            <term name="Regression fallacy"/>
+                            <term name="Texas sharpshooter fallacy"/>
+                            <term name="Wrong direction"/>
+                        </term>
+                        <term name="Reification"/>
+                        <term name="Relativist fallacy"/>
+                        <term name="Retrospective determinism"/>
+                        <term name="Burden of proof"/>
+                        <term name="Slippery slope"/>
+                        <term name="Special pleading"/>
+                        <term name="Straw man"/>
+                        <term name="Style over substance fallacy"/>
+                        <term name="Syllogistic fallacy">
+                            <term name="Affirming a disjunct"/>
+                            <term name="Affirmative conclusion from a negative premise"/>
+                            <term name="Existential fallacy"/>
+                            <term name="Fallacy of exclusive premises"/>
+                            <term name="Fallacy of four terms"/>
+                            <term name="Fallacy of the undistributed middle"/>
+                            <term name="Illicit major"/>
+                            <term name="Illicit minor"/>
+                        </term>
+                    </term>
+                </term>
+                <term name="List of basic philosophical topics"/>
+            </term>
+            <term name="Language">
+                <term name="English language">
+                    <term name="English literature">
+                        <term name="William Shakespeare"/>
+                        <term name="William Blake"/>
+                        <term name="Emily Brontë"/>
+                        <term name="Charles Bukowski"/>
+                        <term name="Lewis Carroll"/>
+                        <term name="Emily Dickinson"/>
+                        <term name="T. S. Eliot"/>
+                        <term name="James Joyce"/>
+                        <term name="D. H. Lawrence"/>
+                        <term name="Edgar Allan Poe"/>
+                        <term name="Alexander Pope"/>
+                        <term name="Oscar Wilde"/>
+                        <term name="Charlotte Brontë"/>
+                        <term name="Jane Austen"/>
+                        <term name="Charles Dickens"/>
+                        <term name="Graham Greene"/>
+                        <term name="George Orwell"/>
+                        <term name="J. R. R. Tolkien"/>
+                        <term name="Virginia Woolf"/>
+                        <term name="Ian Fleming"/>
+                        <term name="Graham Greene"/>
+                    </term>
+                </term>
+                <term name="Dutch language">
+                    <term name="Dutch literature">
+                        <term name="Joost van den Vondel"/>
+                        <term name="Bertus Aafjes"/>
+                        <term name="Gerrit Achterberg"/>
+                        <term name="Godfried Bomans"/>
+                        <term name="Louis Couperus"/>
+                        <term name="Herman Gorter"/>
+                        <term name="Hella Haasse"/>
+                        <term name="Willem Frederik Hermans"/>
+                        <term name="A.F.Th. van der Heijden"/>
+                        <term name="Pieter Corneliszoon Hooft"/>
+                        <term name="Willem Kloos"/>
+                        <term name="Lucebert"/>
+                        <term name="Harry Mulisch"/>
+                        <term name="Multatuli"/>
+                        <term name="Gerard Reve"/>
+                        <term name="J. Slauerhoff"/>
+                        <term name="Marten Toonder"/>
+                        <term name="Simon Vestdijk"/>
+                        <term name="Jan Wolkers"/>
+                        <term name="Hugo Claus"/>
+                        <term name="Guido Gezelle"/>
+                        <term name="Hubert Lampo"/>
+                        <term name="Paul van Ostaijen"/>
+                    </term>
+                </term>
+                <term name="German language">
+                    <term name="German literature">
+                        <term name="Johann Wolfgang von Goethe"/>
+                        <term name="Heinrich Heine"/>
+                        <term name="Hermann Hesse"/>
+                        <term name="Friedrich Hölderlin"/>
+                        <term name="Franz Kafka"/>
+                        <term name="Friedrich Schiller"/>
+                    </term>
+                </term>
+                <term name="French language">
+                    <term name="French literature">
+                        <term name="Marcel Proust"/>
+                        <term name="Gustave Flaubert"/>
+                        <term name="Émile Zola"/>
+                        <term name="Denis Diderot"/>
+                        <term name="Victor Hugo"/>
+                        <term name="Voltaire"/>
+                    </term>
+                </term>
+                <term name="Latin">
+                    <term name="Latin literature">
+                        <term name="Lucretius"/>
+                        <term name="Catullus"/>
+                        <term name="Virgil"/>
+                        <term name="Horace"/>
+                        <term name="Ovid"/>
+                        <term name="Julius Caesar"/>
+                        <term name="Cicero"/>
+                        <term name="Seneca"/>
+                        <term name="Tacitus"/>
+                        <term name="Albertus Magnus"/>
+                        <term name="Carmina Burana"/>
+                        <term name="Francis Bacon"/>
+                        <term name="Dante Alighieri"/>
+                        <term name="Desiderius Erasmus"/>
+                        <term name="Baruch Spinoza"/>
+                    </term>
+                </term>
+                <term name="Greek language">
+                    <term name="Greek literature">
+                        <term name="Homer">
+                            <term name="Illiad"/>
+                            <term name="Odyssey"/>
+                        </term>
+                        <term name="Sappho"/>
+                        <term name="Pindar"/>
+                        <term name="Tragedy">
+                            <term name="Aeschylus"/>
+                            <term name="Sophocles"/>
+                            <term name="Euripides"/>
+                        </term>
+                        <term name="Herodotus"/>
+                        <term name="Thucydides"/>
+                        <term name="Vitsentzos Kornaros"/>
+                    </term>
+                </term>
+                <term name="Japanese language"/>
+                <term name="Chinese language"/>
+                <term name="Arabic language"/>
+                <term name="Russian language"/>
+                <term name="Italian language"/>
+                <term name="Spanish language"/>
+                <term name="Hindi"/>
+            </term>
+            <term name="Literature">
+                <term name="Science fiction">
+                    <term name="Silicon brain"/>
+                    <term name="Carbon body"/>
+                    <term name="Silicon"/>
+                    <term name="Carbon"/>
+                    <term name="Brain"/>
+                    <term name="Body"/>
+                </term>
+            </term>
+            <term name="Art">
+                <term name="Art History">
+                    <term name="Prehistoric art"/>
+                    <term name="Arts of the ancient world"/>
+                    <term name="Western art history"/>
+                    <term name="Eastern art history"/>
+                    <term name="Contemporary art">
+                        <term name="Conceptual art"/>
+                        <term name="Performance art"/>
+                        <term name="Pop art"/>
+                        <term name="Graffiti"/>
+                    </term>
+                </term>
+                <term name="Poetry">
+                    <term name="Charles Bukowski"/>
+                    <term name="Sappho"/>
+                    <term name="William Blake"/>
+                    <term name="Emily Dickinson"/>
+                    <term name="William Shakespeare"/>
+                </term>
+                <term name="Beauty"/>
+                <term name="Purity"/>
+                <term name="Transcendence"/>
+            </term>
+            <term name="Music"/>
+            <term name="Poetry"/>
+            <term name="Religion">
+                <term name="Christianity"/>
+                <term name="Islam"/>
+                <term name="Judaism"/>
+                <term name="Buddhism">
+                    <term name="Karma"/>
+                </term>
+                <term name="Hinduism"/>
+            </term>
+        </term>
+        <term name="History">
+            <engine name="history.com" query="http://www.history.com/search.do?searchText=$encoded_term"/>
+            <term name="History">
+                <term name="Paleolithic"/>
+                <term name="Agriculture"/>
+                <term name="Neolithic"/>
+                <term name="Bronze age"/>
+                <term name="Iron age"/>
+                <term name="Writing"/>
+                <term name="Hellenism"/>
+                <term name="Roman empire"/>
+                <term name="Renaissance"/>
+            </term>
+            <term name="Historical thinking"/>
+            <term name="Centuries"/>
+            <term name="History by region">
+                <term name="History of Africa"/>
+                <term name="History of Asia"/>
+                <term name="History of Europe"/>
+                <term name="History of the Americas"/>
+                <term name="History of the Middle East"/>
+                <term name="History of Australia"/>
+            </term>
+            <term name="Prehistory">
+                <term name="Stone age">
+                    <term name="Mythology"/>
+                    <term name="Pottery"/>
+                    <term name="Paleolithic">
+                        <term name="Paleolithic diet"/>
+                        <term name="Olduwan"/>
+                        <term name="Acheulean"/>
+                    </term>
+                    <term name="Neolithic"/>
+                </term>
+                <term name="Bronze Age">
+                    <term name="Proto-Indo-Europeans"/>
+                    <term name="Middle Bronze Age alphabets"/>
+                    <term name="Beaker culture"/>
+                    <term name="Hallstatt culture">
+                        <term name="Warrior of Hirschlanden"/>
+                    </term>
+                    <term name="Mycenaean Greece"/>
+                </term>
+                <term name="Iron Age">
+                    <term name="La Tène culture"/>
+                    <term name="Greek Dark Ages"/>
+                </term>
+            </term>
+            <term name="Sumer">
+                <term name="Elam"/>
+                <term name="Ur">
+                    <term name="Nippur"/>
+                </term>
+                <term name="Akkadian Empire"/>
+            </term>
+            <term name="Ancient Egypt"/>
+            <term name="Ancient Greece"/>
+            <term name="Roman empire">
+                <term name="Julius Caesar">
+                    <term name="Cicero"/>
+                    <term name="Catullus">
+                        <term name="Catullus 51"/>
+                    </term>
+                </term>
+                <term name="Second Triumvirate"/>
+                <term name="Augustus"/>
+                <term name="Roman province">
+                    <term name="Cisalpine Gaul"/>
+                </term>
+            </term>
+            <term name="Western Roman Empire"/>
+            <term name="Early Middle Ages">
+                <term name="Frankish Empire"/>
+            </term>
+            <term name="Middle Ages">
+                <term name="Holy Roman Empire"/>
+            </term>
+            <term name="Early modern Europe"/>
+            <term name="Industrial Revolution">
+                <term name="Timeline of the telephone"/>
+                <term name="Pre-industrial society"/>
+            </term>
+            <term name="19th century">
+                <term name="Queen Victoria"/>
+                <term name="American Civil War"/>
+                <term name="History of radio"/>
+            </term>
+            <term name="20th century">
+                <term name="World War II"/>
+                <term name="Cold War">
+                    <term name="Mikhail Gorbachev"/>
+                    <term name="Ronald Reagan"/>
+                </term>
+                <term name="Space flight">
+                    <term name="Apollo 11"/>
+                    <term name="International Space Station"/>
+                    <term name="Space Shuttle program"/>
+                    <term name="Crew Exploration Vehicle"/>
+                </term>
+                <term name="History of television"/>
+                <term name="Telephone"/>
+            </term>
+        </term>
+        <term name="Natural science">
+            <term name="Chemistry">
+                <term name="Periodic table"/>
+            </term>
+            <term name="Biology">
+                <term name="Brain">
+                    <term name="Temporal lobe"/>
+                    <term name="Neocortex"/>
+                    <term name="Hippocampus"/>
+                </term>
+            </term>
+            <term name="Astronomy"/>
+            <term name="Earth science"/>
+        </term>
+        <term name="Social Sciences">
+            <term name="Psychology">
+                <term name="Artificial intelligence"/>
+                <term name="Neuropsychology"/>
+                <term name="Cognitive neuroscience"/>
+                <term name="Type physicalism"/>
+                <term name="The mind of an ape"/>
+                <term name="Emotion">
+                    <term name="Anger"/>
+                    <term name="Disgust"/>
+                    <term name="Fear"/>
+                    <term name="Joy"/>
+                    <term name="Sadness"/>
+                    <term name="Surprise"/>
+                </term>
+                <term name="Motivation"/>
+                <term name="Personality">
+                    <term name="ENFP"/>
+                    <term name="INFP"/>
+                    <term name="Socionics"/>
+                </term>
+                <term name="Human male sexuality"/>
+                <term name="Human female sexuality"/>
+            </term>
+            <term name="Economics"/>
+            <term name="Geography"/>
+        </term>
+        <term name="Applied science">
+            <term name="Business">
+                <term name="Business organization">
+                    <term name="Management">
+                        <term name="Politics">
+                            <term name="Political science"/>
+                            <term name="Economics"/>
+                            <term name="Media studies"/>
+                            <term name="Political power"/>
+                            <term name="Power (sociology)"/>
+                            <term name="International relations"/>
+                            <term name="Military"/>
+                        </term>
+                    </term>
+                    <term name="Accounting"/>
+                    <term name="Administration"/>
+                    <term name="Finance"/>
+                    <term name="Human resources"/>
+                    <term name="Information technology"/>
+                    <term name="Marketing"/>
+                    <term name="Public relations"/>
+                    <term name="Purchasing"/>
+                    <term name="Sales"/>
+                    <term name="Shipping"/>
+                    <term name="Stock"/>
+                </term>
+            </term>
+            <term name="Agriculture"/>
+            <term name="Design"/>
+            <term name="Education"/>
+            <term name="Engineering"/>
+            <term name="Ergonomics"/>
+            <term name="Family and consumer science"/>
+            <term name="Forestry"/>
+            <term name="Health sciences">
+                <term name="Mental illness">
+                    <term name="Schizotypy"/>
+                    <term name="Schizophrenia"/>
+                    <term name="Schizoaffective disorder"/>
+                    <term name="Schizoid personality disorder"/>
+                    <term name="Schizotypal personality disorder"/>
+                </term>
+                <term name="Multiple Sclerosis"/>
+                <term name="Medicine"/>
+                <term name="Herbalism"/>
+            </term>
+            <term name="Journalism"/>
+            <term name="Mass communication"/>
+            <term name="Law"/>
+            <term name="Military science"/>
+            <term name="Public affairs"/>
+            <term name="Community service"/>
+        </term>
+    </term>
+
+    <term name="Culture" engineset="en">
+        <engine name="imdb" query="http://www.imdb.com/find?q=$term"/>
+        <engine name="PoemHunter" query="http://www.poemhunter.com/search/?w=poet&amp;q=$term"/>
+        <engine name="Poets.org" query="http://poets.org/search.php/fs/1/prmAuthor/$term/prmMediaTitle/+/prmKeyword/+/prmMediaTypeID/0/prmMovementID/0/prmThemeID/0"/>
+        <engine name="google search: $term download" query="http://www.google.com/search?hl=en&amp;q=$encoded_term download"/>
+        <term name="19th century">
+            <term name="Music">
+                <term name="Hector Berlioz"/>
+                <term name="Georges Bizet"/>
+                <term name="Alexander Borodin"/>
+                <term name="Johannes Brahms"/>
+                <term name="Anton Bruckner"/>
+                <term name="Claude Debussy"/>
+                <term name="Antonín Dvořák"/>
+                <term name="Franz Liszt"/>
+                <term name="Felix Mendelssohn"/>
+                <term name="Modest Mussorgsky"/>
+                <term name="Franz Schubert"/>
+                <term name="Niccolò Paganini"/>
+                <term name="Robert Schumann"/>
+            </term>
+            <term name="Painters">
+                <term name="Paul Cezanne"/>
+                <term name="Edgar Degas"/>
+                <term name="Eugène Delacroix"/>
+                <term name="Caspar David Friedrich"/>
+                <term name="Antonio de La Gandara"/>
+                <term name="Théodore Géricault"/>
+                <term name="Vincent van Gogh"/>
+                <term name="Jean Auguste Dominique Ingres"/>
+                <term name="Édouard Manet"/>
+                <term name="Claude Monet"/>
+                <term name="Berthe Morisot"/>
+                <term name="Camille Pissarro"/>
+                <term name="Pierre-Auguste Renoir"/>
+                <term name="Henri de Toulouse-Lautrec"/>
+            </term>
+            <term name="Writers">
+                <term name="Leo Tolstoy">
+                    <term name="War and Peace"/>
+                </term>
+                <term name="Victor Hugo">
+                    <term name="Les Miserables"/>
+                </term>
+                <term name="William Makepeace Thackeray">
+                    <term name="Vanity Fair"/>
+                </term>
+                <term name="Stephen Crane">
+                    <term name="The Red Badge of Courage"/>
+                </term>
+                <term name="Charles Dickens">
+                    <term name="Oliver Twist"/>
+                </term>
+            </term>
+        </term>
+        <term name="Film">
+            <term name="Movie">
+                <term name="The Matrix"/>
+                <term name="X-Men"/>
+                <term name="Fight club"/>
+                <term name="Das Boot"/>
+                <term name="Troy"/>
+                <term name="Pulp Fiction"/>
+            </term>
+            <term name="Actor">
+                <term name="Hugh Jackman"/>
+                <term name="Jeff Bridges"/>
+                <term name="Stephen Rea"/>
+                <term name="Ian McKellen"/>
+                <term name="Vinnie Jones"/>
+                <term name="Jackie Chan"/>
+                <term name="John Travolta"/>
+                <term name="Bruce Willis"/>
+                <term name="Jack Nicholson"/>
+                <term name="Samuel L. Jackson"/>
+                <term name="Al Pacino"/>
+                <term name="Pierce Brosnan"/>
+                <term name="Nicolas Cage"/>
+                <term name="Forest Whitaker"/>
+                <term name="Tom Cruise"/>
+                <term name="Robert Redford"/>
+                <term name="Harrison Ford"/>
+                <term name="Mel Gibson"/>
+                <term name="Kevin Costner"/>
+                <term name="Steven Seagal"/>
+                <term name="Brad Pitt"/>
+                <term name="Keanu Reeves"/>
+                <term name="Arnold Schwarzenegger"/>
+                <term name="Sylvester Stallone"/>
+                <term name="Clint Eastwood"/>
+            </term>
+            <term name="Actress">
+                <term name="Halle Berry"/>
+                <term name="Uma Thurman"/>
+                <term name="Angelina Jolie"/>
+                <term name="Carrie-Anne Moss"/>
+                <term name="Sarah Michelle Gellar"/>
+                <term name="Nicole Kidman"/>
+                <term name="Meryl Streep"/>
+                <term name="Cher"/>
+            </term>
+            <term name="Film director">
+                <term name="Brett Ratner"/>
+                <term name="Neil Jordan"/>
+                <term name="Dominic Sena"/>
+                <term name="Quentin Tarantino"/>
+                <term name="David Lynch"/>
+                <term name="Steven Spielberg"/>
+                <term name="George Lucas"/>
+            </term>
+        </term>
+        <term name="Pop music">
+            <term name="Pink floyd"/>
+            <term name="Björk"/>
+            <term name="Dire straits"/>
+            <term name="Madonna Ciccone"/>
+            <term name="Metallica"/>
+            <term name="Iron Maiden"/>
+            <term name="Kate Bush"/>
+            <term name="Kim Wilde"/>
+            <term name="Mark knopfler"/>
+            <term name="Nena"/>
+            <term name="Eminem"/>
+            <term name="Ub40"/>
+            <term name="Bob Marley"/>
+            <term name="Golden earring"/>
+            <term name="Lou Reed"/>
+            <term name="Spearhead">
+                <term name="Michael Franti"/>
+            </term>
+        </term>
+        <term name="Popular culture">
+            <term name="Everyday life"/>
+            <term name="Mainstream"/>
+            <term name="Entertainment"/>
+            <term name="Sports"/>
+            <term name="Literature"/>
+            <term name="Cooking"/>
+            <term name="Fashion"/>
+            <term name="Mass media"/>
+            <term name="Pop music"/>
+        </term>
+        <term name="Society"/>
+        <term name="Religion">
+            <term name="Buddhism">
+                <term name="Buddha"/>
+                <term name="Sangha"/>
+                <term name="Bodhisattva"/>
+                <term name="Dharma"/>
+            </term>
+        </term>
+    </term>
+
+    <term name="Region" engineset="en">
+        <engine name="cia factbook" query="http://www.google.com/search?btnI=X&amp;hl=en&amp;q=factbook $encoded_term"/>
+        <engine name="un search" query="http://secap480.un.org/search?q=$encoded_term&amp;btnG=Search+the+UN&amp;output=xml_no_dtd&amp;sort=date%3AD%3AL%3Ad1&amp;ie=utf8&amp;imgGO.y=0&amp;client=UN_Website_English&amp;num=10&amp;imgGO.x=0&amp;oe=utf8&amp;proxystylesheet=UN_Website_English&amp;site=un_org"/>
+        <engine name="fas" query="http://www.google.com/custom?q=$encoded_term&amp;sitesearch=fas.org&amp;sa=Search&amp;cof=LW%3A600%3BBIMG%3Ahttp%3A%2F%2Fwww.fas.org%2Fpaper2.jpg%3BL%3Ahttp%3A%2F%2Fwww.fas.org%2Ffas_banner.gif%3BLH%3A50%3BAH%3Acenter%3BGL%3A0%3BAWFID%3A0d60397048482b28%3B&amp;formAction="/>
+        <engine name="wikipedia: MILITARY OF" query="http://en.wikipedia.org/wiki/Military of $term"/>
+        <engine name="lonely planet" query="http://search.lonelyplanet.com/query.html?qt=$term"/>
+        <engine name="google search: $term wiki" query="http://www.google.com/search?hl=en&amp;q=$encoded_term wiki"/>
+        <engine name="google search: $term blog" query="http://www.google.com/search?hl=en&amp;q=$encoded_term blog"/>
+        <engine name="google images: $term route" query="http://www.google.com/images?hl=en&amp;q=$encoded_term route"/>
+        <engine name="google search: $term problem" query="http://www.google.com/search?hl=en&amp;q=$encoded_term problem"/>
+        <engine name="google news: $term problem" query="http://news.google.com/news?q=$encoded_term problem"/>
+        <engine name="google search: $term finance" query="http://www.google.com/search?hl=en&amp;q=$encoded_term finance"/>
+        <engine name="google news: $term finance" query="http://news.google.com/news?q=$encoded_term finance"/>
+        <engine name="google search: $term marketing" query="http://www.google.com/search?hl=en&amp;q=$encoded_term marketing"/>
+        <engine name="google news: $term marketing" query="http://news.google.com/news?q=$encoded_term marketing"/>
+        <engine name="google images: $term resort" query="http://www.google.com/images?hl=en&amp;q=$encoded_term resort"/>
+        <engine name="google images: $term news" query="http://www.google.com/images?hl=en&amp;q=$encoded_term news"/>
+        <engine name="google images: $term minister" query="http://www.google.com/images?hl=en&amp;q=$encoded_term minister"/>
+        <engine name="google news: $term minister" query="http://news.google.com/news?q=$encoded_term minister"/>
+        <engine name="google images: $term state visit" query="http://www.google.com/images?hl=en&amp;q=$encoded_term state visit"/>
+        <engine name="google news: $term state visit" query="http://news.google.com/news?q=$encoded_term state visit"/>
+        <engine name="google images: $term political party" query="http://www.google.com/images?hl=en&amp;q=$encoded_term &quot;political party&quot;"/>
+        <engine name="google news: $term political party" query="http://news.google.com/news?q=$encoded_term political party"/>
+        <engine name="google images: $term army" query="http://www.google.com/images?hl=en&amp;q=$encoded_term army"/>
+        <engine name="google images: $term navy" query="http://www.google.com/images?hl=en&amp;q=$encoded_term navy"/>
+        <engine name="google images: $term airforce" query="http://www.google.com/images?hl=en&amp;q=$encoded_term airforce"/>
+        <engine name="google news: $term airforce" query="http://news.google.com/news?q=$encoded_term airforce"/>
+        <engine name="google trends" query="http://www.google.com/trends?q=$encoded_term"/>
+        <engine name="google maps" query="http://maps.google.com/maps?q=$encoded_term"/>
+        <term name="Europe">
+            <term name="Netherlands">
+                <term name="Almere"/>
+                <term name="Utrecht"/>
+                <term name="Amsterdam"/>
+                <term name="Rotterdam"/>
+            </term>
+            <term name="Belgium"/>
+            <term name="Luxembourg"/>
+            <term name="Germany"/>
+            <term name="United Kingdom"/>
+            <term name="France">
+                <term name="Paris"/>
+            </term>
+            <term name="Ireland"/>
+            <term name="Greece"/>
+            <term name="Turkey"/>
+            <term name="Norway"/>
+            <term name="Sweden"/>
+            <term name="Finland"/>
+            <term name="Danemark"/>
+            <term name="Poland"/>
+            <term name="Ukraine"/>
+            <term name="Romania"/>
+            <term name="Russia"/>
+            <term name="Slowakia"/>
+            <term name="Italy"/>
+            <term name="Switzerland"/>
+        </term>
+        <term name="North America">
+            <term name="United States">
+                <term name="U.S. States">
+                    <term name="Northeast">
+                        <term name="Connecticut">
+                            <term name="Hartford, Connecticut"/>
+                            <term name="Bridgeport, Connecticut"/>
+                        </term>
+                        <term name="Maine">
+                            <term name="Augusta, Maine"/>
+                            <term name="Portland, Maine"/>
+                        </term>
+                        <term name="Massachusetts">
+                            <term name="Boston, Massachusetts"/>
+                        </term>
+                        <term name="New Jersey">
+                            <term name="Trenton, New Jersey"/>
+                            <term name="Newark, New Jersey"/>
+                        </term>
+                        <term name="New Hampshire">
+                            <term name="Concord, New Hampshire"/>
+                            <term name="Manchester, New Hampshire"/>
+                        </term>
+                        <term name="New York">
+                            <term name="Albany, New York"/>
+                            <term name="New York City, New York"/>
+                        </term>
+                        <term name="Pennsylvania">
+                            <term name="Harrisburg, Pennsylvania"/>
+                            <term name="Philedelphia, Pennsylvania"/>
+                            <term name="Pittsburgh, Pennsylvania"/>
+                        </term>
+                        <term name="Rhode Island">
+                            <term name="Providence, Rhode Island"/>
+                        </term>
+                        <term name="Vermont">
+                            <term name="Montpelier, Vermont"/>
+                            <term name="Burlington, Vermont"/>
+                        </term>
+                    </term>
+                    <term name="Midwest">
+                        <term name="Arkansas">
+                            <term name="Little Rock, Arkansas"/>
+                        </term>
+                        <term name="Illinois">
+                            <term name="Springfield, Illinois"/>
+                            <term name="Chicago, Illinois"/>
+                        </term>
+                        <term name="Indiana">
+                            <term name="Indianapolis, Indiana"/>
+                        </term>
+                        <term name="Iowa">
+                            <term name="Des Moines, Iowa"/>
+                        </term>
+                        <term name="Kansas">
+                            <term name="Topeka, Kansas"/>
+                            <term name="Wichita, Kansas"/>
+                        </term>
+                        <term name="Louisiana">
+                            <term name="Baton Rouge, Louisiana"/>
+                            <term name="New Orleans, Louisiana"/>
+                        </term>
+                        <term name="Michigan">
+                            <term name="Lansing, Michigan"/>
+                            <term name="Detroit, Michigan"/>
+                        </term>
+                        <term name="Minnesota">
+                            <term name="St. Paul, Minnesota"/>
+                            <term name="Minneapolis, Minnesota"/>
+                        </term>
+                        <term name="Missouri">
+                            <term name="Jefferson City, Missouri"/>
+                            <term name="St. Louis, Missouri"/>
+                        </term>
+                        <term name="Nebraska">
+                            <term name="Lincoln, Nebraska"/>
+                            <term name="Omaha, Nebraska"/>
+                        </term>
+                        <term name="North Dakota">
+                            <term name="Bismarck, North Dakota"/>
+                            <term name="Fargo, North Dakota"/>
+                        </term>
+                        <term name="Ohio">
+                            <term name="Columbus, Ohio"/>
+                            <term name="Cleveland, Ohio"/>
+                        </term>
+                        <term name="Oklahoma">
+                            <term name="Oklahoma City, Oklahoma"/>
+                        </term>
+                        <term name="South Dakota">
+                            <term name="Pierre, South Dakota"/>
+                            <term name="Sioux Falls, South Dakota"/>
+                        </term>
+                        <term name="Wisconsin">
+                            <term name="Madison, Wisconsin"/>
+                            <term name="Milwaukee, Wisconsin"/>
+                        </term>
+                    </term>
+                    <term name="South">
+                        <term name="Alabama">
+                            <term name="Montgomery, Alabama"/>
+                            <term name="Birmingham, Alabama"/>
+                        </term>
+                        <term name="Delaware">
+                            <term name="Dover, Delaware"/>
+                            <term name="Wilmington, Delaware"/>
+                        </term>
+                        <term name="District of Columbia">
+                            <term name="Washington, D.C."/>
+                            <term name="White House"/>
+                            <term name="United States Capitol"/>
+                        </term>
+                        <term name="Florida">
+                            <term name="Tallahassee, Florida"/>
+                            <term name="Jacksonville, Florida"/>
+                            <term name="Miami, Florida"/>
+                            <term name="Orlando, Florida"/>
+                        </term>
+                        <term name="Georgia">
+                            <term name="Atlanta, Georgia"/>
+                        </term>
+                        <term name="Kentucky">
+                            <term name="Frankfort, Kentucky"/>
+                            <term name="Louisville, Kentucky"/>
+                        </term>
+                        <term name="Maryland">
+                            <term name="Annapolis, Maryland"/>
+                            <term name="Baltimore, Maryland"/>
+                        </term>
+                        <term name="Mississippi">
+                            <term name="Jackson, Mississippi"/>
+                        </term>
+                        <term name="North Carolina">
+                            <term name="Raleigh, North Carolina"/>
+                            <term name="Charlotte, North Carolina"/>
+                        </term>
+                        <term name="South Carolina">
+                            <term name="Columbia, South Carolina"/>
+                            <term name="Charleston, South Carolina"/>
+                        </term>
+                        <term name="Tennessee">
+                            <term name="Nashville, Tennessee"/>
+                            <term name="Memphis, Tennessee"/>
+                            <term name="Knoxville, Tennessee"/>
+                        </term>
+                        <term name="Texas">
+                            <term name="Austin, Texas"/>
+                            <term name="Houston, Texas"/>
+                            <term name="Dallas, Texas"/>
+                        </term>
+                        <term name="Virginia">
+                            <term name="Richmond, Virginia"/>
+                            <term name="Virginia Beach, Virginia"/>
+                        </term>
+                        <term name="West Virginia">
+                            <term name="Charleston, West Virginia"/>
+                        </term>
+                    </term>
+                    <term name="West">
+                        <term name="Idaho">
+                            <term name="Boise, Idaho"/>
+                        </term>
+                        <term name="Montana">
+                            <term name="Helena, Montana"/>
+                            <term name="Billings, Montana"/>
+                        </term>
+                        <term name="Oregon">
+                            <term name="Salem, Oregon"/>
+                            <term name="Portland, Oregon"/>
+                        </term>
+                        <term name="Washington">
+                            <term name="Olympia, Washington"/>
+                            <term name="Seattle, Washington"/>
+                        </term>
+                        <term name="California">
+                            <term name="Sacramento, California"/>
+                            <term name="Los Angeles, California"/>
+                            <term name="San Diego, California"/>
+                            <term name="San Francisco, California"/>
+                        </term>
+                        <term name="Nevada">
+                            <term name="Carson City, Nevada"/>
+                            <term name="Las Vegas, Nevada"/>
+                            <term name="Reno, Nevada"/>
+                        </term>
+                        <term name="Utah">
+                            <term name="Salt Lake City, Utah"/>
+                        </term>
+                        <term name="Arizona">
+                            <term name="Phoenix, Arizona"/>
+                        </term>
+                        <term name="New Mexico">
+                            <term name="Santa Fe, New Mexico"/>
+                            <term name="Albuquerque, New Mexico"/>
+                        </term>
+                        <term name="Colorado">
+                            <term name="Denver, Colorado"/>
+                        </term>
+                        <term name="Wyoming">
+                            <term name="Cheyenne, Wyoming"/>
+                        </term>
+                    </term>
+                    <term name="Alaska">
+                        <term name="Juneau, Alaska"/>
+                        <term name="Anchorage, Alaska"/>
+                        <term name="Fairbanks, Alaska"/>
+                        <term name="Mount McKinley"/>
+                    </term>
+                    <term name="Hawaii">
+                        <term name="Honolulu, Hawaii"/>
+                    </term>
+                </term>
+                <term name="United States Constitution">
+                    <term name="State constitution (United States)"/>
+                </term>
+                <term name="Neoconservatism"/>
+                <term name="United States Senate"/>
+                <term name="Democratic Party (United States)"/>
+                <term name="Republican Party (United States)"/>
+            </term>
+            <term name="Canada"/>
+            <term name="Greenland"/>
+        </term>
+        <term name="Middle East">
+            <term name="Turkey">
+                <term name="Mustafa Kemal Atatürk"/>
+                <term name="Recep Tayyip Erdoğan"/>
+                <term name="Istanbul"/>
+                <term name="Antalya"/>
+                <term name="Mardin"/>
+                <term name="Kurdistan Workers Party"/>
+            </term>
+            <term name="Israel">
+                <term name="Haifa"/>
+                <term name="Jerusalem"/>
+            </term>
+            <term name="Occupied territories">
+                <term name="Gaza Strip"/>
+                <term name="West Bank"/>
+            </term>
+            <term name="Egypt"/>
+            <term name="Iraq">
+                <term name="Muqtada al-Sadr"/>
+                <term name="Abu Musab al-Zarqawi"/>
+                <term name="Mahdi Army"/>
+                <term name="Shi&apos;a Islam"/>
+                <term name="Sunni Islam"/>
+            </term>
+            <term name="Iran"/>
+            <term name="Afghanistan">
+                <term name="Kabul"/>
+                <term name="Kandahar"/>
+            </term>
+            <term name="Syria"/>
+            <term name="Lebanon">
+                <term name="Beirut">
+                    <term name="Rafic Hariri International Airport"/>
+                </term>
+                <term name="Hezbolla"/>
+                <term name="Rafik Hariri"/>
+            </term>
+            <term name="Saudi Arabia"/>
+        </term>
+        <term name="Far East">
+            <term name="East Asia">
+                <term name="China"/>
+                <term name="Japan"/>
+                <term name="Taiwan"/>
+                <term name="North Korea"/>
+                <term name="South Korea"/>
+                <term name="Mongolia">
+                    <term name="Yurt"/>
+                </term>
+            </term>
+            <term name="Southeast Asia">
+                <term name="Indonesia"/>
+                <term name="Malaysia"/>
+                <term name="Philippines"/>
+                <term name="Singapore"/>
+                <term name="Myanmar">
+                    <term name="Aung San Suu Kyi"/>
+                </term>
+            </term>
+            <term name="South Asia">
+                <term name="India"/>
+                <term name="Pakistan"/>
+                <term name="Bangladesh"/>
+                <term name="Buthan"/>
+                <term name="Maldives"/>
+                <term name="Nepal"/>
+                <term name="Sri Lanka">
+                    <term name="Liberation Tigers of Tamil Eelam"/>
+                </term>
+            </term>
+        </term>
+        <term name="Russia"/>
+        <term name="Australia">
+            <term name="New Zealand"/>
+        </term>
+        <term name="Africa">
+            <term name="African Union"/>
+            <term name="Senegal">
+                <term name="City">
+                    <term name="Dakar"/>
+                    <term name="Tivaouane"/>
+                    <term name="Kaolack"/>
+                    <term name="Touba"/>
+                </term>
+            </term>
+            <term name="Sierra Leone"/>
+            <term name="Ethiopia">
+                <term name="Mengistu Haile Mariam"/>
+                <term name="Meles Zenawi"/>
+                <term name="Addis Ababa"/>
+            </term>
+            <term name="Somalia">
+                <term name="Mogadishu"/>
+                <term name="Islamic Courts Union"/>
+            </term>
+            <term name="Zimbabwe">
+                <term name="Robert Mugabe"/>
+            </term>
+            <term name="Morocco"/>
+            <term name="Sierra Leone"/>
+            <term name="Chad">
+                <term name="Hissène Habré"/>
+                <term name="Idriss Déby"/>
+            </term>
+            <term name="Liberia">
+                <term name="Charles Taylor"/>
+            </term>
+            <term name="Rwanda">
+                <term name="Paul Kagame"/>
+            </term>
+            <term name="Burundi"/>
+            <term name="Sudan">
+                <term name="Darfur"/>
+                <term name="Omar Hasan Ahmad al-Bashir"/>
+            </term>
+            <term name="Republic of the Congo">
+                <term name="Denis Sassou-Nguesso"/>
+            </term>
+            <term name="Central African Republic">
+                <term name="Jean-Bédel Bokassa"/>
+            </term>
+            <term name="Equatorial Guinea">
+                <term name="Teodoro Obiang Nguema Mbasogo"/>
+            </term>
+            <term name="Burkina Faso">
+                <term name="Blaise Compaoré"/>
+            </term>
+            <term name="Eritrea">
+                <term name="Isaias Afewerki"/>
+            </term>
+            <term name="Ghana"/>
+            <term name="Somalia"/>
+            <term name="Burundi"/>
+            <term name="Mauritania"/>
+        </term>
+        <term name="South America">
+            <term name="Argentina"/>
+            <term name="Brazil"/>
+            <term name="Peru">
+                <term name="Alan García"/>
+            </term>
+            <term name="Colombia"/>
+            <term name="Venezuela">
+                <term name="Hugo Chávez"/>
+            </term>
+        </term>
+        <term name="Central America">
+            <term name="Cuba"/>
+            <term name="Mexico"/>
+            <term name="Nicaragua"/>
+        </term>
+        <term name="Big cities">
+            <term name="Toronto"/>
+            <term name="Chicago"/>
+            <term name="Philadelphia"/>
+            <term name="New York"/>
+            <term name="Los Angeles"/>
+            <term name="Dallas-Fort Worth"/>
+            <term name="Miami"/>
+            <term name="Mexico City"/>
+            <term name="Bogota"/>
+            <term name="Lima"/>
+            <term name="Sao Paulo"/>
+            <term name="Belo Horizonte"/>
+            <term name="Rio de Janeiro"/>
+            <term name="Buenos Aires"/>
+            <term name="Santiago"/>
+            <term name="London"/>
+            <term name="Paris"/>
+            <term name="Barcelona"/>
+            <term name="Madrid"/>
+            <term name="Saint Petersburg"/>
+            <term name="Moscow"/>
+            <term name="Istanbul"/>
+            <term name="Baghdad"/>
+            <term name="Tehran"/>
+            <term name="Riyadh"/>
+            <term name="Cairo"/>
+            <term name="Khartoum"/>
+            <term name="Lagos"/>
+            <term name="Kinshasa"/>
+            <term name="Lahore"/>
+            <term name="Delhi"/>
+            <term name="Karachi"/>
+            <term name="Ahmedabad"/>
+            <term name="Mumbai"/>
+            <term name="Pune"/>
+            <term name="Hyderabad"/>
+            <term name="Bangalore"/>
+            <term name="Madras"/>
+            <term name="Calcutta"/>
+            <term name="Dhaka"/>
+            <term name="Chittagong"/>
+            <term name="Rangoon"/>
+            <term name="Bangkok"/>
+            <term name="Ho Chi Minh City"/>
+            <term name="Hanoi"/>
+            <term name="Shenzhen"/>
+            <term name="Hong Kong"/>
+            <term name="Dongguan"/>
+            <term name="Guangzhou"/>
+            <term name="Chongqing"/>
+            <term name="Wuhan"/>
+            <term name="Shanghai"/>
+            <term name="Tianjin"/>
+            <term name="Beijing"/>
+            <term name="Shenyang"/>
+            <term name="Seoul"/>
+            <term name="Osaka-Kobe"/>
+            <term name="Tokyo"/>
+            <term name="Manila"/>
+            <term name="Jakarta"/>
+            <term name="Bandung"/>
+        </term>
+    </term>
+
+</webdiver>

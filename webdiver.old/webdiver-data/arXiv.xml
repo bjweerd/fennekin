@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="arxiv" query="http://arxiv.org/find/all/1/abs:$(arxiv)/0/1/0/all/0/1"/>
+    <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+    <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+    <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+    <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_term"/>
+    <engine name="google news" query="http://news.google.com/news?q=$encoded_term"/>
+    <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+
+    <term name="arXiv">
+        <term name="Physics">
+            <term name="Astrophysics">
+                <term name="Cosmology and Extragalactic Astrophysics"/>
+                <term name="Earth and Planetary Astrophysics"/>
+                <term name="Galaxy Astrophysics"/>
+                <term name="High Energy Astrophysical Phenomena"/>
+                <term name="Instrumentation and Methods for Astrophysics"/>
+                <term name="Solar and Stellar Astrophysics"/>
+            </term>
+            <term name="Condensed Matter">
+                <term name="Disordered Systems and Neural Networks"/>
+                <term name="Materials Science"/>
+                <term name="Mesoscale and Nanoscale Physics"/>
+                <term name="Other Condensed Matter"/>
+                <term name="Quantum Gases"/>
+                <term name="Soft Condensed Matter"/>
+                <term name="Statistical Mechanics"/>
+                <term name="Strongly Correlated Electrons"/>
+                <term name="Superconductivity">
+                    <term name="Cooper pairs"/>
+                    <term name="Josephson junctions"/>
+                </term>
+            </term>
+            <term name="General Relativity and Quantum Cosmology"/>
+            <term name="High Energy Physics - Experiment"/>
+            <term name="High Energy Physics - Lattice"/>
+            <term name="High Energy Physics - Phenomenology"/>
+            <term name="High Energy Physics - Theory">
+                <term name="K-theory"/>
+                <term name="AdS/CFT correspondence"/>
+                <term name="Minimal Supersymmetric Standard Model"/>
+                <term name="F-theory">
+                    <term name="Calabi–Yau manifold"/>
+                    <term name="Type II string theory"/>
+                    <term name="Modular group"/>
+                    <term name="S-duality"/>
+                    <term name="Fiber bundle"/>
+                    <term name="Elliptic curve"/>
+                    <term name="K3 surface"/>
+                </term>
+                <term name="Superstring theory">
+                    <term name="Heterotic string"/>
+                    <term name="String theory landscape"/>
+                </term>
+                <term name="Manifold"/>
+                <term name="Elliptic surface"/>
+            </term>
+            <term name="Mathematical Physics"/>
+            <term name="Nuclear Experiment"/>
+            <term name="Nuclear Theory"/>
+            <term name="Physics">
+                <term name="Accelerator Physics"/>
+                <term name="Atmospheric and Oceanic Physics"/>
+                <term name="Atomic Physics"/>
+                <term name="Atomic and Molecular Clusters"/>
+                <term name="Biological Physics"/>
+                <term name="Chemical Physics"/>
+                <term name="Classical Physics"/>
+                <term name="Computational Physics"/>
+                <term name="Data Analysis, Statistics and Probability"/>
+                <term name="Fluid Dynamics"/>
+                <term name="General Physics"/>
+                <term name="Geophysics"/>
+                <term name="History of Physics"/>
+                <term name="Instrumentation and Detectors"/>
+                <term name="Medical Physics"/>
+                <term name="Optics"/>
+                <term name="Physics Education"/>
+                <term name="Physics and Society"/>
+                <term name="Plasma Physics"/>
+                <term name="Popular Physics"/>
+                <term name="Space Physics"/>
+            </term>
+            <term name="Quantum Physics">
+                <term name="Quantum Computers"/>
+            </term>
+        </term>
+        <term name="Mathematics">
+            <term name="Algebraic Geometry"/>
+            <term name="Algebraic Topology"/>
+            <term name="Analysis of PDEs">
+                <term name="Nonlinear Schrödinger equation"/>
+            </term>
+            <term name="Category Theory"/>
+            <term name="Classical Analysis and ODEs"/>
+            <term name="Combinatorics"/>
+            <term name="Commutative Algebra"/>
+            <term name="Complex Variables"/>
+            <term name="Differential Geometry"/>
+            <term name="Dynamical Systems"/>
+            <term name="Functional Analysis"/>
+            <term name="General Mathematics">
+                <term name="Clifford algebra"/>
+                <term name="Geometric algebra"/>
+            </term>
+            <term name="General Topology"/>
+            <term name="Geometric Topology"/>
+            <term name="Group Theory"/>
+            <term name="History and Overview"/>
+            <term name="Information Theory"/>
+            <term name="K-Theory and Homology"/>
+            <term name="Logic"/>
+            <term name="Mathematical Physics"/>
+            <term name="Metric Geometry"/>
+            <term name="Number Theory"/>
+            <term name="Numerical Analysis"/>
+            <term name="Operator Algebras"/>
+            <term name="Optimization and Control"/>
+            <term name="Probability"/>
+            <term name="Quantum Algebra">
+                <term name="Quantum group"/>
+                <term name="Galois theory">
+                    <term name="Group theory"/>
+                    <term name="Field theory (mathematics)"/>
+                </term>
+            </term>
+            <term name="Representation Theory"/>
+            <term name="Rings and Algebras"/>
+            <term name="Spectral Theory"/>
+            <term name="Statistics"/>
+            <term name="Symplectic Geometry"/>
+        </term>
+        <term name="Nonlinear Sciences">
+            <term name="Adaptation and Self-Organizing Systems"/>
+            <term name="Cellular Automata and Lattice Gases"/>
+            <term name="Chaotic Dynamics"/>
+            <term name="Exactly Solvable and Integrable Systems"/>
+            <term name="Pattern Formation and Solitons"/>
+        </term>
+        <term name="Computer Science">
+            <term name="Architecture"/>
+            <term name="Artificial Intelligence"/>
+            <term name="Computation and Language"/>
+            <term name="Computational Complexity"/>
+            <term name="Computational Engineering, Finance, and Science"/>
+            <term name="Computational Geometry"/>
+            <term name="Computer Science and Game Theory"/>
+            <term name="Computer Vision and Pattern Recognition"/>
+            <term name="Computers and Society"/>
+            <term name="Cryptography and Security"/>
+            <term name="Data Structures and Algorithms"/>
+            <term name="Databases"/>
+            <term name="Digital Libraries"/>
+            <term name="Discrete Mathematics"/>
+            <term name="Distributed, Parallel, and Cluster Computing"/>
+            <term name="Formal Languages and Automata Theory"/>
+            <term name="General Literature"/>
+            <term name="Graphics"/>
+            <term name="Human-Computer Interaction"/>
+            <term name="Information Retrieval"/>
+            <term name="Information Theory"/>
+            <term name="Learning"/>
+            <term name="Logic in Computer Science"/>
+            <term name="Mathematical Software"/>
+            <term name="Multiagent Systems"/>
+            <term name="Multimedia"/>
+            <term name="Networking and Internet Architecture"/>
+            <term name="Neural and Evolutionary Computing"/>
+            <term name="Numerical Analysis"/>
+            <term name="Operating Systems"/>
+            <term name="Other Computer Science"/>
+            <term name="Performance"/>
+            <term name="Programming Languages"/>
+            <term name="Robotics"/>
+            <term name="Software Engineering"/>
+            <term name="Sound"/>
+            <term name="Symbolic Computation"/>
+        </term>
+        <term name="Quantitative Biology">
+            <term name="Biomolecules"/>
+            <term name="Cell Behavior"/>
+            <term name="Genomics"/>
+            <term name="Molecular Networks">
+                <term name="Gene regulatory network"/>
+            </term>
+            <term name="Neurons and Cognition"/>
+            <term name="Other"/>
+            <term name="Populations and Evolution"/>
+            <term name="Quantitative Methods"/>
+            <term name="Subcellular Processes"/>
+            <term name="Tissues and Organs"/>
+        </term>
+        <term name="Quantitative Finance">
+            <term name="Computational Finance"/>
+            <term name="General Finance"/>
+            <term name="Portfolio Management"/>
+            <term name="Pricing of Securities"/>
+            <term name="Risk Management"/>
+            <term name="Statistical Finance"/>
+            <term name="Trading and Market Microstructure"/>
+        </term>
+        <term name="Statistics">
+            <term name="Applications"/>
+            <term name="Computation"/>
+            <term name="Machine Learning"/>
+            <term name="Methodology"/>
+            <term name="Theory"/>
+        </term>
+    </term>
+
+</webdiver>

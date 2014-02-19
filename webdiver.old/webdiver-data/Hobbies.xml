@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+    <engine name="google books" query="http://books.google.com/books?q=$encoded_term&amp;as_brr=1"/>
+    <engine name="google code search" query="http://www.google.com/codesearch?q=$encoded_term"/>
+    <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+    <engine name="google news" query="http://news.google.com/news?q=$encoded_term"/>
+    <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+    <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_term"/>
+    <engine name="google scholar" query="http://scholar.google.com/scholar?q=intitle:$encoded_term"/>
+    <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+    <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_term"/>
+
+    <term name="Karate">
+        <term name="Kyokushin Karate"/>
+        <term name="Kyokushin kaikan">
+            <term name="極真会館"/>
+        </term>
+    </term>
+
+</webdiver>

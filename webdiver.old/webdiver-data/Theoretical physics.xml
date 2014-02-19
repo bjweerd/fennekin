@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+    <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+    <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_term"/>
+    <engine name="google news" query="http://news.google.com/news?q=$encoded_term"/>
+    <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+    <engine name="google code search" query="http://www.google.com/codesearch?q=$encoded_term"/>
+    <engine name="google trends" query="http://www.google.com/trends?q=$encoded_term"/>
+    <engine name="yahoo search" query="http://search.yahoo.com/search?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;cop=mss&amp;ei=UTF-8"/>
+    <engine name="yahoo images" query="http://images.search.yahoo.com/search/images?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-web"/>
+    <engine name="yahoo video" query="http://video.search.yahoo.com/search/video?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-img"/>
+    <engine name="yahoo audio" query="http://audio.search.yahoo.com/search/audio?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-vid"/>
+    <engine name="yahoo news" query="http://news.search.yahoo.com/search/news?p=$term"/>
+    <engine name="ask.com" query="http://www.ask.com/web?q=$term&amp;qsrc=0&amp;o=312&amp;l=dir"/>
+    <engine name="microsoft search" query="http://search.live.com/results.aspx?q=$term&amp;mkt=en-us&amp;FORM=LVSP"/>
+    <engine name="microsoft images" query="http://search.live.com/images/results.aspx?q=$term&amp;FORM=BIRE"/>
+    <engine name="microsoft news" query="http://search.live.com/news/results.aspx?q=$term&amp;FORM=BNIR"/>
+    <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+    <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_term"/>
+    <engine name="amazon" query="http://www.amazon.com/s/ref=nb_ss_/002-2408646-9740015?url=search-alias=aps&amp;field-keywords=$term"/>
+    <engine name="ebay" query="http://search.ebay.com/$term"/>
+    <engine name="technorati.com" query="http://www.technorati.com/search/$term"/>
+    <engine name="del.icio.us" query="http://del.icio.us/search/?fr=del_icio_us&amp;p=$term&amp;type=all"/>
+    <engine name="arxiv" query="http://arxiv.org/find/all/1/abs:$(arxiv)/0/1/0/all/0/1"/>
+
+    <term name="Theoretical physics">
+        <term name="Quantum field theory">
+            <term name="Electromagnetic field">
+                <term name="Classical electromagnetism"/>
+                <term name="Electromagnetic four-potential"/>
+            </term>
+            <term name="Quantum electrodynamics"/>
+            <term name="Dirac equation"/>
+            <term name="Canonical quantization"/>
+            <term name="Klein–Gordon equation"/>
+            <term name="Fock space"/>
+            <term name="Creation and annihilation operators"/>
+            <term name="Particle number operator"/>
+            <term name="Constructive quantum field theory"/>
+            <term name="Topological quantum field theory">
+                <term name="Representation theory"/>
+                <term name="Algebraic topology"/>
+                <term name="Differential geometry"/>
+                <term name="Yang–Mills existence and mass gap"/>
+            </term>
+            <term name="Self-energy"/>
+            <term name="Renormalization">
+                <term name="Renormalization group"/>
+            </term>
+            <term name="renormalizable quantum field theories">
+                <term name="perturbatively renormalizable"/>
+            </term>
+            <term name="Electroweak interaction"/>
+            <term name="Quantum chromodynamics"/>
+            <term name="Gauge theory">
+                <term name="Asymptotic freedom"/>
+                <term name="Gauge boson"/>
+                <term name="Gauge symmetry"/>
+                <term name="Gauge anomaly"/>
+            </term>
+            <term name="Seesaw mechanism"/>
+            <term name="Conformal field theory"/>
+        </term>
+        <term name="Standard Model"/>
+        <term name="Particle physics"/>
+        <term name="Condensed matter physics">
+            <term name="Superconductivity">
+                <term name="BCS theory"/>
+            </term>
+            <term name="Superfluid"/>
+            <term name="Spinon"/>
+        </term>
+        <term name="Special relativity">
+            <term name="Spacetime"/>
+            <term name="de Sitter invariant special relativity"/>
+        </term>
+        <term name="Nuclear physics"/>
+        <term name="Quantum optics">
+            <term name="Optical theorem"/>
+        </term>
+        <term name="Quantum mechanics">
+            <term name="Operator"/>
+            <term name="zero-dimensional quantum field theory"/>
+            <term name="Schrödinger equation"/>
+            <term name="Quantum harmonic oscillator"/>
+            <term name="Quantum superposition"/>
+            <term name="Spin-statistics theorem"/>
+            <term name="CPT symmetry"/>
+            <term name="Quantum Hall effect"/>
+            <term name="scattering matrix"/>
+        </term>
+        <term name="Perturbation theory"/>
+        <term name="General relativity">
+            <term name="Kaluza–Klein theory">
+                <term name="Graviscalar"/>
+                <term name="Graviphoton"/>
+            </term>
+        </term>
+        <term name="Supersymmetry">
+            <term name="Hierarchy problem"/>
+            <term name="Supergravity"/>
+            <term name="Supersymmetry breaking"/>
+            <term name="Extended supersymmetry"/>
+        </term>
+        <term name="String theory">
+            <term name="Superstring theory">
+                <term name="Calabi Yau manifold"/>
+            </term>
+            <term name="Cosmological constant"/>
+            <term name="T-duality"/>
+            <term name="AdS CFT"/>
+            <term name="Holographic principle"/>
+        </term>
+        <term name="Emergent evolution"/>
+        <term name="Quantum gravity">
+            <term name="Event symmetry"/>
+            <term name="Self-organization"/>
+            <term name="Magnetic monopole"/>
+            <term name="Quantum mind"/>
+            <term name="Spiritual intelligence"/>
+            <term name="Induced gravity"/>
+            <term name="Noncommutative geometry"/>
+            <term name="Planck time"/>
+            <term name="Planck length"/>
+            <term name="Planck units"/>
+        </term>
+        <term name="Quasiparticle"/>
+        <term name="Topological quantum computer">
+            <term name="Anyon"/>
+        </term>
+    </term>
+
+</webdiver>

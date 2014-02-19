@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="PLoS Biology" query="http://www.plosbiology.org/search/simpleSearch.action?query=$term"/>
+    <engine name="BioExplorer" query="http://www.bioexplorer.net/cgi-bin/links/search.pl?query=$term"/>
+    <engine name="Cell" query="http://www.cell.com/searchresults?searchBy=fulltext&amp;searchText=$term"/>
+    <engine name="flickr" query="http://www.flickr.com/search/?w=all&amp;q=$encoded_term&amp;m=text"/>
+    <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+    <engine name="google books" query="http://books.google.com/books?q=$encoded_term&amp;as_brr=1"/>
+    <engine name="google code search" query="http://www.google.com/codesearch?q=$encoded_term"/>
+    <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+    <engine name="google news" query="http://news.google.com/news?q=$encoded_term"/>
+    <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+    <engine name="google trends" query="http://www.google.com/trends?q=$encoded_term"/>
+    <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_term"/>
+    <engine name="google scholar" query="http://scholar.google.com/scholar?q=intitle:$encoded_term"/>
+    <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+    <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_term -atheism"/>
+    <engine name="arxiv - in abstracts" query="http://arxiv.org/find/all/1/abs:$(arxiv)/0/1/0/all/0/1"/>
+    <engine name="arxiv - in titles" query="http://arxiv.org/find/all/1/ti:$(arxiv)/0/1/0/all/0/1"/>
+
+    <term name="Biology">
+        <term name="Organism">
+            <term name="Biological classification">
+                <term name="Folk taxonomy"/>
+                <term name="Taxonomy">
+                    <term name="Alpha taxonomy"/>
+                </term>
+                <term name="Cladistics"/>
+                <term name="Three-domain system">
+                    <term name="Archaea"/>
+                    <term name="Bacteria">
+                        <term name="Cyanobacteria"/>
+                    </term>
+                    <term name="Eukaryote">
+                        <term name="Animal">
+                            <term name="Parazoa">
+                                <term name="Sponge"/>
+                            </term>
+                            <term name="Eumetazoa">
+                                <term name="Radiata">
+                                    <term name="Ctenophore"/>
+                                    <term name="Cnidaria">
+                                        <term name="Jellyfish"/>
+                                    </term>
+                                </term>
+                                <term name="Platyzoa">
+                                    <term name="Flatworm"/>
+                                </term>
+                            </term>
+                            <term name="Bilateria">
+                                <term name="Deuterostome">
+                                    <term name="Chordate">
+                                        <term name="Tunicate"/>
+                                        <term name="Lancelet"/>
+                                        <term name="Craniata">
+                                            <term name="Vertebrate">
+                                                <term name="Agnatha"/>
+                                                <term name="Chondrichthyes"/>
+                                                <term name="Osteichthyes"/>
+                                                <term name="Amphibian"/>
+                                                <term name="Reptile"/>
+                                                <term name="Bird"/>
+                                                <term name="Mammal">
+                                                    <term name="Primate">
+                                                        <term name="Strepsirrhini"/>
+                                                        <term name="Haplorrhini">
+                                                            <term name="Tarsier"/>
+                                                            <term name="Simian">
+                                                                <term name="New World monkey"/>
+                                                                <term name="Catarrhini">
+                                                                    <term name="Old World monkey"/>
+                                                                    <term name="Ape">
+                                                                        <term name="Gibbon"/>
+                                                                        <term name="Hominidae">
+                                                                            <term name="Ponginae">
+                                                                                <term name="Bornean Orangutan"/>
+                                                                                <term name="Sumatran Orangutan"/>
+                                                                            </term>
+                                                                            <term name="Homininae">
+                                                                                <term name="Gorilla">
+                                                                                    <term name="Western Lowland Gorilla"/>
+                                                                                    <term name="Cross River Gorilla"/>
+                                                                                    <term name="Mountain Gorilla"/>
+                                                                                    <term name="Eastern Lowland Gorilla"/>
+                                                                                </term>
+                                                                                <term name="Hominini">
+                                                                                    <term name="Chimpanzee">
+                                                                                        <term name="Common Chimpanzee"/>
+                                                                                        <term name="Bonobo"/>
+                                                                                    </term>
+                                                                                    <term name="Human"/>
+                                                                                </term>
+                                                                            </term>
+                                                                        </term>
+                                                                    </term>
+                                                                </term>
+                                                            </term>
+                                                        </term>
+                                                    </term>
+                                                </term>
+                                            </term>
+                                            <term name="Hagfish"/>
+                                        </term>
+                                    </term>
+                                    <term name="Echinoderm"/>
+                                    <term name="Hemichordata"/>
+                                    <term name="Xenoturbella"/>
+                                </term>
+                                <term name="Protostome">
+                                    <term name="Ecdysozoa">
+                                        <term name="Arthropod"/>
+                                        <term name="Onychophora"/>
+                                        <term name="Tardigrade"/>
+                                        <term name="Kinorhyncha"/>
+                                        <term name="Loricifera"/>
+                                        <term name="Priapulida"/>
+                                        <term name="Nematode"/>
+                                        <term name="Nematomorpha"/>
+                                    </term>
+                                    <term name="Platyzoa">
+                                        <term name="Flatworm"/>
+                                        <term name="Gastrotrich"/>
+                                        <term name="Gnathifera">
+                                            <term name="Rotifer"/>
+                                            <term name="Acanthocephala"/>
+                                            <term name="Gnathostomulid"/>
+                                            <term name="Limnognathia"/>
+                                            <term name="Symbion"/>
+                                        </term>
+                                    </term>
+                                    <term name="Lophotrochozoa">
+                                        <term name="Squid"/>
+                                        <term name="Annelid"/>
+                                    </term>
+                                </term>
+                            </term>
+                        </term>
+                        <term name="Plant"/>
+                        <term name="Fungus"/>
+                        <term name="Protist"/>
+                    </term>
+                </term>
+                <term name="Common descent">
+                    <term name="Last universal ancestor"/>
+                    <term name="Clade"/>
+                </term>
+            </term>
+            <term name="Plant">
+                <term name="Photosynthesis">
+                    <term name="Rhodobacter sphaeroides"/>
+                </term>
+                <term name="Tree"/>
+                <term name="Herb"/>
+                <term name="Shrub"/>
+                <term name="Grass"/>
+                <term name="Vine"/>
+                <term name="Fern"/>
+                <term name="Moss"/>
+                <term name="Green algae"/>
+                <term name="Plant Intelligence"/>
+            </term>
+            <term name="Animal">
+                <term name="bison"/>
+                <term name="Wisent"/>
+                <term name="Aurochs"/>
+                <term name="Cattle">
+                    <term name="Heck cattle">
+                        <term name="Oostvaardersplassen"/>
+                    </term>
+                </term>
+            </term>
+            <term name="Fungus">
+                <term name="Common mushroom"/>
+            </term>
+            <term name="Microorganism"/>
+        </term>
+        <term name="Biochemistry">
+            <term name="Biomolecule">
+                <term name="Carbohydrate"/>
+                <term name="Carbon dioxide"/>
+                <term name="Starch"/>
+                <term name="Cellulose"/>
+                <term name="Collagen"/>
+                <term name="Nucleic acid"/>
+                <term name="Protein"/>
+                <term name="Lipid"/>
+                <term name="Amino acid"/>
+            </term>
+            <term name="Enzyme"/>
+            <term name="Polymerase">
+                <term name="DNA polymerase"/>
+            </term>
+            <term name="Ribosome"/>
+            <term name="RNA">
+                <term name="RNA primer"/>
+                <term name="RNA polymerase"/>
+                <term name="Ribozyme"/>
+                <term name="Ribosomal RNA"/>
+                <term name="RNA virus">
+                    <term name="Retrovirus"/>
+                    <term name="Virology"/>
+                    <term name="Double-stranded RNA viruses"/>
+                    <term name="Retrovirus reverse transcription"/>
+                </term>
+                <term name="RNA interference"/>
+                <term name="MicroRNA"/>
+                <term name="Small interfering RNA"/>
+            </term>
+            <term name="Primer template"/>
+            <term name="Protein">
+                <term name="Protein folding"/>
+                <term name="Macromolecule">
+                    <term name="Carbohydrate"/>
+                    <term name="Lipid"/>
+                    <term name="Nucleic acid"/>
+                </term>
+                <term name="Amino acid"/>
+                <term name="Genetic code"/>
+            </term>
+            <term name="Photosynthesis">
+                <term name="chlorophyll">
+                    <term name="magnesium"/>
+                </term>
+                <term name="photosystem I"/>
+                <term name="photosystem II"/>
+            </term>
+            <term name="DNA">
+                <term name="Nucleotide"/>
+                <term name="Genetic code"/>
+            </term>
+            <term name="ATP"/>
+        </term>
+        <term name="Microbiology">
+            <term name="Eukaryote">
+                <term name="Protists"/>
+                <term name="Protist"/>
+            </term>
+            <term name="Bacteria"/>
+            <term name="Archaea"/>
+            <term name="Prion"/>
+            <term name="Virus"/>
+            <term name="Bacteriophage"/>
+        </term>
+        <term name="Evolution">
+            <term name="Modern evolutionary synthesis"/>
+            <term name="Gene-centered view of evolution"/>
+            <term name="Phylogenetics"/>
+            <term name="RNA world hypothesis">
+                <term name="Peptide nucleic acid"/>
+                <term name="Threose nucleic acid"/>
+                <term name="Glycol nucleic acid"/>
+                <term name="Abiogenesis">
+                    <term name="Murchison meteorite"/>
+                </term>
+                <term name="Amino acid"/>
+                <term name="Murchison meteorite"/>
+            </term>
+            <term name="Molecular evolution">
+                <term name="Molecular clock"/>
+                <term name="Molecular genetics"/>
+            </term>
+            <term name="Abiogenesis"/>
+        </term>
+        <term name="Ecology">
+            <term name="Biodiversity"/>
+            <term name="Autotroph">
+                <term name="Cyanobacteria"/>
+                <term name="Phototroph"/>
+            </term>
+            <term name="Primary nutritional groups">
+                <term name="Carbon dioxide"/>
+            </term>
+            <term name="Extremophile"/>
+            <term name="Primary production"/>
+        </term>
+        <term name="Neuroscience"/>
+        <term name="Genetics">
+            <term name="Genetic engineering">
+                <term name="Viral vector"/>
+                <term name="Gene therapy"/>
+                <term name="Polymerase chain reaction"/>
+            </term>
+            <term name="Allele"/>
+            <term name="Horizontal gene transfer">
+                <term name="Plasmid">
+                    <term name="replication origin"/>
+                    <term name="selection marker"/>
+                </term>
+            </term>
+            <term name="Molecular phylogenetics">
+                <term name="Phylogenetic tree"/>
+                <term name="Paraphyly"/>
+                <term name="Phylogenetics"/>
+                <term name="Clade"/>
+            </term>
+            <term name="Epigenetics"/>
+            <term name="Genetic code"/>
+        </term>
+        <term name="Biotechnology"/>
+        <term name="Bioinformatics">
+            <term name="Evolutionary algorithm">
+                <term name="Quantum Evolutionary Computation"/>
+            </term>
+            <term name="Evolutionary computation">
+                <term name="No free lunch in search and optimization"/>
+            </term>
+            <term name="Combinatorial optimization">
+                <term name="Metaheuristic"/>
+            </term>
+            <term name="Computational phylogenetics"/>
+        </term>
+        <term name="Bionanotechnology">
+            <term name="DNA nanotechnology"/>
+            <term name="DNA computing"/>
+            <term name="Biosensors"/>
+            <term name="Bioelectronics"/>
+        </term>
+        <term name="Comparative psychology">
+            <term name="Artificial intelligence">
+                <term name="Strong AI"/>
+            </term>
+        </term>
+        <term name="Quantum biology"/>
+    </term>
+
+</webdiver>

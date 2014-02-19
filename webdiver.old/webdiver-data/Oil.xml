@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+    <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+    <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+    <engine name="google blogsearch" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+    <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_term"/>
+
+    <term name="Oil">
+        <term name="Petrochemical">
+            <term name="Fossil fuel"/>
+        </term>
+        <term name="Petroleum">
+            <term name="List of countries by proven oil reserves"/>
+            <term name="List of oil fields"/>
+            <term name="Oil shale reserves"/>
+        </term>
+        <term name="Supermajor">
+            <term name="ExxonMobil"/>
+            <term name="Royal Dutch Shell"/>
+            <term name="BP"/>
+            <term name="Chevron Corporation"/>
+            <term name="ConocoPhillips"/>
+            <term name="Total S.A."/>
+        </term>
+        <term name="National oil company">
+            <term name="Saudi Aramco"/>
+            <term name="National Iranian Oil Company"/>
+            <term name="LUKOIL"/>
+            <term name="China National Petroleum Corporation"/>
+            <term name="Gazprom"/>
+            <term name="National Iranian Oil Company"/>
+            <term name="Petróleos de Venezuela"/>
+            <term name="Petrobras"/>
+            <term name="Petronas"/>
+        </term>
+        <term name="Cartel"/>
+        <term name="Monopoly"/>
+    </term>
+
+</webdiver>

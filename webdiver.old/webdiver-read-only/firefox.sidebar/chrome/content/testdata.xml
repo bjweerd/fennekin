@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+
+<webdiver version="2.0">
+
+
+   <engine name="google search"     query="http://www.google.com/search?q=$term"/>
+   <engine name="google images"     query="http://images.google.com/images?q=$term"/>
+   <engine name="google blogsearch" query="http://blogsearch.google.com/blogsearch?q=$term"/>
+   <engine name="google video"      query="http://video.google.com/videosearch?q=$term"/>
+   <engine name="youtube"           query="http://www.youtube.com/results?search_query=$term"/>
+   <engine name="wikipedia"         query="http://en.wikipedia.org/wiki/$term"/>
+
+
+   <term name="Science">
+      <term name="Mathematics">
+	 <term name="Foundation of mathematics">
+	    <term name="Mathematical logic"/>
+	    <term name="Axiomatic set theory"/>
+	    <term name="Proof theory"/>
+	    <term name="Model theory"/>
+	    <term name="Recursion theory"/>
+	 </term>
+	 <term name="Mathematical proof"/>
+	 <term name="Mathematical model"/>
+      </term>
+      <term name="Pysics">
+	 <term name="Quantum mechanics">
+	    <term name="Quantum gravity"/>
+	 </term>
+	 <term name="Theory of relativity"/>
+	 <term name="Thermodynamics"/>
+      </term>
+      <term name="Chemistry">
+	 <term name="Atom"/>
+	 <term name="Molecule"/>
+      </term>
+      <term name="Biology">
+	 <term name="Cell theory"/>
+	 <term name="Evolution"/>
+	 <term name="Life"/>
+	 <term name="Homeostasis"/>
+      </term>
+   </term>
+
+
+</webdiver>
+

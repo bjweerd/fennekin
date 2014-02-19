@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+    <engine name="google books" query="http://books.google.com/books?q=$encoded_term&amp;as_brr=1"/>
+    <engine name="google code search" query="http://www.google.com/codesearch?q=$encoded_term"/>
+    <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+    <engine name="google news" query="http://news.google.com/news?q=$encoded_term"/>
+    <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+    <engine name="google trends" query="http://www.google.com/trends?q=$encoded_term"/>
+    <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_term"/>
+    <engine name="google scholar" query="http://scholar.google.com/scholar?q=intitle:$encoded_term"/>
+    <engine name="technorati.com" query="http://www.technorati.com/search/$term"/>
+    <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+    <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_term"/>
+    <engine name="arxiv" query="http://arxiv.org/find/all/1/abs:$(arxiv)/0/1/0/all/0/1"/>
+
+    <term name="Mathematics">
+        <term name="Set theory">
+            <term name="Continuum hypothesis"/>
+            <term name="Zermelo–Fraenkel set theory"/>
+            <term name="Cantor&apos;s diagonal argument"/>
+            <term name="Gödel&apos;s incompleteness theorems">
+                <term name="Turing machine"/>
+                <term name="Computation">
+                    <term name="Physical information">
+                        <term name="Entropy (information theory)"/>
+                    </term>
+                </term>
+                <term name="Halting problem"/>
+                <term name="Chaitin&apos;s constant"/>
+                <term name="Automated theorem proving"/>
+            </term>
+        </term>
+        <term name="Philosophy of mathematics"/>
+        <term name="Halting problem"/>
+        <term name="Pure mathematics">
+            <term name="Transfinite number"/>
+            <term name="Peano axioms"/>
+        </term>
+        <term name="Axiomatic system">
+            <term name="Axiom">
+                <term name="List of axioms"/>
+                <term name="Zermelo–Fraenkel set theory"/>
+                <term name="Peano axioms"/>
+            </term>
+        </term>
+        <term name="Philosophy of logic">
+            <term name="Logicism"/>
+            <term name="First-order logic"/>
+            <term name="Second-order logic"/>
+            <term name="Propositional calculus"/>
+            <term name="Second-order arithmetic"/>
+            <term name="Type theory">
+                <term name="Typed lambda calculus"/>
+                <term name="Intuitionistic type theory"/>
+            </term>
+            <term name="Higher-order logic"/>
+        </term>
+        <term name="Algorithmic information theory">
+            <term name="Kolmogorov complexity"/>
+        </term>
+        <term name="quantum game theory">
+            <term name="Game Theory"/>
+        </term>
+        <term name="quantum information">
+            <term name="quantum information technology"/>
+            <term name="super dense coding"/>
+            <term name="Shannon&apos;s Theory of Communication"/>
+            <term name="information entropy"/>
+        </term>
+        <term name="Foundations of mathematics">
+            <term name="Mathematical logic"/>
+            <term name="Proof theory"/>
+            <term name="Model theory"/>
+            <term name="Recursion theory"/>
+            <term name="Philosophy of mathematics"/>
+        </term>
+        <term name="Euclidean geometry">
+            <term name="Hilbert&apos;s axioms"/>
+            <term name="Tarski&apos;s axioms"/>
+            <term name="Birkhoff&apos;s axioms"/>
+        </term>
+        <term name="Number theory"/>
+        <term name="Graph theory"/>
+    </term>
+
+    <term name="Logic">
+        <term name="Quantum logic">
+            <term name="Consistent histories"/>
+            <term name="Incompleteness of quantum physics"/>
+        </term>
+        <term name="Gödel&apos;s incompleteness theorems"/>
+        <term name="Philosophy of mathematics"/>
+        <term name="Mathematical logic">
+            <term name="Computability theory">
+                <term name="Computable function"/>
+                <term name="Turing degree"/>
+            </term>
+        </term>
+    </term>
+
+    <term name="Computer science">
+        <term name="Information"/>
+        <term name="Computation"/>
+        <term name="Algorithm">
+            <term name="Analysis of algorithms"/>
+        </term>
+        <term name="Computer graphics"/>
+        <term name="Theory of computation">
+            <term name="Computational complexity theory"/>
+        </term>
+        <term name="Theoretical computer science">
+            <term name="Computational problem"/>
+            <term name="Data structure"/>
+            <term name="Distributed computing"/>
+            <term name="Parallel computing"/>
+            <term name="Machine learning"/>
+            <term name="Computational biology"/>
+            <term name="Natural Computing">
+                <term name="Artificial neural network"/>
+                <term name="Evolutionary algorithm"/>
+                <term name="Swarm intelligence"/>
+                <term name="Artificial immune system"/>
+                <term name="Artificial life"/>
+                <term name="DNA computing"/>
+                <term name="Quantum computer"/>
+            </term>
+            <term name="Biologically inspired computing">
+                <term name="Connectionism"/>
+                <term name="Collective intelligence"/>
+                <term name="Emergence"/>
+            </term>
+            <term name="Artificial intelligence"/>
+            <term name="Automata theory"/>
+        </term>
+        <term name="Programming language theory">
+            <term name="Computer programming"/>
+            <term name="Programming language"/>
+            <term name="Formal semantics of programming languages"/>
+        </term>
+        <term name="Information technology">
+            <term name="Computer network"/>
+            <term name="Database"/>
+            <term name="Human–computer interaction">
+                <term name="Human"/>
+            </term>
+            <term name="VLSI"/>
+        </term>
+    </term>
+
+</webdiver>

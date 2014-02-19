@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+    <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+    <engine name="google blogsearch" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+    <engine name="WoW Wiki" query="http://www.wowwiki.com/$term"/>
+    <engine name="WoW Goblin Workshop" query="http://www.goblinworkshop.com/search2.html?s=$term"/>
+    <engine name="WoW Allakhazam" query="http://wow.allakhazam.com/search.html?q=$term"/>
+    <engine name="WoW Head" query="http://www.wowhead.com/?search=$term"/>
+    <engine name="WoW ThottBot" query="http://www.thottbot.com/?s=$term"/>
+
+    <term name="World of Warcraft">
+        <term name="Tauren">
+            <term name="Shaman">
+                <term name="Shaman tactic"/>
+            </term>
+            <term name="Cairne Bloodhoof"/>
+            <term name="Druid"/>
+            <term name="Warrior"/>
+        </term>
+        <term name="Kalimdor">
+            <term name="Mulgore">
+                <term name="Thunder Bluff"/>
+                <term name="Bloodhoof Village"/>
+            </term>
+            <term name="Barrens">
+                <term name="Crossroads"/>
+                <term name="Camp Taurajo"/>
+                <term name="Ratchet"/>
+                <term name="Wailing Caverns"/>
+                <term name="Razorfen Kraul"/>
+            </term>
+            <term name="Durotar">
+                <term name="Orgrimmar">
+                    <term name="Sayoc"/>
+                </term>
+            </term>
+            <term name="Ashenvale">
+                <term name="Blackfathom Deeps"/>
+            </term>
+            <term name="Thousand Needles">
+                <term name="Freewind Post"/>
+                <term name="Camp Mojache"/>
+            </term>
+        </term>
+        <term name="Eastern Kingdoms">
+            <term name="Tirisfal Glades">
+                <term name="Undercity"/>
+                <term name="Brill"/>
+            </term>
+            <term name="Silverpine Forest">
+                <term name="The Sepulcher"/>
+                <term name="Shadowfang Keep"/>
+            </term>
+            <term name="Stranglethorn Vale">
+                <term name="Booty Bay"/>
+                <term name="Grom gol Base Camp"/>
+            </term>
+        </term>
+        <term name="Reagents">
+            <term name="Shiny Fish Scales">
+                <term name="Water Breathing"/>
+                <term name="Reef Frenzy"/>
+            </term>
+            <term name="Fish Oil">
+                <term name="Water Walking"/>
+                <term name="Stranglethorn Vale"/>
+            </term>
+            <term name="Ankh">
+                <term name="Reincarnation"/>
+                <term name="Reagent vendor"/>
+            </term>
+            <term name="Fire Oil"/>
+            <term name="Blackmouth Oil"/>
+        </term>
+        <term name="Alchemy">
+            <term name="Elixir of Firepower"/>
+            <term name="Elixir of Water Breathing"/>
+            <term name="Swim Speed Potion"/>
+            <term name="Lesser Mana Potion"/>
+        </term>
+        <term name="Herbalism">
+            <term name="Kingsblood"/>
+            <term name="Wild Steelbloom"/>
+            <term name="Bruiseweed"/>
+            <term name="Stranglekelp"/>
+            <term name="Mageroyal"/>
+            <term name="Briarthorn"/>
+            <term name="Swiftthistle"/>
+            <term name="Grave Moss"/>
+            <term name="Liferoot"/>
+        </term>
+        <term name="Fishing">
+            <term name="Firefin Snapper"/>
+            <term name="Oily Blackmouth"/>
+        </term>
+        <term name="Power leveling">
+            <term name="Powerlevel Horde Western Plaguelands"/>
+        </term>
+        <term name="AddOn">
+            <term name="Questhelper"/>
+            <term name="MobMap"/>
+            <term name="HealBot"/>
+            <term name="Auctioneer"/>
+        </term>
+    </term>
+
+</webdiver>

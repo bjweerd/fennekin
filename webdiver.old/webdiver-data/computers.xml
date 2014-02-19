@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engineset name="computer">
+        <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$topic"/>
+        <engine name="google images" query="http://images.google.com/images?q=$encoded_topic"/>
+        <engine name="google search" query="http://www.google.com/search?q=$encoded_topic"/>
+        <engine name="google news" query="http://news.google.com/news?q=$encoded_topic"/>
+        <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_topic is:free"/>
+        <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_topic"/>
+        <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_topic"/>
+        <engine name="alexa.com" query="http://alexa.com/search?q=$topic"/>
+        <engine name="imdb" query="http://www.imdb.com/find?q=$topic"/>
+        <engine name="amazon" query="http://www.amazon.com/exec/obidos/search-handle-url/102-5846975-8081707?%5Fencoding=UTF8&amp;dym=0&amp;search-type=ss&amp;index=stripbooks%3Arelevance-above&amp;field-keywords=$topic"/>
+        <engine name="ebay" query="http://search.ebay.com/search/search.dll?satitle=$topic"/>
+        <engine name="google-en($topic+&apos;news&apos;)" query="http://www.google.com/search?hl=en&amp;q=$encoded_topic news"/>
+        <engine name="google-en($topic+&apos;forum&apos;)" query="http://www.google.com/search?hl=en&amp;q=$encoded_topic forum"/>
+        <engine name="Koders search" query="http://koders.com/default.aspx?s=$topic"/>
+        <engine name="google CODE search" query="http://www.google.com/codesearch?q=$encoded_topic"/>
+        <engine name="mininova" query="http://www.mininova.org/search/?search=$topic"/>
+        <engine name="isohunt" query="http://isohunt.com/torrents.php?ihq=$topic"/>
+        <engine name="piratebay" query="http://thepiratebay.org/search.php?q=$topic"/>
+        <engine name="torrentspy" query="http://ts.searching.com/search.asp?query=$topic"/>
+        <engine name="bsod&apos;s wiki" query="https://wiki.superstring.nl/cgi-bin/wiki.pl?$topic"/>
+        <engine name="bsod&apos;s mindmap" query="http://mindmap.superstring.nl/search.php?q=$topic"/>
+        <engine name="bsod&apos;s whois" query="http://www.synssans.nl/whois/?q=$topic"/>
+        <engine name="bugmenot" query="http://bugmenot.com/view.php?url=$topic"/>
+        <engine name="lonely-planet" query="http://www.lonelyplanet.com/worldguide/destinations/search?criteria=$topic"/>
+    </engineset>
+
+    <term name="Computer" engineset="computer">
+        <term name="Ion drive">
+            <term name="Lobi">
+                <term name="Multithreading"/>
+                <term name="Real-time computing"/>
+                <term name="Berkeley sockets"/>
+                <term name="Resource (computer science)">
+                    <term name="jpg"/>
+                    <term name="pcx"/>
+                    <term name="zip"/>
+                </term>
+            </term>
+            <term name="Dogon">
+                <term name="OpenGL"/>
+                <term name="GLSL"/>
+            </term>
+            <term name="Ashanti">
+                <term name="gettext"/>
+                <term name="iconv"/>
+                <term name="libpng"/>
+                <term name="libXML"/>
+                <term name="XSL Transformations"/>
+                <term name="zlib"/>
+            </term>
+        </term>
+        <term name="Internet">
+            <term name="World Wide Web">
+                <term name="Web design">
+                    <term name="Web standard">
+                        <term name="Cascading Style Sheets"/>
+                        <term name="Document Object Model"/>
+                        <term name="XML"/>
+                        <term name="HTML"/>
+                        <term name="JavaScript"/>
+                        <term name="Extensible Stylesheet Language"/>
+                        <term name="Really Simple Syndication"/>
+                    </term>
+                    <term name="Web application">
+                        <term name="PHP"/>
+                        <term name="MySQL"/>
+                        <term name="AJAX">
+                            <term name="Google Web Toolkit"/>
+                            <term name="Sajax"/>
+                        </term>
+                        <term name="Ruby on Rails"/>
+                    </term>
+                </term>
+                <term name="Web server">
+                    <term name="Web cache"/>
+                    <term name="Apache HTTP server"/>
+                    <term name="Microsoft IIS"/>
+                </term>
+                <term name="Web browser">
+                    <term name="Internet Explorer"/>
+                    <term name="Mozilla Firefox"/>
+                </term>
+                <term name="Search engine">
+                    <term name="Search engine optimization"/>
+                </term>
+                <term name="Semantic web">
+                    <term name="Ontology"/>
+                </term>
+                <term name="Forum spam"/>
+            </term>
+            <term name="E-mail">
+                <term name="E-mail spam"/>
+                <term name="Web-based email">
+                    <term name="SquirrelMail"/>
+                </term>
+                <term name="List of mail servers"/>
+                <term name="SMTP">
+                    <term name="Postfix"/>
+                    <term name="Qmail"/>
+                </term>
+                <term name="IMAP">
+                    <term name="Maildir"/>
+                    <term name="Courier IMAP"/>
+                </term>
+                <term name="Post Office Protocol"/>
+            </term>
+            <term name="Routing">
+                <term name="Peering"/>
+                <term name="IP transit"/>
+                <term name="Border gateway protocol"/>
+                <term name="Cisco systems"/>
+                <term name="Juniper networks"/>
+            </term>
+            <term name="Domain Name System"/>
+            <term name="Usenet"/>
+            <term name="File transfer protocol"/>
+            <term name="WebDAV"/>
+        </term>
+        <term name="Operating system">
+            <term name="Microsoft Windows">
+                <term name="Windows Applications">
+                    <term name="Adobe GoLive"/>
+                    <term name="Adobe Photoshop"/>
+                    <term name="Adobe Premiere"/>
+                    <term name="Autodesk Maya"/>
+                    <term name="BitTorrent"/>
+                    <term name="FileZilla"/>
+                    <term name="Google Desktop"/>
+                    <term name="Google Earth"/>
+                    <term name="Macromedia Flash"/>
+                    <term name="Mathematica"/>
+                    <term name="Microsoft Office"/>
+                    <term name="Microsoft SQL Server"/>
+                    <term name="Microsoft Visual Studio"/>
+                    <term name="Mozilla Firefox"/>
+                    <term name="Mozilla Thunderbird"/>
+                    <term name="Nero Burning ROM"/>
+                    <term name="Newsbin"/>
+                    <term name="Oracle database"/>
+                    <term name="PowerDVD"/>
+                    <term name="Skype"/>
+                    <term name="Sony Vegas"/>
+                    <term name="Steinberg Cubase"/>
+                    <term name="VMWare Workstation"/>
+                    <term name="WinAmp"/>
+                </term>
+                <term name="Windows Vista"/>
+            </term>
+            <term name="Microkernel">
+                <term name="Mach kernel"/>
+                <term name="L4 microkernel family"/>
+                <term name="MINIX 3"/>
+                <term name="Fiasco"/>
+            </term>
+            <term name="Monolithic kernel">
+                <term name="Linux">
+                    <term name="Debian"/>
+                    <term name="Ubuntu"/>
+                </term>
+                <term name="FreeBSD"/>
+                <term name="OpenBSD"/>
+            </term>
+        </term>
+        <term name="Unicode">
+            <term name="UTF-8"/>
+            <term name="Freetype"/>
+            <term name="Pango"/>
+        </term>
+        <term name="Application programming">
+            <term name="Computer simulation"/>
+            <term name="Computer hardware"/>
+            <term name="Programming language">
+                <term name="C++">
+                    <term name="Template metaprogramming"/>
+                    <term name="Partial template specialization"/>
+                    <term name="Boost library"/>
+                </term>
+            </term>
+            <term name="Application programming interface">
+                <term name="Win32"/>
+                <term name="Microsoft .NET">
+                    <term name="C Sharp"/>
+                </term>
+            </term>
+            <term name="Computer graphics">
+                <term name="Digital rendering"/>
+                <term name="OpenGL">
+                    <term name="GLSL"/>
+                </term>
+                <term name="DirectX"/>
+            </term>
+            <term name="Database">
+                <term name="SQL"/>
+            </term>
+        </term>
+        <term name="Computer games">
+            <term name="Civilization 2"/>
+            <term name="Quake"/>
+            <term name="World of Warcraft"/>
+        </term>
+        <term name="Gadgets">
+            <term name="Digital camera"/>
+            <term name="Smartphone"/>
+            <term name="Bluetooth">
+                <term name="Headset"/>
+            </term>
+            <term name="Pocket PC"/>
+            <term name="Palm OS"/>
+            <term name="USB"/>
+        </term>
+        <term name="Security engineering">
+            <term name="Trusted system"/>
+        </term>
+        <term name="Hacker">
+            <term name="Hex editor"/>
+            <term name="Reverse engineering"/>
+            <term name="P2P">
+                <term name="BitTorrent">
+                    <term name="Azureus"/>
+                </term>
+                <term name="Gnutella"/>
+            </term>
+        </term>
+    </term>
+
+</webdiver>

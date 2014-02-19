@@ -1,0 +1,157 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A0C74157-449F-4131-BA41-E7B007785219}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebDiver</RootNamespace>
+    <AssemblyName>WebDiver</AssemblyName>
+    <ApplicationIcon>BsodApp.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationData.cs" />
+    <Compile Include="ConfigureEditorItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigureEditorItem.Designer.cs">
+      <DependentUpon>ConfigureEditorItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigureEditorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigureEditorsForm.Designer.cs">
+      <DependentUpon>ConfigureEditorsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data.cs" />
+    <Compile Include="NewFileWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewFileWizard.Designer.cs">
+      <DependentUpon>NewFileWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XSLTExportWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XSLTExportWindow.Designer.cs">
+      <DependentUpon>XSLTExportWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XSLTImportWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XSLTImportWindow.Designer.cs">
+      <DependentUpon>XSLTImportWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XSLTOptionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XSLTOptionsWindow.Designer.cs">
+      <DependentUpon>XSLTOptionsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="About.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigureEditorItem.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConfigureEditorItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigureEditorsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConfigureEditorsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewFileWizard.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NewFileWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XSLTExportWindow.resx">
+      <DependentUpon>XSLTExportWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XSLTImportWindow.resx">
+      <DependentUpon>XSLTImportWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XSLTOptionsWindow.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>XSLTOptionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tree.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BsodApp.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

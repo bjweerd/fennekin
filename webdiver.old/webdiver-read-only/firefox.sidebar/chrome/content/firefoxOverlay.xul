@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://webdiver/locale/webdiver.dtd">
+
+<overlay id="webdiverOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  
+  <menupopup id="viewSidebarMenu">
+    <menuitem key="key_openWebDiver" observes="viewWebDiver"  />
+  </menupopup>
+  
+  <keyset>
+    <key
+        id="key_openWebDiver"
+        command="viewWebDiver"
+        key="&openWebDiver.commandkey;"
+        modifiers="&openWebDiver.modifierskey;"
+        />
+  </keyset>
+  
+  <broadcasterset id="mainBroadcasterSet"> 
+    <broadcaster id="viewWebDiver" 
+                 label="&webdiver.title;"
+                 autoCheck="false"
+                 type="checkbox"
+                 group="sidebar"
+                 sidebarurl="chrome://webdiver/content/webdiver.xul"
+                 sidebartitle="&webdiver.title;"
+                 oncommand="toggleSidebar('viewWebDiver');" />
+  </broadcasterset>
+</overlay>
+

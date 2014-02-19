@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<webdiver version="2.0">
+
+    <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
+    <engine name="google images" query="http://images.google.com/images?q=$encoded_term"/>
+    <engine name="google video" query="http://video.google.com/videosearch?q=$encoded_term"/>
+    <engine name="google news" query="http://news.google.com/news?q=$encoded_term"/>
+    <engine name="google blogseach" query="http://blogsearch.google.com/blogsearch?q=$encoded_term"/>
+    <engine name="google code search" query="http://www.google.com/codesearch?q=$encoded_term"/>
+    <engine name="google trends" query="http://www.google.com/trends?q=$encoded_term"/>
+    <engine name="yahoo search" query="http://search.yahoo.com/search?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;cop=mss&amp;ei=UTF-8"/>
+    <engine name="yahoo images" query="http://images.search.yahoo.com/search/images?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-web"/>
+    <engine name="yahoo video" query="http://video.search.yahoo.com/search/video?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-img"/>
+    <engine name="yahoo audio" query="http://audio.search.yahoo.com/search/audio?p=$term&amp;fr=yfp-t-501&amp;toggle=1&amp;ei=UTF-8&amp;fr2=tab-vid"/>
+    <engine name="yahoo news" query="http://news.search.yahoo.com/search/news?p=$term"/>
+    <engine name="ask.com" query="http://www.ask.com/web?q=$term&amp;qsrc=0&amp;o=312&amp;l=dir"/>
+    <engine name="microsoft search" query="http://search.live.com/results.aspx?q=$term&amp;mkt=en-us&amp;FORM=LVSP"/>
+    <engine name="microsoft images" query="http://search.live.com/images/results.aspx?q=$term&amp;FORM=BIRE"/>
+    <engine name="microsoft news" query="http://search.live.com/news/results.aspx?q=$term&amp;FORM=BNIR"/>
+    <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>
+    <engine name="youtube" query="http://www.youtube.com/results?search_query=$encoded_term"/>
+    <engine name="amazon" query="http://www.amazon.com/s/ref=nb_ss_/002-2408646-9740015?url=search-alias=aps&amp;field-keywords=$term"/>
+    <engine name="ebay" query="http://search.ebay.com/$term"/>
+    <engine name="technorati.com" query="http://www.technorati.com/search/$term"/>
+    <engine name="del.icio.us" query="http://del.icio.us/search/?fr=del_icio_us&amp;p=$term&amp;type=all"/>
+    <engine name="Stanford Encyclopedia of Philosophy" query="http://plato.stanford.edu/search/searcher.py?query=$term"/>
+
+    <term name="Humanities">
+        <term name="Philosophy">
+            <term name="Materialism">
+                <term name="Scientific Materialists">
+                    <term name="Daniel Dennett"/>
+                    <term name="Willard Van Orman Quine"/>
+                    <term name="Donald Herbert Davidson"/>
+                    <term name="John Searle"/>
+                    <term name="Jerry Fodor"/>
+                    <term name="Jaegwon Kim"/>
+                </term>
+                <term name="Mind"/>
+                <term name="Functionalism"/>
+                <term name="Anomalous monism"/>
+                <term name="Type physicalism"/>
+            </term>
+            <term name="Existentialism"/>
+            <term name="Eliminativism"/>
+            <term name="Rationality"/>
+        </term>
+        <term name="Human condition"/>
+        <term name="Theology"/>
+        <term name="Sociology"/>
+        <term name="Psychology">
+            <term name="Folk psychology"/>
+            <term name="Behaviorism"/>
+        </term>
+        <term name="Anthropology"/>
+        <term name="Cultural studies"/>
+        <term name="Sociobiology"/>
+        <term name="History">
+            <term name="Archaeology"/>
+        </term>
+    </term>
+
+    <term name="Spirituality">
+        <term name="History of religions"/>
+    </term>
+
+</webdiver>

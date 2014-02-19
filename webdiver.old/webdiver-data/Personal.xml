@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webdiver>
+	<engineset name="default">
+		<engine name="wikipedia" query="http://en.wikipedia.org/wiki/$topic"/>
+		<engine name="google images" query="http://images.google.com/images?q=$encoded_topic"/>
+		<engine name="google news" query="http://news.google.com/news?q=$encoded_topic"/>
+		<engine name="google search" query="http://www.google.com/search?q=$encoded_topic"/>
+	</engineset>
+
+	<root name="Personal" engineset="default">
+	
+		<term name="World of Warcraft">
+			<term name="Tauren"/>
+			<term name="Shaman"/>
+			<term name="Shaman (World of Warcraft)"/>
+			<term name="Herbalism"/>
+			<term name="Alchemy"/>
+		</term>
+	
+	
+		<term name="Tobacco smoking">
+			<term name="Smoking cessation"/>
+			<term name="Allen Carr"/>
+			<term name="Nicotine"/>
+			<term name="Addiction"/>
+			<term name="Cold turkey"/>
+			<term name=""/>
+			<term name=""/>
+		</term>
+		
+		
+		
+		<term name="Solitude"/>
+		<term name="Love"/>
+		<term name="Free love"/>
+		<term name="Social anxiety"/>
+		<term name="Dating"/>
+		<term name="Emotional isolation">
+			<term name="Loneliness"/>
+		</term>
+		<term name="Intimate relationship"/>
+		<term name="Seduction"/>
+		<term name=""/>
+		<term name=""/>
+		<term name="Capitalism and Schizophrenia">
+			<term name="Anti-Œdipus"/>
+			<term name="A Thousand Plateaus"/>
+		</term>
+		<term name=""/>
+		<term name="Nietzsche">
+			<term name="Master morality">
+				<term name="Good">
+					<term name="Noble">
+						<term name="Courage"/>
+						<term name="Generosity"/>
+						<term name="Honor"/>
+					</term>
+					<term name="Strong"/>
+					<term name="Powerful"/>
+				</term>
+				<term name="Bad">
+					<term name="Weak"/>
+					<term name="Coward"/>
+					<term name="Timid"/>
+					<term name="Petty"/>
+				</term>
+			</term>
+			<term name="Slave morality">
+				<term name="Good">
+					<term name="Patience"/>
+					<term name="Humility"/>
+					<term name="Pity"/>
+					<term name="Submissive"/>
+				</term>
+				<term name="Evil">
+					<term name="Evil is Master Good"/>
+				</term>
+			</term>
+		</term>
+	</root>
+</webdiver>
