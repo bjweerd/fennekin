@@ -13,14 +13,14 @@ namespace fennekin
 
   public:
 
-    Document() : changed(false), filename(nullptr) {}
+    Document() : changed(false), filename(NULL) {}
     Document(const char* filename) : changed(false), filename(strdup(filename)) {}
-    ~Document() { clear_data(); if (filename != nullptr) { free(filename); filename = nullptr; } }
+    ~Document() { clear_data(); if (filename != NULL) { free(filename); filename = NULL; } }
     
     // Member access
     void set_filename(const char* filename) 
     {
-      if (Document::filename != nullptr) free(Document::filename);
+      if (Document::filename != NULL) free(Document::filename);
       Document::filename = strdup(filename);
 
       clear_data();

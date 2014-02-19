@@ -27,7 +27,7 @@ namespace fennekin
 
       const gchar* builder_filename = datadir("/Fennekin.ui");
       builder = gtk_builder_new();
-      gtk_builder_add_from_file(builder, builder_filename, nullptr);      
+      gtk_builder_add_from_file(builder, builder_filename, NULL);      
     }
     ~Application()
     {
@@ -36,10 +36,10 @@ namespace fennekin
 
     const char* datadir(const char* filename)
     {
-      static char* buffer = nullptr;
+      static char* buffer = NULL;
 
-      if (buffer != nullptr) { 
-	free(buffer); buffer = nullptr; 
+      if (buffer != NULL) { 
+	free(buffer); buffer = NULL; 
       }
 
       std::ostringstream tmp;
@@ -50,7 +50,7 @@ namespace fennekin
     }
 
   };
-  Application* Application::app = nullptr; // instance pointer
+  Application* Application::app = NULL; // instance pointer
 
   // Main Window class
 
@@ -62,6 +62,7 @@ namespace fennekin
 
     GtkWidget* window;
     GtkWidget* scrolled_window;
+    GtkWidget* vbox_left;
     WebKitWebView* web_view;
     // toolbar
     GtkWidget* entry_url;
@@ -70,28 +71,32 @@ namespace fennekin
     GtkWidget* toolbutton_forward;
     GtkWidget* toolbutton_reload;
     GtkWidget* toolbutton_stop_loading;
+    GtkWidget* toolbutton_home;
     GtkWidget* toolbutton_file_new;
     GtkWidget* toolbutton_file_open;
     GtkWidget* toolbutton_file_save;
     // status bar
     GtkWidget* statusbar;
-
-    // Menu items
+    // menu items
     GtkAction* menuitem_quit;
     GtkAction* menuitem_about;
     GtkAction* menuitem_help_issues;
     GtkAction* menuitem_help_wiki;
+    GtkAction* menuitem_help_releases; 
+    GtkToggleAction* menuitem_help_external;
+    GtkToggleAction* menuitem_view_show_sidebar;
     GtkAction* menuitem_file_new;
     GtkAction* menuitem_file_open;
     GtkAction* menuitem_file_save;
     GtkAction* menuitem_file_save_as;
     GtkAction* menuitem_file_reload;
 
-    MainWindow(Application* app) : app(app)
+    MainWindow(Application* app, const char* filename) : app(app)
     {
       window = GTK_WIDGET(gtk_builder_get_object(app->builder,"MainWindow"));
 
       scrolled_window = GTK_WIDGET(gtk_builder_get_object(app->builder, "scrolled_window"));
+      vbox_left = GTK_WIDGET(gtk_builder_get_object(app->builder, "vbox_left"));
       // toolbar
       entry_url = GTK_WIDGET(gtk_builder_get_object(app->builder, "entry_url"));
       toolbutton_go = GTK_WIDGET(gtk_builder_get_object(app->builder, "toolbutton_go"));
@@ -99,19 +104,23 @@ namespace fennekin
       toolbutton_forward = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_forward"));
       toolbutton_reload = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_reload"));
       toolbutton_stop_loading = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_stop_loading"));
+      toolbutton_home = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_home"));
       toolbutton_file_new = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_file_new"));
       toolbutton_file_open = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_file_open"));
       toolbutton_file_save = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_file_save"));
       // menu items
-      menuitem_quit = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_quit"));
-      menuitem_about = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about"));
-      menuitem_help_issues = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_issues"));
-      menuitem_help_wiki = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_wiki"));
       menuitem_file_new = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_new"));
       menuitem_file_open = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_open"));
       menuitem_file_save = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_save"));
       menuitem_file_save_as = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_save_as"));
       menuitem_file_reload = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_reload"));
+      menuitem_quit = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_quit"));
+      menuitem_view_show_sidebar = GTK_TOGGLE_ACTION(gtk_builder_get_object(app->builder, "menuitem_view_show_sidebar"));
+      menuitem_help_issues = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_issues"));
+      menuitem_help_wiki = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_wiki"));
+      menuitem_help_releases = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_releases"));
+      menuitem_help_external = GTK_TOGGLE_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_external"));
+      menuitem_about = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about"));
       // status bar
       statusbar = GTK_WIDGET(gtk_builder_get_object(app->builder, "status_bar"));
       // web view
@@ -121,33 +130,55 @@ namespace fennekin
       // events
 
       // MainWindow events
-      g_signal_connect(window, "delete_event", G_CALLBACK(on_quit_event), nullptr);
+      g_signal_connect(window, "delete_event", G_CALLBACK(on_quit_event), NULL);
       // toolbar events
-      g_signal_connect(entry_url, "key-press-event", G_CALLBACK(on_entry_url_key_press_event), nullptr);
-      g_signal_connect(toolbutton_go, "clicked", G_CALLBACK(on_do_navigate_event), nullptr);
-      g_signal_connect(toolbutton_back, "clicked", G_CALLBACK(on_navigate_back_event), nullptr);
-      g_signal_connect(toolbutton_forward, "clicked", G_CALLBACK(on_navigate_forward_event), nullptr);
-      g_signal_connect(toolbutton_reload, "clicked", G_CALLBACK(on_navigate_reload_event), nullptr);
-      g_signal_connect(toolbutton_stop_loading, "clicked", G_CALLBACK(on_navigate_stop_loading_event), nullptr);
-      g_signal_connect(toolbutton_file_new, "clicked", G_CALLBACK(on_file_new_event), nullptr);
-      g_signal_connect(toolbutton_file_open, "clicked", G_CALLBACK(on_file_open_event), nullptr);
-      g_signal_connect(toolbutton_file_save, "clicked", G_CALLBACK(on_file_save_event), nullptr);
+      g_signal_connect(entry_url, "key-press-event", G_CALLBACK(on_entry_url_key_press_event), NULL);
+      g_signal_connect(toolbutton_go, "clicked", G_CALLBACK(on_do_navigate_event), NULL);
+      g_signal_connect(toolbutton_back, "clicked", G_CALLBACK(on_navigate_back_event), NULL);
+      g_signal_connect(toolbutton_forward, "clicked", G_CALLBACK(on_navigate_forward_event), NULL);
+      g_signal_connect(toolbutton_reload, "clicked", G_CALLBACK(on_navigate_reload_event), NULL);
+      g_signal_connect(toolbutton_stop_loading, "clicked", G_CALLBACK(on_navigate_stop_loading_event), NULL);
+      g_signal_connect(toolbutton_home, "clicked", G_CALLBACK(on_navigate_home_event), NULL);
+      g_signal_connect(toolbutton_file_new, "clicked", G_CALLBACK(on_file_new_event), NULL);
+      g_signal_connect(toolbutton_file_open, "clicked", G_CALLBACK(on_file_open_event), NULL);
+      g_signal_connect(toolbutton_file_save, "clicked", G_CALLBACK(on_file_save_event), NULL);
       // menu events
-      g_signal_connect(menuitem_quit, "activate", G_CALLBACK(on_quit_event), nullptr);
-      g_signal_connect(menuitem_about, "activate", G_CALLBACK(on_about_event), nullptr);
-      g_signal_connect(menuitem_help_issues, "activate", G_CALLBACK(on_help_issues_event), nullptr);
-      g_signal_connect(menuitem_help_wiki, "activate", G_CALLBACK(on_help_wiki_event), nullptr);
-      g_signal_connect(menuitem_file_new, "activate", G_CALLBACK(on_file_new_event), nullptr);
-      g_signal_connect(menuitem_file_open, "activate", G_CALLBACK(on_file_open_event), nullptr);
-      g_signal_connect(menuitem_file_save, "activate", G_CALLBACK(on_file_save_event), nullptr);
-      g_signal_connect(menuitem_file_save_as, "activate", G_CALLBACK(on_file_save_as_event), nullptr);
-      g_signal_connect(menuitem_file_reload, "activate", G_CALLBACK(on_file_reload_event), nullptr);
+      g_signal_connect(menuitem_quit, "activate", G_CALLBACK(on_quit_event), NULL);
+      g_signal_connect(menuitem_about, "activate", G_CALLBACK(on_about_event), NULL);
+      g_signal_connect(menuitem_help_issues, "activate", G_CALLBACK(on_help_issues_event), NULL);
+      g_signal_connect(menuitem_help_wiki, "activate", G_CALLBACK(on_help_wiki_event), NULL);
+      g_signal_connect(menuitem_help_releases, "activate", G_CALLBACK(on_help_releases_event), NULL);
+      g_signal_connect(menuitem_help_external, "activate", G_CALLBACK(on_help_external_event), NULL);
+      g_signal_connect(menuitem_file_new, "activate", G_CALLBACK(on_file_new_event), NULL);
+      g_signal_connect(menuitem_file_open, "activate", G_CALLBACK(on_file_open_event), NULL);
+      g_signal_connect(menuitem_file_save, "activate", G_CALLBACK(on_file_save_event), NULL);
+      g_signal_connect(menuitem_file_save_as, "activate", G_CALLBACK(on_file_save_as_event), NULL);
+      g_signal_connect(menuitem_file_reload, "activate", G_CALLBACK(on_file_reload_event), NULL);
+      g_signal_connect(menuitem_view_show_sidebar, "activate", G_CALLBACK(on_view_show_sidebar_event), NULL);
       // web_view events
-      g_signal_connect(web_view, "notify::load-status", G_CALLBACK(on_web_view_notify_load_status_event), nullptr);
+      g_signal_connect(web_view, "notify::load-status", G_CALLBACK(on_web_view_notify_load_status_event), NULL);
 
       // initualize statusbar
       set_statusbar_info_message("Ready", false);
       _title_reset();
+
+      // set hotkeys
+      GtkAccelGroup* accel_group = gtk_accel_group_new();
+      GClosure* ctrl_l_closure = g_cclosure_new(G_CALLBACK(on_ctrl_l_event),NULL,NULL);
+      gtk_accel_group_connect(accel_group, GDK_KEY_L, GDK_CONTROL_MASK, GTK_ACCEL_MASK, ctrl_l_closure);
+      gtk_window_add_accel_group(GTK_WINDOW(window), accel_group);
+
+      // if a filename is given, open it.
+      if (filename != NULL)
+	{
+	  app->doc->set_filename(filename);
+	  if (app->doc->load() == false)
+	    {
+	      show_error("error loading data from file");
+	    }
+	  else
+	    _status_loaded();
+	}
     }
 
     // member functions
@@ -157,11 +188,15 @@ namespace fennekin
 
     void navigate(const gchar* url)
     {
-      if (url != nullptr)
+      if (url != NULL)
 	{
 	  webkit_web_view_open(web_view, url);
 	  gtk_entry_set_text(GTK_ENTRY(entry_url), url);
 	}
+    }
+    void navigate_home()
+    {
+      navigate("https://encrypted.google.com/");
     }
 
     void set_statusbar_info_message(const gchar* msg, bool do_pop = true)
@@ -298,7 +333,7 @@ namespace fennekin
 							 GTK_FILE_CHOOSER_ACTION_OPEN,
 							 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 							 GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-							 nullptr);
+							 NULL);
 	
 	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	  {
@@ -320,19 +355,25 @@ namespace fennekin
 
     }
 
-    void do_save()
+    bool do_save()
     {
-      if (app->doc->get_filename() == nullptr)
-	do_save_as();
+      int retval = false;
+
+      if (app->doc->get_filename() == NULL)
+	return do_save_as();
       else
 	{
 	  if (app->doc->save() == false)
 	    {
 	      show_error("error saving data to file");
+	      retval = false;
 	    }
-	  else
+	  else {
 	    _status_saved();
+	    retval = true;
+	  }
 	}
+      return retval;
     }
 
     const char* get_home_folder() // for use in do_save_as()
@@ -342,9 +383,10 @@ namespace fennekin
       return home;
     }
 
-    void do_save_as()
+    bool do_save_as()
     {
-      
+      bool retval = false;
+
       // now do the 'file save as' dialog
       {
 	GtkWidget *dialog = gtk_file_chooser_dialog_new ("Save File",
@@ -352,10 +394,10 @@ namespace fennekin
 							 GTK_FILE_CHOOSER_ACTION_SAVE,
 							 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 							 GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT,
-							 nullptr);
+							 NULL);
 	gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
 
-	if (app->doc->get_filename() == nullptr)
+	if (app->doc->get_filename() == NULL)
 	  {
 	    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), get_home_folder());
 	    gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), "Untitled document.fennekin");
@@ -366,30 +408,34 @@ namespace fennekin
 	
 	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	  {
-	    char *filename;
-	    
-	    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+	    char *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
 
 	    app->doc->set_filename(filename);
 
 	    if (app->doc->save() == false)
 	      {
 		show_error("error saving data to file");	 
+		retval = false;
 	      }
-	    else
+	    else {
 	      _status_saved();
+	      retval = true;
+	    }
 
 	    g_free (filename);
 	  }
+      else
+	 retval = false;	// user pressed cancel
 	
 	gtk_widget_destroy (dialog);
       }	// done with 'file save as' dialog
 
+      return retval;
     }
 
     void do_reload()
     {
-      if (app->doc->get_filename() == nullptr) 
+      if (app->doc->get_filename() == NULL) 
 	do_open();
       else 
 	{
@@ -430,7 +476,7 @@ namespace fennekin
       switch (ask_yes_no_cancel(question_save_changes()))
 	{
 	case GTK_RESPONSE_YES: 
-	  do_save();
+	  if (do_save() == false) return TRUE;
 	case GTK_RESPONSE_NO:
 	  gtk_main_quit();
 	  return FALSE;
@@ -446,7 +492,7 @@ namespace fennekin
 	switch (ask_yes_no_cancel(question_save_changes())) 
 	  {
 	  case GTK_RESPONSE_YES:
-	    do_save();
+	    if (do_save() == false) return false;
 	    break;
 	  case GTK_RESPONSE_NO:
 	    break;
@@ -476,7 +522,7 @@ namespace fennekin
     {
       const char* filename = "<Untitled document>";
 
-      if (app->doc->get_filename() != nullptr) 
+      if (app->doc->get_filename() != NULL) 
 	filename = app->doc->get_filename();
 
       std::ostringstream tmp;
@@ -489,7 +535,7 @@ namespace fennekin
     {
       const char* filename = "<Untitled document>";
 
-      if (app->doc->get_filename() != nullptr) 
+      if (app->doc->get_filename() != NULL) 
 	filename = app->doc->get_filename();
 
       std::ostringstream tmp;
@@ -498,6 +544,8 @@ namespace fennekin
 
       gtk_window_set_title(GTK_WINDOW(window), tmp.str().c_str());
     }
+
+
 
 
     //
@@ -525,9 +573,24 @@ namespace fennekin
     }  
 
 
+
+    static void on_view_show_sidebar_event(GtkWidget* widget, gpointer data) 
+    {
+      if (gtk_toggle_action_get_active(main_window->menuitem_view_show_sidebar))
+	gtk_widget_show(GTK_WIDGET(main_window->vbox_left));
+      else
+	gtk_widget_hide(GTK_WIDGET(main_window->vbox_left));
+    }  
+
+    static void on_ctrl_l_event(GtkWidget* widget, gpointer data) 
+    {
+      //main_window->show_message("Control-L pressed.");
+      gtk_widget_grab_focus(main_window->entry_url);
+    }  
+
     static void on_about_event(GtkWidget* widget, gpointer data) 
     {
-      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(main_window->app->datadir("/Fennekin.png"), nullptr);
+      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(main_window->app->datadir("/Fennekin.png"), NULL);
       GtkWidget *dialog = gtk_about_dialog_new();
 
       gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(dialog), "Fennekin");
@@ -542,15 +605,22 @@ namespace fennekin
       gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), PACKAGE_URL);
       gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog), pixbuf);
 
-      g_object_unref(pixbuf), pixbuf = nullptr;
+      g_object_unref(pixbuf), pixbuf = NULL;
       gtk_dialog_run(GTK_DIALOG (dialog));
       gtk_widget_destroy(dialog);
     }  
 
     void browse_url(const gchar* url)
     {
-      GError* error = nullptr;
-      gtk_show_uri(gtk_widget_get_screen(GTK_WIDGET(window)), url, GDK_CURRENT_TIME, &error);
+      if (gtk_toggle_action_get_active(main_window->menuitem_help_external))
+	{
+	  GError* error = NULL;
+	  gtk_show_uri(gtk_widget_get_screen(GTK_WIDGET(main_window->window)), url, GDK_CURRENT_TIME, &error);
+	}
+      else
+	{
+	  main_window->navigate(url);
+	}
     }
 
     static void on_help_issues_event(GtkWidget* widget, gpointer data) {
@@ -559,6 +629,13 @@ namespace fennekin
     static void on_help_wiki_event(GtkWidget* widget, gpointer data) {
       main_window->browse_url(PACKAGE_URL "wiki");
     }
+    static void on_help_releases_event(GtkWidget* widget, gpointer data) {
+      main_window->browse_url(PACKAGE_URL "releases");
+    }
+    static void on_help_external_event(GtkWidget* widget, gpointer data) 
+    {
+    }  
+
 
     static void on_web_view_notify_load_status_event(WebKitWebView *web_view, GParamSpec *pspec, void* context) 
     {
@@ -568,7 +645,7 @@ namespace fennekin
       g_object_freeze_notify (object);
 
       const gchar* url = webkit_web_view_get_uri(web_view);
-      if (url != nullptr)
+      if (url != NULL)
 	gtk_entry_set_text(GTK_ENTRY(main_window->entry_url), url);
         
       switch (status)
@@ -586,7 +663,7 @@ namespace fennekin
 	  break;
           
         case WEBKIT_LOAD_FIRST_VISUALLY_NON_EMPTY_LAYOUT:
-	  // main_window->set_statusbar_info_message("Webpage first layout");
+	  main_window->set_statusbar_info_message("Webpage first layout available");
 	  break;
           
         case WEBKIT_LOAD_FAILED:
@@ -625,15 +702,20 @@ namespace fennekin
     }
 
     static void on_navigate_stop_loading_event(GtkWidget* widget, gpointer data) {
+      
 
-      main_window->show_message("The data is now considered CHANGED");
+      main_window->show_message("The data is now considered   * CHANGED *");
       main_window->app->doc->change(), main_window->_title_changed();
 
       //webkit_web_view_stop_loading(main_window->web_view);
     }
 
+    static void on_navigate_home_event(GtkWidget* widget, gpointer data) {
+      main_window->navigate_home();
+    }
+
   };
-  MainWindow* MainWindow::main_window = nullptr; // instance pointer
+  MainWindow* MainWindow::main_window = NULL; // instance pointer
 
 
   // program entry point
@@ -641,10 +723,14 @@ namespace fennekin
   {
     gtk_init(&argc, &argv);
 
-    Application::app = new Application();
-    MainWindow::main_window = new MainWindow(Application::app);
-    MainWindow::main_window->navigate("https://encrypted.google.com/");
+    char* filename = NULL;
+    if (argc >= 2)
+      filename = argv[1];
 
+    Application::app = new Application();
+    MainWindow::main_window = new MainWindow(Application::app, filename);
+
+    MainWindow::main_window->navigate_home();
     gtk_widget_show_all(MainWindow::main_window->window);
     gtk_main ();
 
