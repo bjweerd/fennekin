@@ -78,18 +78,20 @@ namespace fennekin
     // status bar
     GtkWidget* statusbar;
     // menu items
-    GtkAction* menuitem_quit;
-    GtkAction* menuitem_about;
-    GtkAction* menuitem_help_issues;
-    GtkAction* menuitem_help_wiki;
-    GtkAction* menuitem_help_releases; 
-    GtkToggleAction* menuitem_help_external;
-    GtkToggleAction* menuitem_view_show_sidebar;
     GtkAction* menuitem_file_new;
     GtkAction* menuitem_file_open;
     GtkAction* menuitem_file_save;
     GtkAction* menuitem_file_save_as;
     GtkAction* menuitem_file_reload;
+    GtkAction* menuitem_quit;
+    GtkToggleAction* menuitem_view_show_sidebar;
+    GtkAction* menuitem_help_issues;
+    GtkAction* menuitem_help_wiki;
+    GtkAction* menuitem_help_releases; 
+    GtkToggleAction* menuitem_help_external;
+    GtkAction* menuitem_example_universal;
+    GtkAction* menuitem_example_languages;
+    GtkAction* menuitem_about;
 
     MainWindow(Application* app, const char* filename) : app(app)
     {
@@ -120,6 +122,8 @@ namespace fennekin
       menuitem_help_wiki = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_wiki"));
       menuitem_help_releases = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_releases"));
       menuitem_help_external = GTK_TOGGLE_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_external"));
+      menuitem_example_universal = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_example_universal"));
+      menuitem_example_languages = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_example_languages"));
       menuitem_about = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about"));
       // status bar
       statusbar = GTK_WIDGET(gtk_builder_get_object(app->builder, "status_bar"));
@@ -149,6 +153,8 @@ namespace fennekin
       g_signal_connect(menuitem_help_wiki, "activate", G_CALLBACK(on_help_wiki_event), NULL);
       g_signal_connect(menuitem_help_releases, "activate", G_CALLBACK(on_help_releases_event), NULL);
       g_signal_connect(menuitem_help_external, "activate", G_CALLBACK(on_help_external_event), NULL);
+      g_signal_connect(menuitem_example_universal, "activate", G_CALLBACK(on_example_universal_event), NULL);
+      g_signal_connect(menuitem_example_languages, "activate", G_CALLBACK(on_example_languages_event), NULL);
       g_signal_connect(menuitem_file_new, "activate", G_CALLBACK(on_file_new_event), NULL);
       g_signal_connect(menuitem_file_open, "activate", G_CALLBACK(on_file_open_event), NULL);
       g_signal_connect(menuitem_file_save, "activate", G_CALLBACK(on_file_save_event), NULL);
@@ -171,13 +177,7 @@ namespace fennekin
       // if a filename is given, open it.
       if (filename != NULL)
 	{
-	  app->doc->set_filename(filename);
-	  if (app->doc->load() == false)
-	    {
-	      show_error("error loading data from file");
-	    }
-	  else
-	    _status_loaded();
+	  do_open(filename);
 	}
     }
 
@@ -322,37 +322,47 @@ namespace fennekin
     //
 
 
-    void do_open()
+    void do_open(const char* filename_param = NULL)
     {
       if (_do_ask_for_save() == false) return;
 
       // now do the 'file open' dialog
-      {
-	GtkWidget *dialog = gtk_file_chooser_dialog_new ("Open File",
-							 GTK_WINDOW(window),
-							 GTK_FILE_CHOOSER_ACTION_OPEN,
-							 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+      if (filename_param == NULL)
+	{
+	  GtkWidget *dialog = gtk_file_chooser_dialog_new ("Open File",
+							   GTK_WINDOW(window),
+							   GTK_FILE_CHOOSER_ACTION_OPEN,
+							   GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 							 GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-							 NULL);
-	
-	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
-	  {
-	    char *filename;
-	    
-	    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-	    app->doc->set_filename(filename);
-	    if (app->doc->load() == false)
-	      {
-		show_error("error loading data from file");
-	      }
-	    else
-	      _status_loaded();
-
-	    g_free (filename);
-	  }
-	gtk_widget_destroy (dialog);
-      }	// done with 'file open' dialog
-
+							   NULL);
+	  
+	  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+	    {
+	      char *filename;
+	      
+	      filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+	      app->doc->set_filename(filename);
+	      if (app->doc->load() == false)
+		{
+		  show_error("error loading data from file");
+		}
+	      else
+		_status_loaded();
+	      
+	      g_free (filename);
+	    }
+	  gtk_widget_destroy (dialog);
+	}	// done with 'file open' dialog
+      else
+	{
+	  app->doc->set_filename(filename_param);
+	  if (app->doc->load() == false)
+	    {
+	      show_error("error loading data from file");
+	    }
+	  else
+	    _status_loaded();
+	}
     }
 
     bool do_save()
@@ -634,6 +644,12 @@ namespace fennekin
     }
     static void on_help_external_event(GtkWidget* widget, gpointer data) {
       // nothing really needs to be done. maybe we don't need this function and it still works
+    }  
+    static void on_example_universal_event(GtkWidget* widget, gpointer data) {
+      main_window->do_open(main_window->app->datadir("/Universal.fennekin"));
+    }  
+    static void on_example_languages_event(GtkWidget* widget, gpointer data) {
+      main_window->do_open(main_window->app->datadir("/Languages.fennekin"));
     }  
 
 

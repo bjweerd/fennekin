@@ -6,7 +6,7 @@ fennekin_LDADD = ${GTK_LIBS} ${GIO_LIBS} ${WEBKIT_LIBS} ${LIBXML2_LIBS}
 
 LIBS = 
 
-pkgdata_DATA = Fennekin.png Fennekin.ui
+pkgdata_DATA = Fennekin.png Fennekin.ui Universal.fennekin Languages.fennekin
 EXTRA_DIST = $(pkgdata_DATA) Fennekin.glade
 
 Fennekin.ui : Fennekin.glade

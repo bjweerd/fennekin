@@ -187,6 +187,41 @@
 		  </child>
 
 		  <child>
+		    <widget class="GtkMenuItem" id="examples1">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Examples</property>
+		      <property name="use_underline">True</property>
+
+		      <child>
+			<widget class="GtkMenu" id="examples1_menu">
+
+			  <child>
+			    <widget class="GtkMenuItem" id="menuitem_example_universal">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Universal.fennekin</property>
+			      <property name="use_underline">True</property>
+			    </widget>
+			  </child>
+
+			  <child>
+			    <widget class="GtkMenuItem" id="menuitem_example_languages">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Languages.fennekin</property>
+			      <property name="use_underline">True</property>
+			    </widget>
+			  </child>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkSeparatorMenuItem" id="separator1">
+		      <property name="visible">True</property>
+		    </widget>
+		  </child>
+
+		  <child>
 		    <widget class="GtkMenuItem" id="menuitem_about">
 		      <property name="visible">True</property>
 		      <property name="tooltip" translatable="yes">About this program</property>
