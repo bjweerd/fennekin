@@ -632,8 +632,8 @@ namespace fennekin
     static void on_help_releases_event(GtkWidget* widget, gpointer data) {
       main_window->browse_url(PACKAGE_URL "releases");
     }
-    static void on_help_external_event(GtkWidget* widget, gpointer data) 
-    {
+    static void on_help_external_event(GtkWidget* widget, gpointer data) {
+      // nothing really needs to be done. maybe we don't need this function and it still works
     }  
 
 
