@@ -18,22 +18,19 @@ namespace fennekin
     ~Document() { clear_data(); if (filename != NULL) { free(filename); filename = NULL; } }
     
     // Member access
-    void set_filename(const char* filename) 
-    {
-      if (Document::filename != NULL) free(Document::filename);
-      Document::filename = strdup(filename);
-
-      clear_data();
-    }
+    void set_filename(const char* filename);
     const char* get_filename() { return filename; }
 
-    bool is_changed() { return changed; }
     void change() { changed = true; }
+    bool is_changed() { return changed; }
 
     // load and save the xml data (return false on error)
-    void clear_data() { changed = false; }
-    bool load() { changed = false; return true; }
-    bool save() { changed = false; return true; }
+    void clear_data();
+    bool load();
+    bool save();
+
+  private:
+    // xml document data
   };
 }
 

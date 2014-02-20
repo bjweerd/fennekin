@@ -1,5 +1,5 @@
 bin_PROGRAMS = fennekin
-fennekin_SOURCES = main.cc
+fennekin_SOURCES = main.cc document.h document.cc
 
 fennekin_CPPFLAGS = ${GTK_CFLAGS} ${GIO_CFLAGS} ${WEBKIT_CFLAGS} ${LIBXML2_CFLAGS} -DDATADIR=\"$(pkgdatadir)\"
 fennekin_LDADD = ${GTK_LIBS} ${GIO_LIBS} ${WEBKIT_LIBS} ${LIBXML2_LIBS}
