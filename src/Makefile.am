@@ -2,8 +2,8 @@ bin_PROGRAMS = fennekin
 fennekin_SOURCES = main.cc document.h document.cc
 
 if PLATFORM_WINDOWS
-  $(name)_SOURCES += fennekin.rc
-  $(name)_LDFLAGS = -mwindows
+  fennekin_SOURCES += fennekin.rc
+  fennekin_LDFLAGS = -mwindows
 endif
 
 fennekin_CPPFLAGS = ${GTK_CFLAGS} ${GIO_CFLAGS} ${WEBKIT_CFLAGS} ${LIBXML2_CFLAGS} -DDATADIR=\"$(pkgdatadir)\"
