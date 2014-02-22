@@ -1,4 +1,4 @@
-AC_INIT([fennekin], [0.2.1], [kamintears@gmail.com], [], [http://www.github.com/kamintears/fennekin/])
+AC_INIT([fennekin], [0.2.2], [kamintears@gmail.com], [], [http://www.github.com/kamintears/fennekin/])
 AC_CONFIG_SRCDIR(src/main.cc)
 AC_CONFIG_MACRO_DIR([m4])
 AC_PREREQ(2.59)
@@ -11,6 +11,20 @@ PKG_CHECK_MODULES([GTK], [gtk+-2.0 >= 2.24.0])
 PKG_CHECK_MODULES([GIO], [gio-2.0 >= 2.36.0])
 PKG_CHECK_MODULES([WEBKIT], [webkit-1.0 >= 1.8.3])
 PKG_CHECK_MODULES([LIBXML2], [libxml-2.0 >= 2.8.0]);
+
+# check for windows
+AC_CANONICAL_HOST
+AC_MSG_CHECKING([for some Win32 platform])
+case "$host" in
+  *mingw*|*cygwin*)
+    platform_win32=yes
+    ;;
+  *)
+    platform_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$platform_win32])
+AM_CONDITIONAL(PLATFORM_WINDOWS, test "$platform_win32" = "yes")
 
 AC_CONFIG_FILES(Makefile src/Makefile)
 AC_OUTPUT
