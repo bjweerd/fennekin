@@ -1,5 +1,5 @@
 bin_PROGRAMS = fennekin
-fennekin_SOURCES = main.cc document.h document.cc
+fennekin_SOURCES = main.cc datadir.h datadir.cc document.h document.cc
 
 if PLATFORM_WINDOWS
   fennekin_SOURCES += fennekin.rc

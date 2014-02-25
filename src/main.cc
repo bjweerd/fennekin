@@ -2,14 +2,15 @@
 # include <config.h>
 #endif
 
-#include "document.h"
-
 #include <cstdlib>
 #include <sstream>
 
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
 #include <gdk/gdkkeysyms.h>
+
+#include "datadir.h"
+#include "document.h"
 
 namespace fennekin
 {
@@ -20,12 +21,14 @@ namespace fennekin
 
     Document* doc;		// the document and it's data
     GtkBuilder* builder;
+    app_util::datadir_t* datadir;
 
-    Application()
+    Application(const char* progname, const char* datadir_)
     {
       doc = new Document();
+      datadir = new app_util::datadir_t(progname,datadir_);
 
-      const gchar* builder_filename = datadir("/Fennekin.ui");
+      const gchar* builder_filename = datadir->get("/Fennekin.ui");
       builder = gtk_builder_new();
       gtk_builder_add_from_file(builder, builder_filename, NULL);      
     }
@@ -34,20 +37,6 @@ namespace fennekin
       delete doc;
     }
 
-    const char* datadir(const char* filename)
-    {
-      static char* buffer = NULL;
-
-      if (buffer != NULL) { 
-	free(buffer); buffer = NULL; 
-      }
-
-      std::ostringstream tmp;
-      tmp << DATADIR << filename;
-      buffer = strdup(tmp.str().c_str());
-
-      return buffer;
-    }
 
   };
   Application* Application::app = NULL; // instance pointer
@@ -600,7 +589,7 @@ namespace fennekin
 
     static void on_about_event(GtkWidget* widget, gpointer data) 
     {
-      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(main_window->app->datadir("/Fennekin.png"), NULL);
+      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(main_window->app->datadir->get("/Fennekin.png"), NULL);
       GtkWidget *dialog = gtk_about_dialog_new();
 
       gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(dialog), "Fennekin");
@@ -610,7 +599,8 @@ namespace fennekin
       gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), 
 				    "Fennekin is a simple program that allows"
 				    " searching with a hierarchical tree of terms. The search"
-				    " engine to use can be selected from a drop-down list."
+				    " engine to use can be selected from a drop-down list. \n"
+				    "This program was built on " __DATE__ "."
 				    );
       gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), PACKAGE_URL);
       gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog), pixbuf);
@@ -646,10 +636,10 @@ namespace fennekin
       // nothing really needs to be done. maybe we don't need this function and it still works
     }  
     static void on_example_universal_event(GtkWidget* widget, gpointer data) {
-      main_window->do_open(main_window->app->datadir("/Universal.fennekin"));
+      main_window->do_open(main_window->app->datadir->get("/Universal.fennekin"));
     }  
     static void on_example_languages_event(GtkWidget* widget, gpointer data) {
-      main_window->do_open(main_window->app->datadir("/Languages.fennekin"));
+      main_window->do_open(main_window->app->datadir->get("/Languages.fennekin"));
     }  
 
 
@@ -743,7 +733,7 @@ namespace fennekin
     if (argc >= 2)
       filename = argv[1];
 
-    Application::app = new Application();
+    Application::app = new Application(argv[0], DATADIR);
     MainWindow::main_window = new MainWindow(Application::app, filename);
 
     MainWindow::main_window->navigate_home();
