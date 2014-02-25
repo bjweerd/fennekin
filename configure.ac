@@ -26,5 +26,5 @@ esac
 AC_MSG_RESULT([$platform_win32])
 AM_CONDITIONAL(PLATFORM_WINDOWS, test "$platform_win32" = "yes")
 
-AC_CONFIG_FILES(Makefile src/Makefile)
+AC_CONFIG_FILES(Makefile src/Makefile fennekin.nsi)
 AC_OUTPUT
