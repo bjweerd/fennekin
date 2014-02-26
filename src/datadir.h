@@ -34,6 +34,7 @@ namespace app_util
     const char* get(const char* resource_name);
 
   private:
+
     bool file_exists(const std::string& name) ;
     int set_resource_dir(const char* resource_name);
   };
