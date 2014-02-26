@@ -1,6 +1,10 @@
 #ifndef INCLUDED_DOCUMENT_H
 #define INCLUDED_DOCUMENT_H
 
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
+
 #include <cstdlib>
 #include <cstring>
 

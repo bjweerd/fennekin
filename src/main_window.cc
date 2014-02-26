@@ -44,9 +44,12 @@ namespace fennekin
     menuitem_about = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about"));
     // status bar
     statusbar = GTK_WIDGET(gtk_builder_get_object(app->builder, "status_bar"));
+
+#ifdef HAVE_WEBKIT1
     // web view
     web_view = WEBKIT_WEB_VIEW(webkit_web_view_new());
     gtk_container_add(GTK_CONTAINER(scrolled_window), GTK_WIDGET(web_view));
+#endif
     
     // events
     
@@ -78,8 +81,10 @@ namespace fennekin
     g_signal_connect(menuitem_file_save_as, "activate", G_CALLBACK(on_file_save_as_event), NULL);
     g_signal_connect(menuitem_file_reload, "activate", G_CALLBACK(on_file_reload_event), NULL);
     g_signal_connect(menuitem_view_show_sidebar, "activate", G_CALLBACK(on_view_show_sidebar_event), NULL);
+#ifdef HAVE_WEBKIT1
     // web_view events
     g_signal_connect(web_view, "notify::load-status", G_CALLBACK(on_web_view_notify_load_status_event), NULL);
+#endif
     
     // initualize statusbar
     set_statusbar_info_message("Ready", false);
@@ -103,7 +108,9 @@ namespace fennekin
   {
     if (url != NULL)
       {
+#ifdef HAVE_WEBKIT1
 	webkit_web_view_open(web_view, url);
+#endif
 	gtk_entry_set_text(GTK_ENTRY(entry_url), url);
       }
   }
@@ -563,6 +570,7 @@ namespace fennekin
     main_window->do_open(main_window->app->datadir->get("/Languages.fennekin"));
   }  
   
+#ifdef HAVE_WEBKIT1
   void MainWindow::on_web_view_notify_load_status_event(WebKitWebView *web_view, GParamSpec *pspec, void* context)
   {
     WebKitLoadStatus status = webkit_web_view_get_load_status (web_view);
@@ -602,6 +610,8 @@ namespace fennekin
     
     g_object_thaw_notify (object);
   }
+#endif
+
   gboolean MainWindow::on_entry_url_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer data) 
   {
     if (event->keyval == GDK_KEY_Return)
@@ -617,15 +627,21 @@ namespace fennekin
   }
   void MainWindow::on_navigate_back_event(GtkWidget* widget, gpointer data) 
   {
+#ifdef HAVE_WEBKIT1
     webkit_web_view_go_back(main_window->web_view);
+#endif
   }
   void MainWindow::on_navigate_forward_event(GtkWidget* widget, gpointer data) 
   {
+#ifdef HAVE_WEBKIT1
     webkit_web_view_go_forward(main_window->web_view);
+#endif
   }
   void MainWindow::on_navigate_reload_event(GtkWidget* widget, gpointer data) 
   {
+#ifdef HAVE_WEBKIT1
     webkit_web_view_reload(main_window->web_view);
+#endif
   }
   void MainWindow::on_navigate_stop_loading_event(GtkWidget* widget, gpointer data) 
   {
@@ -636,7 +652,9 @@ namespace fennekin
   }
   void MainWindow::on_navigate_home_event(GtkWidget* widget, gpointer data) 
   {
+#ifdef HAVE_WEBKIT1
     main_window->navigate_home();
+#endif
   }
 
 }

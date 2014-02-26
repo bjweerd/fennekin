@@ -1,6 +1,10 @@
 #ifndef INCLUDED_APPLICATION_H
 #define INCLUDED_APPLICATION_H
 
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
+
 #include "document.h"
 #include "datadir.h"
 

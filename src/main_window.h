@@ -8,7 +8,9 @@
 #include "application.h"
 
 #include <gtk/gtk.h>
-#include <webkit/webkit.h>
+#ifdef HAVE_WEBKIT1
+# include <webkit/webkit.h>
+#endif
 
 namespace fennekin
 {
@@ -23,7 +25,9 @@ namespace fennekin
     GtkWidget* window;
     GtkWidget* scrolled_window;
     GtkWidget* vbox_left;
+#ifdef HAVE_WEBKIT1
     WebKitWebView* web_view;
+#endif
     // toolbar
     GtkWidget* entry_url;
     GtkWidget* toolbutton_go;
@@ -128,7 +132,9 @@ namespace fennekin
     static void on_help_external_event(GtkWidget* widget, gpointer data);
     static void on_example_universal_event(GtkWidget* widget, gpointer data);
     static void on_example_languages_event(GtkWidget* widget, gpointer data);
+#ifdef HAVE_WEBKIT1
     static void on_web_view_notify_load_status_event(WebKitWebView *web_view, GParamSpec *pspec, void* context);
+#endif
     static gboolean on_entry_url_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer data);
     static void on_do_navigate_event(GtkWidget* widget, gpointer data);
     static void on_navigate_back_event(GtkWidget* widget, gpointer data);

@@ -7,8 +7,8 @@ if PLATFORM_WINDOWS
   fennekin_LDFLAGS = -mwindows
 endif
 
-fennekin_CPPFLAGS = ${GTK_CFLAGS} ${GIO_CFLAGS} ${WEBKIT_CFLAGS} ${LIBXML2_CFLAGS} -DDATADIR=\"$(pkgdatadir)\"
-fennekin_LDADD = ${GTK_LIBS} ${GIO_LIBS} ${WEBKIT_LIBS} ${LIBXML2_LIBS}
+fennekin_CPPFLAGS = ${GTK_CFLAGS} ${GIO_CFLAGS} ${WEBKIT1_CFLAGS} ${LIBXML2_CFLAGS} -DDATADIR=\"$(pkgdatadir)\"
+fennekin_LDADD = ${GTK_LIBS} ${GIO_LIBS} ${WEBKIT1_LIBS} ${LIBXML2_LIBS}
 
 LIBS = 
 
