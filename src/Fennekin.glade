@@ -130,15 +130,6 @@
 		      <property name="active">True</property>
 		    </widget>
 		  </child>
-
-		  <child>
-		    <widget class="GtkMenuItem" id="menuitem_view_use_external_browser">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Use external browser</property>
-		      <property name="use_underline">True</property>
-		      <signal name="activate" handler="on_open_current_url_in_external_browser1_activate" last_modification_time="Tue, 11 Mar 2014 16:55:55 GMT"/>
-		    </widget>
-		  </child>
 		</widget>
 	      </child>
 	    </widget>
