@@ -130,6 +130,15 @@
 		      <property name="active">True</property>
 		    </widget>
 		  </child>
+
+		  <child>
+		    <widget class="GtkMenuItem" id="menuitem_view_use_external_browser">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">_Use external browser</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="on_open_current_url_in_external_browser1_activate" last_modification_time="Tue, 11 Mar 2014 16:55:55 GMT"/>
+		    </widget>
+		  </child>
 		</widget>
 	      </child>
 	    </widget>
@@ -168,15 +177,6 @@
 		      <property name="tooltip" translatable="yes">Show new software releases</property>
 		      <property name="label" translatable="yes">Show releases</property>
 		      <property name="use_underline">True</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkCheckMenuItem" id="menuitem_help_external">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Open help in external browser</property>
-		      <property name="use_underline">True</property>
-		      <property name="active">False</property>
 		    </widget>
 		  </child>
 
@@ -222,10 +222,18 @@
 		  </child>
 
 		  <child>
+		    <widget class="GtkMenuItem" id="menuitem_about_the_pokemon">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">About the Pokémon</property>
+		      <property name="use_underline">True</property>
+		    </widget>
+		  </child>
+
+		  <child>
 		    <widget class="GtkMenuItem" id="menuitem_about">
 		      <property name="visible">True</property>
 		      <property name="tooltip" translatable="yes">About this program</property>
-		      <property name="label" translatable="yes">_About</property>
+		      <property name="label" translatable="yes">_About the program</property>
 		      <property name="use_underline">True</property>
 		    </widget>
 		  </child>
@@ -427,61 +435,6 @@
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Navigate to this page</property>
 	      <property name="stock_id">gtk-ok</property>
-	      <property name="visible_horizontal">True</property>
-	      <property name="visible_vertical">True</property>
-	      <property name="is_important">False</property>
-	    </widget>
-	    <packing>
-	      <property name="expand">False</property>
-	      <property name="homogeneous">True</property>
-	    </packing>
-	  </child>
-
-	  <child>
-	    <widget class="GtkSeparatorToolItem" id="separatortoolitem3">
-	      <property name="visible">True</property>
-	      <property name="draw">True</property>
-	      <property name="visible_horizontal">True</property>
-	      <property name="visible_vertical">True</property>
-	    </widget>
-	    <packing>
-	      <property name="expand">False</property>
-	      <property name="homogeneous">False</property>
-	    </packing>
-	  </child>
-
-	  <child>
-	    <widget class="GtkToolButton" id="toolbutton_sw_back">
-	      <property name="visible">True</property>
-	      <property name="stock_id">gtk-media-previous</property>
-	      <property name="visible_horizontal">True</property>
-	      <property name="visible_vertical">True</property>
-	      <property name="is_important">False</property>
-	    </widget>
-	    <packing>
-	      <property name="expand">False</property>
-	      <property name="homogeneous">True</property>
-	    </packing>
-	  </child>
-
-	  <child>
-	    <widget class="GtkToolButton" id="toolbutton_sw_reload">
-	      <property name="visible">True</property>
-	      <property name="stock_id">gtk-revert-to-saved</property>
-	      <property name="visible_horizontal">True</property>
-	      <property name="visible_vertical">True</property>
-	      <property name="is_important">False</property>
-	    </widget>
-	    <packing>
-	      <property name="expand">False</property>
-	      <property name="homogeneous">True</property>
-	    </packing>
-	  </child>
-
-	  <child>
-	    <widget class="GtkToolButton" id="toolbutton_sw_forward">
-	      <property name="visible">True</property>
-	      <property name="stock_id">gtk-media-next</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>

@@ -55,6 +55,7 @@ namespace fennekin
     GtkToggleAction* menuitem_help_external;
     GtkAction* menuitem_example_universal;
     GtkAction* menuitem_example_languages;
+    GtkAction* menuitem_about_the_pokemon;
     GtkAction* menuitem_about;
 
     MainWindow(Application* app, const char* filename);
@@ -125,6 +126,7 @@ namespace fennekin
     static void on_file_reload_event(GtkWidget* widget, gpointer data);
     static void on_view_show_sidebar_event(GtkWidget* widget, gpointer data);
     static void on_ctrl_l_event(GtkWidget* widget, gpointer data);
+    static void on_about_the_pokemon_event(GtkWidget* widget, gpointer data);
     static void on_about_event(GtkWidget* widget, gpointer data);
     static void on_help_issues_event(GtkWidget* widget, gpointer data);
     static void on_help_wiki_event(GtkWidget* widget, gpointer data);
