@@ -3,6 +3,15 @@ fennekin
 
 Fennekin is a hierarchical search term database.
 
+Dependencies
+============
+
+With debian, use the following packages:
+
+apt-get install libgtk2.0-dev
+apt-get install libxml2-dev
+apt-get install libwebkitgtk-dev
+
 Building from tarball
 =====================
 

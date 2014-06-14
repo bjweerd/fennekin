@@ -17,7 +17,7 @@ AC_ARG_WITH([webkit1], [AS_HELP_STRING([--without-webkit1], [disable webkit-1.0 
 		       [],
 		       [with_webkit1=yes])
 AS_IF([test "x$with_webkit1" != xno],
-	    [ PKG_CHECK_MODULES([WEBKIT1], [webkit-1.0 >= 1.8.3]) ],
+	    [ PKG_CHECK_MODULES([WEBKIT1], [webkit-1.0 >= 1.8.1]) ],
 	    [ ])
 case "$with_webkit1" in
   yes)
