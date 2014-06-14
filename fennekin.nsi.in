@@ -6,7 +6,7 @@
 !define PROGNAME "@PACKAGE@" # executable name, like: gtk2hello
 !define PROG_VERSION "@PACKAGE_VERSION@" # the program version, like: 0.3.0
 !define ICON_NAME "Fennekin.ico" # filename of icon to use for this app, this file should be in src/
-!define COMPANYNAME "Bert van der Weerd" # Your name, or company
+!define COMPANYNAME "Fennekin" # Your name, or company
 !define ESTIMATED_SIZE 16000 # Estimated size (in KB) of installed program for use in "add or remove programs"
 
 #

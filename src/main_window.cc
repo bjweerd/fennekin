@@ -108,15 +108,16 @@ namespace fennekin
   {
     if (url != NULL)
       {
+	gtk_entry_set_text(GTK_ENTRY(entry_url), url);
 #ifdef HAVE_WEBKIT1
 	webkit_web_view_open(web_view, url);
 #endif
-	gtk_entry_set_text(GTK_ENTRY(entry_url), url);
       }
   }
+
   void MainWindow::navigate_home()
   {
-    navigate("https://encrypted.google.com/");
+    navigate("https://encrypted.google.com/"); // obviously we need some form of setting for this
   }
 
   void MainWindow::set_statusbar_info_message(const gchar* msg, bool do_pop)
@@ -647,8 +648,10 @@ namespace fennekin
   {
     main_window->show_message("The data is now considered   * CHANGED *");
     main_window->app->doc->change(), main_window->_title_changed();
-    
+
+#ifdef HAVE_WEBKIT1    
     //webkit_web_view_stop_loading(main_window->web_view);
+#endif
   }
   void MainWindow::on_navigate_home_event(GtkWidget* widget, gpointer data) 
   {
