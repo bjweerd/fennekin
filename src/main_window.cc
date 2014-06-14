@@ -630,7 +630,20 @@ namespace fennekin
   
   void MainWindow::on_do_navigate_event(GtkWidget* widget, gpointer data) 
   {
-    main_window->navigate(gtk_entry_get_text(GTK_ENTRY(main_window->entry_url)));
+    // main_window->navigate(gtk_entry_get_text(GTK_ENTRY(main_window->entry_url)));
+
+    const gchar* url = gtk_entry_get_text(GTK_ENTRY(main_window->entry_url));
+    std::string str = std::string(static_cast<const char*>(url));
+    if (str.substr(0,7) != "http://" && str.substr(0,8) != "https://")
+      {
+	// make it a google search
+	for (std::string::iterator i = str.begin(); i != str.end(); ++i) 
+	  {
+	    if (*i == ' ') *i = '+';
+	  }
+	str = "https://encrypted.google.com/#q=" + str;
+      }
+    main_window->navigate(str.c_str());
   }
   void MainWindow::on_navigate_back_event(GtkWidget* widget, gpointer data) 
   {
