@@ -41,6 +41,7 @@ namespace fennekin
     menuitem_help_external = GTK_TOGGLE_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_external"));
     menuitem_example_universal = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_example_universal"));
     menuitem_example_languages = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_example_languages"));
+    menuitem_about_the_pokemon = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about_the_pokemon"));
     menuitem_about = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about"));
     // status bar
     statusbar = GTK_WIDGET(gtk_builder_get_object(app->builder, "status_bar"));
@@ -68,6 +69,7 @@ namespace fennekin
     g_signal_connect(toolbutton_file_save, "clicked", G_CALLBACK(on_file_save_event), NULL);
     // menu events
     g_signal_connect(menuitem_quit, "activate", G_CALLBACK(on_quit_event), NULL);
+    g_signal_connect(menuitem_about_the_pokemon, "activate", G_CALLBACK(on_about_the_pokemon_event), NULL);
     g_signal_connect(menuitem_about, "activate", G_CALLBACK(on_about_event), NULL);
     g_signal_connect(menuitem_help_issues, "activate", G_CALLBACK(on_help_issues_event), NULL);
     g_signal_connect(menuitem_help_wiki, "activate", G_CALLBACK(on_help_wiki_event), NULL);
@@ -523,6 +525,10 @@ namespace fennekin
     //main_window->show_message("Control-L pressed.");
     gtk_widget_grab_focus(main_window->entry_url);
   }  
+  void MainWindow::on_about_the_pokemon_event(GtkWidget* widget, gpointer data) 
+  {
+    main_window->browse_external_url("http://pokemon.wikia.com/wiki/Fennekin");
+  }
   void MainWindow::on_about_event(GtkWidget* widget, gpointer data) 
   {
     GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(main_window->app->datadir->get("/Fennekin.png"), NULL);
