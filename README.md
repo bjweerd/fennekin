@@ -8,9 +8,7 @@ Dependencies
 
 With debian, use the following packages:
 
-apt-get install libgtk2.0-dev
-apt-get install libxml2-dev
-apt-get install libwebkitgtk-dev
+sudo apt-get install libgtk2.0-dev libxml2-dev libwebkitgtk-dev
 
 Building from tarball
 =====================
