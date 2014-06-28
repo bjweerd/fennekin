@@ -1,4 +1,4 @@
-AC_INIT([fennekin], [0.2.3], [kamintears@gmail.com], [], [http://www.github.com/kamintears/fennekin/])
+AC_INIT([fennekin], [0.3.0], [kamintears@gmail.com], [], [http://www.github.com/kamintears/fennekin/])
 AC_CONFIG_SRCDIR(src/main.cc)
 AC_CONFIG_MACRO_DIR([m4])
 AC_PREREQ(2.59)
