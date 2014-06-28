@@ -36,6 +36,12 @@ AC_MSG_CHECKING([for some Win32 platform])
 case "$host" in
   *mingw*|*cygwin*)
     platform_win32=yes
+    if test -z $host_alias; then
+        RC=windres
+    else
+        RC=$host_alias-windres
+    fi
+    AC_SUBST(RC)
     ;;
   *)
     platform_win32=no

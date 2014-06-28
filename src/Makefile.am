@@ -21,4 +21,4 @@ Fennekin.ui : Fennekin.glade
 CLEANFILES = Fennekin.ui
 
 .rc.o:
-	windres -i $< $@
+	$(RC) -i $< $@
