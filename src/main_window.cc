@@ -536,15 +536,15 @@ namespace fennekin
     
     gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(dialog), "Fennekin");
     gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), PACKAGE_VERSION); 
-    gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), 
-				   "(c) Bert van der Weerd <" PACKAGE_BUGREPORT ">");
     gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), 
 				  "Fennekin is a simple program that allows"
 				  " searching with a hierarchical tree of terms. The search"
 				  " engine to use can be selected from a drop-down list. \n"
 				  "This program was built on " __DATE__ "."
 				  );
-    gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), PACKAGE_URL);
+    gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), 
+				   "Copyright (c) Fennekin contributors. MIT open source licenced.\n\nAbout the pokemon:");
+    gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), "http://pokemon.wikia.com/wiki/Fennekin");
     gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog), pixbuf);
     
     g_object_unref(pixbuf), pixbuf = NULL;
