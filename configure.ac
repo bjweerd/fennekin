@@ -17,7 +17,16 @@ AC_ARG_WITH([webkit1], [AS_HELP_STRING([--without-webkit1], [disable webkit-1.0 
 		       [],
 		       [with_webkit1=yes])
 AS_IF([test "x$with_webkit1" != xno],
-	    [ PKG_CHECK_MODULES([WEBKIT1], [webkit-1.0 >= 1.8.1]) ],
+
+# on fedora:
+#/usr/lib64/pkgconfig/webkitgtk-3.0.pc
+#/usr/lib64/pkgconfig/webkit2gtk-3.0.pc
+#/usr/i686-w64-mingw32/sys-root/mingw/lib/pkgconfig/webkit-1.0.pc
+#/usr/i686-w64-mingw32/sys-root/mingw/lib/pkgconfig/webkitgtk-3.0.pc
+#/usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/webkitgtk-3.0.pc
+
+
+	    [ PKG_CHECK_MODULES([WEBKIT1], [webkitgtk-3.0 >= 1.8.1]) ],
 	    [ ])
 case "$with_webkit1" in
   yes)
