@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fennekin>
-
 <webdiver version="2.0">
     <engine name="twitter" query="http://twitter.com/search?q=$encoded_term"/>
 
@@ -335,5 +333,3 @@
     </term>
 
 </webdiver>
-
-</fennekin>
