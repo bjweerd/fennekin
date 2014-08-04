@@ -25,8 +25,11 @@ AS_IF([test "x$with_webkit1" != xno],
 #/usr/i686-w64-mingw32/sys-root/mingw/lib/pkgconfig/webkitgtk-3.0.pc
 #/usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/webkitgtk-3.0.pc
 
+# on fedora:
+#	    [ PKG_CHECK_MODULES([WEBKIT1], [webkitgtk-3.0 >= 1.8.1]) ],
 
-	    [ PKG_CHECK_MODULES([WEBKIT1], [webkitgtk-3.0 >= 1.8.1]) ],
+# on freebsd:
+	    [ PKG_CHECK_MODULES([WEBKIT1], [webkit-1.0 >= 1.8.1]) ],
 	    [ ])
 case "$with_webkit1" in
   yes)

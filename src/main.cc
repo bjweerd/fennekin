@@ -5,7 +5,10 @@
 #include "application.h"
 #include "main_window.h"
 
+#include "fennekin_treemodel.h"
+
 #include <gtk/gtk.h>
+
 
 namespace fennekin
 {
@@ -17,6 +20,12 @@ namespace fennekin
     char* filename = NULL;
     if (argc >= 2)
       filename = argv[1];
+
+    // testing... 123
+    FennekinTreemodel* treemodel = fennekin_treemodel_new();
+    g_object_unref(treemodel);
+
+
 
     Application::app = new Application(argv[0], DATADIR);
     MainWindow::main_window = new MainWindow(Application::app, filename);

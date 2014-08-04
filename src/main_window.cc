@@ -14,8 +14,22 @@ namespace fennekin
   {
     window = GTK_WIDGET(gtk_builder_get_object(app->builder,"MainWindow"));
     
+    // for the webview
     scrolled_window = GTK_WIDGET(gtk_builder_get_object(app->builder, "scrolled_window"));
+    
+    // sidebar 
     vbox_left = GTK_WIDGET(gtk_builder_get_object(app->builder, "vbox_left"));
+    combo_box_search_engines = GTK_WIDGET(gtk_builder_get_object(app->builder, "combo_box_search_engines"));
+    scrolled_window_treeview = GTK_WIDGET(gtk_builder_get_object(app->builder,"scrolled_window_treeview"));
+    treeview_search_terms = GTK_WIDGET(gtk_builder_get_object(app->builder,"treeview_search_terms"));
+    // no need to add to container, its already in the container
+    //gtk_container_add(GTK_CONTAINER(scrolled_window_treeview), GTK_WIDGET(treeview_search_terms));
+    GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
+    gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview_search_terms),
+    						 -1,  "Search term",  renderer, 
+						 "text", 0 /* col number */,
+						 NULL);
+
     // toolbar
     entry_url = GTK_WIDGET(gtk_builder_get_object(app->builder, "entry_url"));
     toolbutton_go = GTK_WIDGET(gtk_builder_get_object(app->builder, "toolbutton_go"));
@@ -27,6 +41,7 @@ namespace fennekin
     toolbutton_file_new = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_file_new"));
     toolbutton_file_open = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_file_open"));
     toolbutton_file_save = GTK_WIDGET(gtk_builder_get_object(app->builder,"toolbutton_file_save"));
+
     // menu items
     menuitem_file_new = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_new"));
     menuitem_file_open = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_file_open"));
@@ -38,11 +53,10 @@ namespace fennekin
     menuitem_help_issues = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_issues"));
     menuitem_help_wiki = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_wiki"));
     menuitem_help_releases = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_releases"));
-    menuitem_help_external = GTK_TOGGLE_ACTION(gtk_builder_get_object(app->builder, "menuitem_help_external"));
     menuitem_example_universal = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_example_universal"));
     menuitem_example_languages = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_example_languages"));
-    menuitem_about_the_pokemon = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about_the_pokemon"));
     menuitem_about = GTK_ACTION(gtk_builder_get_object(app->builder, "menuitem_about"));
+
     // status bar
     statusbar = GTK_WIDGET(gtk_builder_get_object(app->builder, "status_bar"));
 
@@ -69,12 +83,10 @@ namespace fennekin
     g_signal_connect(toolbutton_file_save, "clicked", G_CALLBACK(on_file_save_event), NULL);
     // menu events
     g_signal_connect(menuitem_quit, "activate", G_CALLBACK(on_quit_event), NULL);
-    g_signal_connect(menuitem_about_the_pokemon, "activate", G_CALLBACK(on_about_the_pokemon_event), NULL);
     g_signal_connect(menuitem_about, "activate", G_CALLBACK(on_about_event), NULL);
     g_signal_connect(menuitem_help_issues, "activate", G_CALLBACK(on_help_issues_event), NULL);
     g_signal_connect(menuitem_help_wiki, "activate", G_CALLBACK(on_help_wiki_event), NULL);
     g_signal_connect(menuitem_help_releases, "activate", G_CALLBACK(on_help_releases_event), NULL);
-    g_signal_connect(menuitem_help_external, "activate", G_CALLBACK(on_help_external_event), NULL);
     g_signal_connect(menuitem_example_universal, "activate", G_CALLBACK(on_example_universal_event), NULL);
     g_signal_connect(menuitem_example_languages, "activate", G_CALLBACK(on_example_languages_event), NULL);
     g_signal_connect(menuitem_file_new, "activate", G_CALLBACK(on_file_new_event), NULL);
@@ -473,15 +485,7 @@ namespace fennekin
 
   void MainWindow::browse_external_url(const gchar* url)
   {
-    if (gtk_toggle_action_get_active(main_window->menuitem_help_external))
-      {
-	GError* error = NULL;
-	gtk_show_uri(gtk_widget_get_screen(GTK_WIDGET(main_window->window)), url, GDK_CURRENT_TIME, &error);
-      }
-    else
-      {
-	main_window->navigate(url);
-      }
+    main_window->navigate(url);
   }
 
 

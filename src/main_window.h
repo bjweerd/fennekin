@@ -23,11 +23,19 @@ namespace fennekin
     Application* app;
 
     GtkWidget* window;
+
+    // webview on the right
     GtkWidget* scrolled_window;
-    GtkWidget* vbox_left;
 #ifdef HAVE_WEBKIT1
     WebKitWebView* web_view;
 #endif
+
+    // sidebar widgets (left)
+    GtkWidget* vbox_left;
+    GtkWidget* combo_box_search_engines;
+    GtkWidget* scrolled_window_treeview;
+    GtkWidget* treeview_search_terms;
+
     // toolbar
     GtkWidget* entry_url;
     GtkWidget* toolbutton_go;
@@ -39,8 +47,10 @@ namespace fennekin
     GtkWidget* toolbutton_file_new;
     GtkWidget* toolbutton_file_open;
     GtkWidget* toolbutton_file_save;
+
     // status bar
     GtkWidget* statusbar;
+
     // menu items
     GtkAction* menuitem_file_new;
     GtkAction* menuitem_file_open;
@@ -52,10 +62,8 @@ namespace fennekin
     GtkAction* menuitem_help_issues;
     GtkAction* menuitem_help_wiki;
     GtkAction* menuitem_help_releases; 
-    GtkToggleAction* menuitem_help_external;
     GtkAction* menuitem_example_universal;
     GtkAction* menuitem_example_languages;
-    GtkAction* menuitem_about_the_pokemon;
     GtkAction* menuitem_about;
 
     MainWindow(Application* app, const char* filename);
