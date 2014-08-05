@@ -7,6 +7,8 @@
 
 #include <gtk/gtk.h>
 
+#include "application.h"
+
 /* GObject standard macro's */
 
 #define FENNEKIN_TREEMODEL_TYPE                    (fennekin_treemodel_get_type ())
@@ -16,26 +18,30 @@
 #define FENNEKIN_IS_TREEMODEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),     FENNEKIN_TREEMODEL_TYPE))
 #define FENNEKIN_TREEMODEL_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj),   FENNEKIN_TREEMODEL_TYPE, FennekinTreemodelClass))
 
-typedef struct _FennekinTreemodel FennekinTreemodel;
-typedef struct _FennekinTreemodelClass FennekinTreemodelClass;
-
-struct _FennekinTreemodel
+namespace fennekin
 {
-  GObject parent;		/* this MUST be the first member */
+  typedef struct _FennekinTreemodel FennekinTreemodel;
+  typedef struct _FennekinTreemodelClass FennekinTreemodelClass;
 
-  // my data goes here...
-};
+  struct _FennekinTreemodel
+  {
+    GObject parent;		/* this MUST be the first member */
+    gint stamp;	/* random integer to check if an iter belongs to our model */
 
-// standard GObject class
-struct _FennekinTreemodelClass
-{
-  GObjectClass parent_class;
-};
+    // my data goes here...
+  };
 
-// expose these functions
+  // standard GObject class
+  struct _FennekinTreemodelClass
+  {
+    GObjectClass parent_class;
+  };
 
-GType fennekin_treemodel_get_type(void);
-FennekinTreemodel* fennekin_treemodel_new(void);
+  // expose these functions
+  
+  GType fennekin_treemodel_get_type(void);
+  FennekinTreemodel* fennekin_treemodel_new(void);
+}
 
-#endif
+#endif	/* INCLUDED_FENNEKIN_TREEMODEL */
 

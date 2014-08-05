@@ -40,6 +40,34 @@ namespace fennekin
 
   bool Document::load() 
   { 
+    /* SPEED CONSIDERATIONS
+
+       Firstly, you should detach your list store or tree store from the tree view before doing your mass insertions, then do your insertions, and only connect your store to the tree view again when you are done with your insertions. Like this:
+
+  ...
+
+  model = gtk_tree_view_get_model(GTK_TREE_VIEW(view));
+
+  g_object_ref(model); // Make sure the model stays with us after the tree view unrefs it 
+
+  gtk_tree_view_set_model(GTK_TREE_VIEW(view), NULL); // Detach model from view 
+
+  ... insert a couple of thousand rows ...
+
+  gtk_tree_view_set_model(GTK_TREE_VIEW(view), model); // Re-attach model to view
+
+  g_object_unref(model);
+
+  ...
+
+
+    Secondly, you should make sure that sorting is disabled while you are doing your mass insertions, otherwise your store might be resorted after each and every single row insertion, which is going to be everything but fast.
+
+     Thirdly, you should not keep around a lot of tree row references if you have so many rows, because with each insertion (or removal) every single tree row reference will check whether its path needs to be updated or not.
+       
+
+    */
+
     std::ifstream ifs(get_filename());
 
     if (ifs.is_open())
