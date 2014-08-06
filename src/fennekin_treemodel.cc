@@ -242,11 +242,11 @@ namespace fennekin
     //
     // To find where target_node is, we basically have zero knowledge and all we can do
     // is walk the entire tree recursively and compare pointers to figure out if we found it.
-    // On top of that we need to have the entire tree_path available for that node.
+
     fennekin_treemodel_get_path_algo algo(path,target_node);
     if (algo.calculate(root) == true)
       {
-	// oh, i forgot: std::stack<> has no iterators
+	// oh, i forgot: std::stack<> has no iterators :o(
 	std::deque<gint> tmp;
 	while (!algo.stack.empty()) { 
 	  tmp.push_front( algo.stack.top() ); 
@@ -261,15 +261,46 @@ namespace fennekin
   }
   static void fennekin_treemodel_get_value(GtkTreeModel* tree_model, GtkTreeIter *iter, gint column, GValue* value)
   {
+    g_value_init(value, G_TYPE_STRING);
+    g_value_set_string(value, 
+		       static_cast<TreeModelNode*>(iter->user_data)->search_term_value.c_str());
   }
   static gboolean fennekin_treemodel_iter_next(GtkTreeModel* tree_model, GtkTreeIter* iter)
   {
+    FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
+    TreeModelNode* node = static_cast<TreeModelNode*>(iter->user_data);
+
+    iter->stamp = fennekin_treemodel->stamp;
+    iter->user_data = node->next;
+    return TRUE;
   }
   static gboolean fennekin_treemodel_iter_children(GtkTreeModel* tree_model, GtkTreeIter* iter, GtkTreeIter* parent)
   {
+    FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
+    TreeModelNode* node = static_cast<TreeModelNode*>(parent->user_data);
+
+    if (node == NULL) {		// special case: if parent is null, return root node
+      TreeModelNode* root = Application::app->doc->root;
+      iter->stamp = fennekin_treemodel->stamp;
+      iter->user_data = root;
+      return TRUE;
+    }
+
+    if (node->children == NULL) return FALSE;
+
+    iter->stamp = fennekin_treemodel->stamp;
+    iter->user_data = node->children;
+    return TRUE;
   }
   static gboolean fennekin_treemodel_iter_has_child(GtkTreeModel* tree_model, GtkTreeIter* iter)
   {
+    FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
+    TreeModelNode* node = static_cast<TreeModelNode*>(iter->user_data);
+
+    if (node->children == NULL)
+      return FALSE;
+    else
+      return TRUE;
   }
   static gint fennekin_treemodel_iter_n_children(GtkTreeModel* tree_model, GtkTreeIter* iter)
   {
