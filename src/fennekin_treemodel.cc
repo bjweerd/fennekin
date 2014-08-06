@@ -1,5 +1,9 @@
 #include <fennekin_treemodel.h>
 
+
+#include <stack>
+#include <deque>
+
 namespace fennekin
 {
 
@@ -152,13 +156,108 @@ namespace fennekin
     FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
     TreeModelNode* root = Application::app->doc->root;
 
+    // the length of the 'indices' array is 'depth'.
     gint* indices = gtk_tree_path_get_indices(path);
-    gint depth = gtk_tree_path_get_depth(path); // the length of 'indices' is 'depth'
+    gint depth = gtk_tree_path_get_depth(path);
 
-    
+    // TreeModelNodes are MIXED DATA so we will not only have to walk the tree, we also have to keep
+    // checking the node is of the right type. There could only be search engines and no search terms!
+
+    TreeModelNode* p = root, *q = NULL;
+
+    for (int i = 0; i < depth; i++)
+      {
+	gint pos = indices[i], n = 0;
+	q = p;
+
+	while (n < pos)
+	  {
+	    if (q == NULL) break;
+	    if (q->node_type == TreeModelNode::search_term) {
+	      ++n;
+	    }
+	    q = q->next;
+	  }
+	if (n != pos) return FALSE;
+	p = q->children;
+      }
+
+    if (!q) return FALSE;
+
+    // now 'q' holds the pointer we want
+    iter->stamp = fennekin_treemodel->stamp;
+    iter->user_data = q;
+    iter->user_data2 = iter->user_data3 = NULL;
+
+    return TRUE;
   }
+  // this struct is for implementing the fennekin_treemodel_get_path() interface member below
+  struct fennekin_treemodel_get_path_algo {
+    std::stack<gint> stack;
+
+    GtkTreePath* path;
+    TreeModelNode* target_node;
+    
+    // constructor
+    fennekin_treemodel_get_path_algo(GtkTreePath* path, TreeModelNode* target_node)
+    {
+      this->path = path; this->target_node = target_node;
+    }
+
+    // return false if the target_node cannot be found
+    bool calculate(TreeModelNode* p)
+    {
+      stack.push(0);
+
+      while (p) {
+	if (p == target_node) {
+	  // whoooo! we found it.
+	  return true;
+	}
+
+	if (p->node_type == TreeModelNode::search_term) {
+	  if (p->children)  {
+	    if (calculate(p->children) == true) return true;
+	  }
+	  ++ stack.top();
+	}
+
+	p=p->next;
+      }
+
+      stack.pop();
+      return false;
+    }
+  };
   static GtkTreePath* fennekin_treemodel_get_path(GtkTreeModel* tree_model, GtkTreeIter* iter)
   {
+    FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
+    TreeModelNode* root = Application::app->doc->root;
+    TreeModelNode* target_node = static_cast<TreeModelNode*>(iter->user_data);
+
+    GtkTreePath* path;
+    path = gtk_tree_path_new();
+
+    // OMG This is horrible!
+    //
+    // To find where target_node is, we basically have zero knowledge and all we can do
+    // is walk the entire tree recursively and compare pointers to figure out if we found it.
+    // On top of that we need to have the entire tree_path available for that node.
+    fennekin_treemodel_get_path_algo algo(path,target_node);
+    if (algo.calculate(root) == true)
+      {
+	// oh, i forgot: std::stack<> has no iterators
+	std::deque<gint> tmp;
+	while (!algo.stack.empty()) { 
+	  tmp.push_front( algo.stack.top() ); 
+	  algo.stack.pop(); 
+	}
+
+	for (std::deque<gint>::iterator i = tmp.begin(); i != tmp.end(); i++)
+	  gtk_tree_path_append_index(path, *i);
+      }
+
+    return path;
   }
   static void fennekin_treemodel_get_value(GtkTreeModel* tree_model, GtkTreeIter *iter, gint column, GValue* value)
   {

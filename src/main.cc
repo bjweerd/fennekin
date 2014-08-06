@@ -12,6 +12,16 @@
 
 namespace fennekin
 {
+  // gdb: break fennekin::test
+  void test()
+  {
+    FennekinTreemodel* treemodel = fennekin_treemodel_new();
+
+    // testing member functions
+
+    g_object_unref(treemodel);
+  }
+
   // program entry point
   int main (int argc, char **argv)
   {
@@ -21,11 +31,8 @@ namespace fennekin
     if (argc >= 2)
       filename = argv[1];
 
-    // testing... 123
-    FennekinTreemodel* treemodel = fennekin_treemodel_new();
-    g_object_unref(treemodel);
-
-
+    // testing
+    test();
 
     Application::app = new Application(argv[0], DATADIR);
     MainWindow::main_window = new MainWindow(Application::app, filename);

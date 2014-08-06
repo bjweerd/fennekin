@@ -34,12 +34,17 @@ namespace fennekin
   }
 
   void Document::clear_data() 
-  { 
+  {
+    delete_node(root);
+    root = NULL;
+    std::cout << "\n\n*** DELETED HARDCODED TEST TREE\n\n";
+        
     changed = false; 
   }
 
   bool Document::load() 
   { 
+    
     /* SPEED CONSIDERATIONS
 
        Firstly, you should detach your list store or tree store from the tree view before doing your mass insertions, then do your insertions, and only connect your store to the tree view again when you are done with your insertions. Like this:
@@ -73,6 +78,14 @@ namespace fennekin
     if (ifs.is_open())
       {
 	ifs.close();
+
+
+
+	//        TEST TEST TEST
+	root = create_test_tree_model();
+
+	std::cout << "\n\n*** CREATED HARDCODED TEST TREE\n\n";
+
 	// exit success
 	changed = false; 
 	return true; 
