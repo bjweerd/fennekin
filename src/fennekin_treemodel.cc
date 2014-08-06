@@ -277,16 +277,18 @@ namespace fennekin
   static gboolean fennekin_treemodel_iter_children(GtkTreeModel* tree_model, GtkTreeIter* iter, GtkTreeIter* parent)
   {
     FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
-    TreeModelNode* node = static_cast<TreeModelNode*>(parent->user_data);
 
-    if (node == NULL) {		// special case: if parent is null, return root node
+    if (parent == NULL) {		// special case: if parent is null, return root node
       TreeModelNode* root = Application::app->doc->root;
       iter->stamp = fennekin_treemodel->stamp;
       iter->user_data = root;
       return TRUE;
     }
 
-    if (node->children == NULL) return FALSE;
+    TreeModelNode* node = static_cast<TreeModelNode*>(parent->user_data);
+
+    if (node->children == NULL) 
+      return FALSE;
 
     iter->stamp = fennekin_treemodel->stamp;
     iter->user_data = node->children;
@@ -304,12 +306,100 @@ namespace fennekin
   }
   static gint fennekin_treemodel_iter_n_children(GtkTreeModel* tree_model, GtkTreeIter* iter)
   {
+    FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
+
+    if (iter == NULL)
+      {
+	// return the number of top-level elements
+	TreeModelNode* p = Application::app->doc->root;
+	gint retval = 0;
+
+	while (p) {
+	  if (p->node_type == TreeModelNode::search_term) {
+	    ++retval;
+	  }
+	  p = p->next;
+	}
+
+	return retval;
+      }
+
+    // now we basically copy and paste the whole thing above for the general case
+    TreeModelNode* node = static_cast<TreeModelNode*>(iter->user_data);
+    TreeModelNode* p = node->children;
+    gint retval = 0;
+
+    while (p) {
+      if (p->node_type == TreeModelNode::search_term) {
+	++retval;
+      }
+      p = p->next;
+    }
+
+    return retval;
   }
-  static gboolean fennekin_treemodel_iter_nth_child(GtkTreeModel* tree_model, GtkTreeIter* iter, GtkTreeIter* parent, gint n)
+  /* If the row specified by 'parent' has any
+   *                              children, set 'iter' to the n-th child and
+   *                              return TRUE if it exists, otherwise FALSE.
+   *                              A special case is when 'parent' is NULL, in
+   *                              which case we need to set 'iter' to the n-th
+   *                              row if it exists.
+   */
+  static gboolean fennekin_treemodel_iter_nth_child(GtkTreeModel* tree_model, 
+						    GtkTreeIter* iter, GtkTreeIter* parent, gint n)
   {
+    FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
+
+    if (parent == NULL)
+      {
+	// return the number of top-level elements
+	TreeModelNode* p = Application::app->doc->root;
+	gint count = 0;
+
+	while (p && count < n) {
+	  if (p->node_type == TreeModelNode::search_term) {
+	    ++count;
+	  }
+	  p = p->next;
+	}
+	if (p) {
+	  if (count == n) { 
+	    iter->stamp = fennekin_treemodel->stamp;
+	    iter->user_data = p;
+	    return TRUE;
+	  }
+	}
+      }
+
+    // now we basically copy and paste the whole thing above for the general case
+    TreeModelNode* p = static_cast<TreeModelNode*>(parent->user_data);
+    gint count = 0;
+    
+    while (p && count < n) {
+      if (p->node_type == TreeModelNode::search_term) {
+	++count;
+      }
+      p = p->next;
+    }
+    if (p) {
+      if (count == n) { 
+	iter->stamp = fennekin_treemodel->stamp;
+	iter->user_data = p;
+	return TRUE;
+      }
+    }
+    return FALSE;
   }
+  // Point 'iter' to the parent node of 'child'. 
   static gboolean fennekin_treemodel_iter_parent(GtkTreeModel* tree_model, GtkTreeIter* iter, GtkTreeIter* child)
   {
+    FennekinTreemodel* fennekin_treemodel = FENNEKIN_TREEMODEL(tree_model);
+    TreeModelNode* node = static_cast<TreeModelNode*>(child->user_data);
+    if (!node->parent) return FALSE;
+    TreeModelNode* parent = node->parent;
+    iter->stamp = fennekin_treemodel->stamp;
+    iter->user_data = parent;
+    return TRUE;    
   }
   
   
