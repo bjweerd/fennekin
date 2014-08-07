@@ -4,10 +4,13 @@
 
 #include "application.h"
 #include "main_window.h"
+#include <gtk/gtk.h>
 
+
+#include "document.h"
+#include <iostream>
 #include "fennekin_treemodel.h"
 
-#include <gtk/gtk.h>
 
 
 namespace fennekin
@@ -15,11 +18,20 @@ namespace fennekin
   // gdb: break fennekin::test
   void test()
   {
-    FennekinTreemodel* treemodel = fennekin_treemodel_new();
+    std::cout << "\n\n*** STARTING test()\n\n";
+
+    TreeModelNode* root = Application::app->doc->root;
+    Application::app->doc->set_filename("/dev/null");
+    Application::app->doc->load();
+    
 
     // testing member functions
+    FennekinTreemodel* treemodel = fennekin_treemodel_new();
 
+
+    // delete our treemodel
     g_object_unref(treemodel);
+    std::cout << "\n\n*** DONE WITH test()\n\n";
   }
 
   // program entry point
@@ -31,11 +43,11 @@ namespace fennekin
     if (argc >= 2)
       filename = argv[1];
 
-    // testing
-    test();
-
     Application::app = new Application(argv[0], DATADIR);
     MainWindow::main_window = new MainWindow(Application::app, filename);
+
+    // testing
+    test();
 
     MainWindow::main_window->navigate_home();
     gtk_widget_show_all(MainWindow::main_window->window);

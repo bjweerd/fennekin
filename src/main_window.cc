@@ -5,6 +5,8 @@
 
 #include <gdk/gdkkeysyms.h>
 
+#include "fennekin_treemodel.h"
+
 namespace fennekin
 {
   MainWindow* MainWindow::main_window = NULL; // instance pointer
@@ -292,7 +294,11 @@ namespace fennekin
 	    show_error("error loading data from file");
 	  }
 	else
-	  _status_loaded();
+	  {
+	    FennekinTreemodel* model = fennekin_treemodel_new();
+	    gtk_tree_view_set_model(GTK_TREE_VIEW(treeview_search_terms), GTK_TREE_MODEL(model));
+	    _status_loaded();
+	  }
       }
   }
   

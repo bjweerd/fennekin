@@ -28,7 +28,7 @@ namespace fennekin
     GObject parent;		/* this MUST be the first member */
     gint stamp;	/* random integer to check if an iter belongs to our model */
 
-    // my data goes here...
+    // my data goes here... exept it doesnt, because we have on global document
   };
 
   // standard GObject class

@@ -93,9 +93,8 @@ namespace fennekin
     q->search_term_value = "Computers";
     {
       TreeModelNode* r;
-      r->children = new TreeModelNode(q, TreeModelNode::search_term);
-      r->children->search_term_value = "Personal computer";
-      r = q->children;
+      r = new TreeModelNode(q, TreeModelNode::search_term);
+      r->search_term_value = "Personal computer";
 
       r->next = new TreeModelNode(q, TreeModelNode::search_term);
       r->next = r;
