@@ -544,7 +544,7 @@ namespace fennekin
     GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(main_window->app->datadir->get("/Fennekin.png"), NULL);
     GtkWidget *dialog = gtk_about_dialog_new();
     
-    gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(dialog), "Fennekin");
+    gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(dialog), "Fennekin (gtk2)");
     gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), PACKAGE_VERSION); 
     gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), 
 				  "Fennekin is a simple program that allows"

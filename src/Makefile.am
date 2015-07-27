@@ -1,14 +1,14 @@
-bin_PROGRAMS = fennekin
-fennekin_SOURCES = main.cc datadir.h datadir.cc document.h document.cc application.h application.cc \
+bin_PROGRAMS = fennekingtk2
+fennekingtk2_SOURCES = main.cc datadir.h datadir.cc document.h document.cc application.h application.cc \
 	main_window.h main_window.cc fennekin_treemodel.h fennekin_treemodel.cc
 
 if PLATFORM_WINDOWS
-  fennekin_SOURCES += fennekin.rc
-  fennekin_LDFLAGS = -mwindows
+  fennekingtk2_SOURCES += fennekin.rc
+  fennekingtk2_LDFLAGS = -mwindows
 endif
 
-fennekin_CPPFLAGS = ${GTK_CFLAGS} ${GIO_CFLAGS} ${WEBKIT1_CFLAGS} ${LIBXML2_CFLAGS} -DDATADIR=\"$(pkgdatadir)\"
-fennekin_LDADD = ${GTK_LIBS} ${GIO_LIBS} ${WEBKIT1_LIBS} ${LIBXML2_LIBS}
+fennekingtk2_CPPFLAGS = ${GTK_CFLAGS} ${GIO_CFLAGS} ${WEBKIT1_CFLAGS} ${LIBXML2_CFLAGS} -DDATADIR=\"$(pkgdatadir)\"
+fennekingtk2_LDADD = ${GTK_LIBS} ${GIO_LIBS} ${WEBKIT1_LIBS} ${LIBXML2_LIBS}
 
 LIBS = 
 
