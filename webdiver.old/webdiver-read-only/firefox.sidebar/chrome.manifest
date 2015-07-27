@@ -1,4 +1,0 @@
-content	webdiver	chrome/content/
-locale	webdiver	en-US	chrome/locale/en-US/
-skin	webdiver	classic/1.0	chrome/skin/
-overlay	chrome://browser/content/browser.xul	chrome://webdiver/content/firefoxOverlay.xul
