@@ -7,39 +7,10 @@ AC_CONFIG_HEADERS(config.h)
 
 AC_PROG_CXX
 
-PKG_CHECK_MODULES([GTK], [gtk+-2.0 >= 2.24.0])
+PKG_CHECK_MODULES([GTK], [gtk+-3.0 >= 3.14.0])
 PKG_CHECK_MODULES([GIO], [gio-2.0 >= 2.28.0])
 PKG_CHECK_MODULES([LIBXML2], [libxml-2.0 >= 2.7.6])
-
-
-# optionally we want to disable webkit1 entirely
-AC_ARG_WITH([webkit1], [AS_HELP_STRING([--without-webkit1], [disable webkit-1.0 (not recommended)])],
-		       [],
-		       [with_webkit1=yes])
-AS_IF([test "x$with_webkit1" != xno],
-
-# on fedora:
-#/usr/lib64/pkgconfig/webkitgtk-3.0.pc
-#/usr/lib64/pkgconfig/webkit2gtk-3.0.pc
-#/usr/i686-w64-mingw32/sys-root/mingw/lib/pkgconfig/webkit-1.0.pc
-#/usr/i686-w64-mingw32/sys-root/mingw/lib/pkgconfig/webkitgtk-3.0.pc
-#/usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/webkitgtk-3.0.pc
-
-# on fedora:
-#	    [ PKG_CHECK_MODULES([WEBKIT1], [webkitgtk-3.0 >= 1.8.1]) ],
-
-# on freebsd:
-	    [ PKG_CHECK_MODULES([WEBKIT1], [webkit-1.0 >= 1.8.1]) ],
-	    [ ])
-case "$with_webkit1" in
-  yes)
-    AC_DEFINE([HAVE_WEBKIT1], [], [we want webkit!])
-    ;;
-  no)
-    # we wont have HAVE_WEBKIT1 defined
-    ;;
-esac
-AM_CONDITIONAL(COMPILE_WITH_WEBKIT1, test "$with_webkit1" = "yes")
+PKG_CHECK_MODULES([WEBKITGTK], [webkitgtk-3.0 >= 2.2.8])
 
 
 # check for windows
