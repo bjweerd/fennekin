@@ -6,11 +6,12 @@ AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS(config.h)
 
 AC_PROG_CXX
+AC_LANG([C++])
+AX_CXX_COMPILE_STDCXX_11
 
 PKG_CHECK_MODULES([GTK], [gtk+-3.0 >= 3.14.0])
-PKG_CHECK_MODULES([GIO], [gio-2.0 >= 2.28.0])
 PKG_CHECK_MODULES([LIBXML2], [libxml-2.0 >= 2.7.6])
-PKG_CHECK_MODULES([WEBKITGTK], [webkitgtk-3.0 >= 2.2.8])
+PKG_CHECK_MODULES([WEBKITGTK], [webkit2gtk-3.0 >= 2.4.8])
 
 
 # check for windows
