@@ -5,6 +5,8 @@
 
 #include <libxml/xmlreader.h>
 
+#include <boost/algorithm/string.hpp>
+
 int
 main(int argc,char* argv[])
 {
