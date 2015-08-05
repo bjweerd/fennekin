@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<webdiver version="2.0">
+<fennekin version="1.0">
     <engine name="twitter" query="http://twitter.com/search?q=$encoded_term"/>
 
    <engine name="wikipedia" query="http://en.wikipedia.org/wiki/$term"/>

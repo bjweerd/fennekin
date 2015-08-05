@@ -45,11 +45,117 @@ struct fennekin_tree
       ofs << ' ';
   }
 
-  void read_webdiver  (const std::string& filename) {}
+
+
+
   void read_text      (const std::string& filename) {}
 
   void read_fennekin  (const std::string& filename) {}
   void write_fennekin (const std::string& filename) {}
+
+
+
+
+
+
+  struct webdiver_io_t
+  {
+    node_t* parse_webdiver(xmlTextReaderPtr reader)
+    {
+      node_t* retval = new node_t;
+      retval->parent = nullptr;
+      retval->name = xmlStrdup(xmlTextReaderName(reader));
+      
+      while (xmlTextReaderRead(reader) == 1)
+	{
+	  if (is_end(reader, "webdiver")) 
+	    break;
+
+	  if (is_begin(reader, "term"))
+	    retval->directChildren.push_back(parse_term(reader, retval));
+	}
+      
+      return retval;
+    }
+    node_t* parse_term(xmlTextReaderPtr reader, node_t* parent) 
+    {
+      node_t* retval = new node_t;
+      retval->parent = parent;
+      retval->name = nullptr;
+      int is_empty = xmlTextReaderIsEmptyElement(reader);
+
+      while (xmlTextReaderMoveToNextAttribute(reader))
+	{
+	  std::string attr_name{(const char*)xmlTextReaderName(reader)};
+	  std::transform(attr_name.begin(), attr_name.end(), attr_name.begin(), ::tolower);
+
+	  if (attr_name == "name")
+	    {
+	      retval->name = xmlStrdup(xmlTextReaderValue(reader));
+	    }
+	}
+      
+      if (!is_empty)
+	{
+	  while (xmlTextReaderRead(reader) == 1)
+	    {
+	      if (is_end(reader, "term"))
+		break;
+
+	      if (is_begin(reader, "term"))
+		retval->directChildren.push_back(parse_term(reader,retval));
+	    }
+	}
+
+      return retval;
+    }
+
+  };
+
+  void read_webdiver  (const std::string& filename) 
+  {
+    webdiver_io_t webdiver_io;
+    xmlTextReaderPtr reader;
+    int ret;
+
+    reader = xmlNewTextReaderFilename(filename.c_str());
+    root = nullptr;
+
+    if (reader != nullptr) 
+      {
+	ret = xmlTextReaderRead(reader);
+
+	while (ret == 1) 
+	  {
+	    if (is_begin(reader, "webdiver"))
+	      {
+		if (root) {
+		  // error: two map nodes in .xml file
+		  return;
+		}
+		else {
+		  root = webdiver_io.parse_webdiver(reader);
+		  break;
+		}
+	      }
+
+	    ret = xmlTextReaderRead(reader);
+	  }
+
+	xmlFreeTextReader(reader);
+	if (ret != 0) { return; /* failed to parse xml */ }
+      }
+    else
+      {
+	return; /* unable to open file */
+      }
+  }
+
+
+
+
+
+
 
   struct freemind_io_t
   {
@@ -139,13 +245,16 @@ struct fennekin_tree
 	while (ret == 1) 
 	  {
 	    if (is_begin(reader, "map"))
-	      if (root) {
-		// error: two map nodes in .xml file
-		return;
+	      {
+		if (root) {
+		  // error: two map nodes in .xml file
+		  return;
+		}
+		else {
+		  root = freemind_io.parse_map(reader);
+		  break;
+		}
 	      }
-	      else
-		root = freemind_io.parse_map(reader);
-
 	    ret = xmlTextReaderRead(reader);
 	  }
 
@@ -163,15 +272,25 @@ struct fennekin_tree
     freemind_io_t freemind_io;
 
     std::ofstream ofs(filename.c_str());
-    ofs << "<map version=\"0.9.0\">\n";
+    // we always write an empty root node because .mm can't have more than one root <node> element
+    ofs << "<map version=\"0.9.0\"><node text=\"\">\n";
     
     for (auto node : root->directChildren)
       freemind_io.write_node(ofs, 1, node);
 
-    ofs << "</map>\n";
+    ofs << "</node></map>\n";
     ofs.close();
   }
 };
+
+
+
+
+
+
+
+
+
 
 int
 main(int argc,char* argv[])
