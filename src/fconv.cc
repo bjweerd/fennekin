@@ -73,6 +73,25 @@ struct fennekin_tree
       ofs << ' ';
   }
 
+  static void to_xml(std::ofstream& ofs, xmlChar* str) {
+    for (xmlChar* s = str; *s; s++)
+      switch (*s) 
+	{
+	case '&': ofs << "&amp;"; break;
+	case '<': ofs << "&lt;"; break;
+	case '>': ofs << "&gt;"; break;
+	case '\'': ofs << "&apos;"; break;
+	case '\"': ofs << "&quot;"; break;
+	default:
+	  ofs << *s;
+	}
+  }
+  
+
+
+
+
+
 
 
 
@@ -82,7 +101,72 @@ struct fennekin_tree
 
 
   struct fennekin_io_t {
+    fennekin_tree& tree;
+    fennekin_io_t(fennekin_tree& tree) : tree(tree) {}
+    
+    void write_node(std::ofstream& ofs, int level, node_t* node)
+    {
+      indent_spaces(ofs,level);
+      if (node->directChildren.empty())
+	{
+	  ofs << "<term ";
+	  if (node->engineset) { ofs << "engineset=\""; to_xml(ofs, node->engineset); ofs << "\" "; }
+	  ofs << "name=\""; to_xml(ofs,node->name); ofs << "\"/>\n";
+	}
+      else
+	{
+	  ofs << "<term ";
+	  if (node->engineset) { ofs << "engineset=\""; to_xml(ofs,node->engineset); ofs << "\" "; }
+	  ofs << "name=\""; to_xml(ofs,node->name); ofs << "\">\n";
+
+	  for (auto engine : node->engines) {
+	    indent_spaces(ofs,level+1);
+	    ofs << "<engine name=\""; to_xml(ofs,engine.name); ofs << "\" query=\""; to_xml(ofs,engine.query); ofs << "\"/>\n";
+	  }
+	  
+	  for (auto child : node->directChildren)
+	    write_node(ofs, level+1, child);
+	  
+	  indent_spaces(ofs,level);
+	  ofs << "</term>\n";
+	}
+    }
   };
+
+  void write_fennekin (const std::string& filename) 
+  {
+    fennekin_io_t fennekin_io(*this);
+    
+    std::ofstream ofs(filename.c_str());
+    // we always write an empty root node because .mm can't have more than one root <node> element
+    ofs << "<fennekin version=\"1.0\">\n";
+
+    for (auto engine : engines) {
+      indent_spaces(ofs,1);
+      ofs << "<engine name=\"";to_xml(ofs,engine.name);ofs<<"\" query=\"";to_xml(ofs,engine.query);ofs<<"\"/>\n";
+    }
+
+    for (auto engineset : enginesets) {
+      indent_spaces(ofs,1);
+      ofs << "<engineset name=\""; to_xml(ofs,engineset.name); ofs << "\">\n";
+      
+      for (auto engine : engineset.engines) {
+	indent_spaces(ofs,2);
+	ofs << "<engine name=\""; to_xml(ofs,engine.name); ofs << "\" query=\""; to_xml(ofs,engine.query); ofs<<"\"/>\n";
+      }
+
+      indent_spaces(ofs,1);
+      ofs << "</engineset>\n";
+    }
+    
+    for (auto node : root->directChildren)
+      fennekin_io.write_node(ofs, 1, node);
+    
+    ofs << "</fennekin>\n";
+    ofs.close();
+  }
+
+
 
   // straight copy from read_webdiver() 
   void read_fennekin  (const std::string& filename) 
@@ -123,11 +207,6 @@ struct fennekin_tree
 	return; /* unable to open file */
       }
   }
-
-  void write_fennekin (const std::string& filename) 
-  {
-  }
-
 
 
 
@@ -188,7 +267,7 @@ struct fennekin_tree
 	      }
 	    }
 
-	  if (is_begin(reader, "engineset")) // enginesets are always global
+	  else if (is_begin(reader, "engineset")) // enginesets are always global
 	    {
 	      // create a new engine set and get a ref to it.
 	      tree.enginesets.push_back(engineset_t());
@@ -222,7 +301,7 @@ struct fennekin_tree
 		}
 	    } // done with <engineset>...</engineset>
 
-	  if (is_begin(reader, "term"))
+	  else if (is_begin(reader, "term"))
 	    retval->directChildren.push_back(parse_term(reader, retval));
 	}
       
@@ -390,11 +469,11 @@ struct fennekin_tree
       indent_spaces(ofs,level);
       if (node->directChildren.empty())
 	{
-	  ofs << "<node text=\"" << node->name << "\"/>\n";
+	  ofs << "<node text=\""; to_xml(ofs,node->name); ofs << "\"/>\n";
 	}
       else
 	{
-	  ofs << "<node text=\"" << node->name << "\">\n";
+	  ofs << "<node text=\""; to_xml(ofs,node->name); ofs << "\">\n";
 
 	  for (auto child : node->directChildren)
 	    write_node(ofs, level+1, child);
