@@ -1,29 +1,492 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
 #include <algorithm>
+#include <cstdarg>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <memory>
 
 #include <libxml/xmlreader.h>
+#include "xmlstring.hpp"
 
-#include <boost/algorithm/string.hpp>
 
 enum in_type { in_fennekin, in_webdiver, in_text, in_freemind };
 enum out_type { out_fennekin, out_freemind };
 
-class xmlstring_t
+struct fennekin_tree 
 {
-  xmlChar* data;
-public:
-  // http://www.xmlsoft.org/html/libxml-xmlstring.html
-  xmlstring_t() : data(nullptr) {}
-  xmlstring_t(xmlChar* str) : data(str?xmlStrdup(str):nullptr){}
-  xmlstring_t(const xmlstring_t& u) : data(u.data?xmlStrdup(u.data):nullptr){}
-  ~xmlstring_t() { if (data) xmlFree(data);}
-  xmlChar* str(void) { return data; }
-  void set(xmlChar* new_data) { if (new_data) { if (data) xmlFree(data); data = xmlStrdup(new_data); } }
-  void set(const std::string& new_data) { if (data) xmlFree(data); data = xmlCharStrdup(new_data.c_str()); }
+
+  //
+  // data types
+  //
+
+  struct engine
+  {
+    std::string name, query;	// query is a specially formed URL. 
+
+    // SECURITY NOTE: because the file format contains URL's, there can be ATTACKS with the file format
+    // <engine name="Google" query="http://123.321.23.34/evil/javascript/kill-the-user.html"/>
+    // (see the 2015 CCCen 'Bad File Formats' talk on youtube)
+  };
+
+  struct engineset
+  {
+    std::string name;
+    std::vector<engine> engines;
+  };
+
+  struct node
+  {
+    node* parent;
+    std::vector<std::unique_ptr<node>> direct_children;
+    std::string name;
+
+    std::vector<engine> engines; // not filled in .mm
+    std::string engineset;	 // not filled in .mm
+  };
+
+  //
+  // data members
+  // 
+
+  node* root;
+
+  std::vector<engine> engines;	// engines and enginesets are not used in .mm
+  std::vector<engineset> enginesets;
+
+  // 
+  // constructor / destructor 
+  //
+
+  fennekin_tree() : root(nullptr) {}
+  ~fennekin_tree() { if (root) delete root; }
+
+  //
+  // error handling
+  //
+
+  static std::string xml_error_msg;
+  static xmlGenericErrorFunc xml_error_handler_ptr;
+  static void xml_error_handler(void* ctx, const char* msg, ...) {
+    const int tmp_buf_size = 256;
+    char buf[tmp_buf_size];
+    va_list arg_ptr;
+    
+    va_start(arg_ptr, msg);
+    vsnprintf(buf, tmp_buf_size, msg, arg_ptr);
+    va_end(arg_ptr);
+    
+    xml_error_msg += buf;
+  }
+  // call this function before starting the parser
+  void init_error_handler() {
+    xml_error_msg = "";		// reset error message
+    xml_error_handler_ptr = &xml_error_handler;
+    initGenericErrorDefaultFunc(&xml_error_handler_ptr); 
+  }
+
+
+
+  //
+  // format specific xml parsing
+  //
+
+  struct internal_parser
+  {
+    xmlTextReaderPtr reader;
+    fennekin_tree& tree;
+    std::string rootnode_name;
+
+    internal_parser(xmlTextReaderPtr reader, fennekin_tree& tree, const std::string& rootnode_name) 
+      : reader(reader), tree(tree), rootnode_name(rootnode_name) {}
+
+    node* parse() 
+    { 
+      node* retval = nullptr;
+      return retval; 
+    }
+  };
+
+  struct fennekin_parser : public internal_parser
+  {
+    fennekin_parser(xmlTextReaderPtr reader, fennekin_tree& tree) : internal_parser(reader, tree, "fennekin") {}
+  };
+  
+  struct webdiver_parser : public internal_parser
+  {
+    webdiver_parser(xmlTextReaderPtr reader, fennekin_tree& tree) : internal_parser(reader, tree, "webdiver") {}
+  };
+
+  struct freemind_parser
+  {
+    xmlTextReaderPtr reader;
+    freemind_parser(xmlTextReaderPtr reader) : reader(reader) {}
+    
+    node* parse_node(node* parent)
+    {
+      node* retval = new node;
+      retval->parent = parent;
+      int is_empty = xmlTextReaderIsEmptyElement(reader);
+
+      while (xmlTextReaderMoveToNextAttribute(reader))
+	{
+	  std::string attr_name = xmlString(xmlTextReaderName(reader)).str();
+	  std::transform(attr_name.begin(), attr_name.end(), attr_name.begin(), ::tolower);
+
+	  if (attr_name == "text")
+	    {
+	      retval->name = xmlString(xmlTextReaderValue(reader)).str();
+	    }
+	}
+      
+      if (!is_empty)
+	{
+	  while (xmlTextReaderRead(reader) == 1)
+	    {
+	      std::string name = xmlString(xmlTextReaderName(reader)).str();
+	      int node_type = xmlTextReaderNodeType(reader);
+
+	      if (name == "node" && node_type == 15)
+		break;
+	      else if (name == "node" && node_type == 1) {
+		node* p = parse_node(retval);
+
+		if (p)
+		  retval->direct_children.push_back(std::unique_ptr<node>(p));
+		else {
+		  // error: something went wrong in the xml child parse
+		  delete retval;
+		  return nullptr;
+		}
+	      }
+	    }
+	}
+
+      return retval;
+    }
+
+    node* parse() 
+    { 
+      node* retval = new node;
+      retval->parent = nullptr;
+      retval->name = xmlString(xmlTextReaderName(reader)).str();
+
+      int ret;
+      while ((ret = xmlTextReaderRead(reader)) == 1)
+	{
+	  std::string name = xmlString(xmlTextReaderName(reader));
+	  int node_type = xmlTextReaderNodeType(reader);
+
+	  if (name == "node" && node_type == 1)
+	    {
+	      node* p = parse_node(retval);
+
+	      if (p)
+		retval->direct_children.push_back(std::unique_ptr<node>(p));
+	      else {
+		// error: somewhere in the xml children of me an error occured.
+		delete retval;
+		return nullptr;
+	      }
+	    }
+	  else if (name == retval->name && node_type == 15)
+	    break;
+	}
+
+      return retval; 
+    }
+  };
+
+  int parse_xml(const std::string& filename, std::string& error_msg, in_type in)
+  {
+    init_error_handler();
+
+    if (root) {
+      error_msg = "parse_xml() root pointer not null. reader used twice?";
+      return 4;
+    }
+
+    if (in == in_text) {
+      error_msg = "in_type::in_text is not an xml format"; 
+      return 3; 
+    }
+
+    xmlTextReaderPtr reader = xmlNewTextReaderFilename(filename.c_str());
+
+    if (reader)
+      {
+	int ret;
+
+	while ((ret = xmlTextReaderRead(reader)) == 1)
+	  {
+	    std::string name = xmlString(xmlTextReaderName(reader));
+	    int node_type = xmlTextReaderNodeType(reader);
+	    int is_empty_element = xmlTextReaderIsEmptyElement(reader);
+
+	    switch (in)
+	      {
+	      case in_fennekin:
+		if (name == "fennekin" && node_type == 1) {
+		  if (!is_empty_element) {
+		    root = fennekin_parser(reader,*this).parse();
+		    if (!root) { error_msg = "error: parse() encountered an error"; return 1; }
+		  }
+		  else { error_msg = "error: root node is empty"; return 1; }
+		}
+		break;
+	      case in_webdiver:
+		if (name == "webdiver" && node_type == 1) {
+		  if (!is_empty_element) {
+		    root = webdiver_parser(reader,*this).parse();
+		    if (!root) { error_msg = "error: parse() encountered an error"; return 1; }
+		  }
+		  else { error_msg = "error: root node is empty"; return 1; }
+		}
+		break;
+	      case in_freemind:
+		if (name == "map" && node_type == 1) {
+		  if (!is_empty_element) {
+		    root = freemind_parser(reader).parse();
+		    if (!root) { error_msg = "error: parse() encountered an error"; return 1; }
+		  }
+		  else { error_msg = "error: root node is empty"; return 1; }
+		}
+		break;
+	      }
+	  }
+
+	xmlFreeTextReader(reader);
+
+	if (ret != 0) 
+	  {
+	    error_msg = xml_error_msg;
+	    return 2;
+	  }
+      }
+    else 
+      {
+	error_msg = std::string("XML Reader: Unable to open `") + filename + std::string("' for reading.\n");
+	return 1;
+      }
+
+    return 0;
+  }
+
+  int read_webdiver(const std::string& filename, std::string& errmsg)  { return parse_xml(filename, errmsg, in_webdiver); }
+  int read_freemind(const std::string& filename, std::string& errmsg)  { return parse_xml(filename, errmsg, in_freemind); }
+  int read_fennekin(const std::string& filename, std::string& errmsg)  { return parse_xml(filename, errmsg, in_fennekin); }
+  int read_text(const std::string& filename, std::string& errmsg)      { return -1; }
+
+  //
+  // writing various output formats
+  //
+
+  // writing utility functions
+  static void indent_spaces(std::ofstream& ofs, int level) {
+    for (auto i = 0; i < level*2; ++i)
+      ofs << ' ';
+  }
+  
+  static void to_xml(std::ofstream& ofs, const std::string& str) 
+  {
+    for (auto c : str)
+      switch (c) 
+	{
+	case '&': ofs << "&amp;"; break;
+	case '<': ofs << "&lt;"; break;
+	case '>': ofs << "&gt;"; break;
+	case '\'': ofs << "&apos;"; break;
+	case '\"': ofs << "&quot;"; break;
+	default:
+	  ofs << c;
+	}
+  }
+
+
+  int write_fennekin(const std::string& filename, std::string& errmsg) { return -1; }
+
+
+  int write_freemind_node(std::ofstream& ofs, int level, const std::unique_ptr<node>& n)
+  {
+    indent_spaces(ofs,level);
+
+    if (n->direct_children.empty())
+      {
+	ofs << "<node text=\""; to_xml(ofs,n->name); ofs << "\"/>\n";
+      }
+    else
+      {
+	ofs << "<node text=\""; to_xml(ofs,n->name); ofs << "\">\n";
+	
+	for (auto& child : n->direct_children)
+	  write_freemind_node(ofs, level+1, child);
+	
+	indent_spaces(ofs,level);
+	ofs << "</node>\n";
+      }
+
+    return 0;
+  }
+
+  int write_freemind(const std::string& filename, std::string& errmsg) 
+  { 
+    std::ofstream ofs(filename.c_str());
+
+    if (ofs.is_open()) 
+      {
+	// we always write an empty root node because .mm can't have more than one root <node> element (xml forbids it)
+	ofs << "<map version=\"0.9.0\">\n<node text=\"\">\n";
+	
+	for (auto& child : root->direct_children)
+	  write_freemind_node(ofs, 1, child);
+	
+	ofs << "</node>\n</map>\n";
+	ofs.close();
+      }
+    else
+      {
+	errmsg = "Can't open " + filename + " for writing";
+	return 1;
+      }
+
+    return 0;
+  }
 };
+std::string fennekin_tree::xml_error_msg;
+xmlGenericErrorFunc fennekin_tree::xml_error_handler_ptr;
+
+
+
+
+
+int
+main(int argc,char* argv[])
+{
+  if (argc != 3)
+    {
+
+      std::cout << "The purpose of this tool is to have a command line version of the"
+	" Fennekin import/export functionality and use the internal memory representation"
+	" of the Fennekin tree data structure.\n\n"
+	"Usage: fconv <input file> <output file>\n\n"
+	"Input can be .fennekin .webdiver .xml .txt .mm\n"
+	"Output is in .fennekin or .mm format\n\n"
+	"The .mm format is the format used by the Freemind mindmapping software.\n"
+	;
+
+      return 1;
+    }
+
+  std::string in_filename = argv[1];
+  std::string out_filename = argv[2];
+
+  // get file extensions
+  size_t pos;
+  pos = in_filename.find_last_of(".");
+  if (pos == std::string::npos) { std::cout << "Input file has no extension: " << in_filename << std::endl; return 1; }
+  auto in_extension = std::string(in_filename.begin()+pos, in_filename.end());
+  pos = out_filename.find_last_of(".");
+  if (pos == std::string::npos) { std::cout << "Output file has no extension: " << out_filename << std::endl; return 1; }
+  auto out_extension = std::string(out_filename.begin()+pos, out_filename.end());
+
+
+  in_type input_type;
+  out_type output_type;
+
+  if (in_extension == ".fennekin") input_type = in_fennekin;
+  else if (in_extension == ".webdiver" || in_extension == ".xml") input_type = in_webdiver;
+  else if (in_extension == ".txt") input_type = in_text;
+  else if (in_extension == ".mm") input_type = in_freemind;
+  else 
+    {
+      std::cout << "Input file extension is " << in_extension << " and can only be one of: .fennekin .webdiver .xml .mm .txt\n";
+      return 1;
+    }
+
+  if (out_extension == ".fennekin") output_type = out_fennekin;
+  else if (out_extension == ".mm") output_type = out_freemind;
+  else {
+    std::cout << "Output file extension is " << out_extension << " and can only be one of: .fennekin .mm\n";
+    return 1;
+  }
+
+  // the actual conversion work
+  {
+    fennekin_tree tree;
+    int ret;
+    std::string errmsg;
+
+    // read the data file into the internal tree
+    switch (input_type)
+      {
+      case in_fennekin:
+	ret = tree.read_fennekin(in_filename, errmsg);
+      break;
+      case in_webdiver:
+	ret = tree.read_webdiver(in_filename, errmsg);
+	break;
+      case in_text:
+	ret = tree.read_text(in_filename, errmsg);
+	break;
+      case in_freemind:
+	ret = tree.read_freemind(in_filename, errmsg);
+	break;
+      }
+
+    if (ret) 			// error reading input file
+      {
+	std::cout << "input error: " << errmsg << std::endl;
+	return 1;
+      }
+
+    // write internal tree to data file
+    switch (output_type)
+      {
+      case out_fennekin:
+	ret = tree.write_fennekin(out_filename, errmsg);
+	break;
+      case out_freemind:
+	ret = tree.write_freemind(out_filename, errmsg);
+	break;
+      }
+
+    if (ret) 			// error writing output file
+      {
+	std::cout << "output error: " << errmsg << std::endl;
+	return 1;
+      }
+  }
+
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct fennekin_tree_XXX
+{
 
 struct engine_t
 {
@@ -56,8 +519,10 @@ struct engineset_t
   void set_name(xmlChar* name) { engineset_t::name = xmlStrdup(name); }
 };
 
-struct fennekin_tree
-{
+
+
+
+
   node_t* root;
   std::vector<engine_t> engines;
   std::vector<engineset_t> enginesets;
@@ -101,8 +566,8 @@ struct fennekin_tree
 
 
   struct fennekin_io_t {
-    fennekin_tree& tree;
-    fennekin_io_t(fennekin_tree& tree) : tree(tree) {}
+    fennekin_tree_XXX& tree;
+    fennekin_io_t(fennekin_tree_XXX& tree) : tree(tree) {}
     
     void write_node(std::ofstream& ofs, int level, node_t* node)
     {
@@ -216,8 +681,8 @@ struct fennekin_tree
 
   struct webdiver_io_t
   {
-    fennekin_tree& tree;
-    webdiver_io_t(fennekin_tree& tree) : tree(tree) {}
+    fennekin_tree_XXX& tree;
+    webdiver_io_t(fennekin_tree_XXX& tree) : tree(tree) {}
 
     engine_t* parse_engine(xmlTextReaderPtr reader)
     {
@@ -255,19 +720,16 @@ struct fennekin_tree
       
       while (xmlTextReaderRead(reader) == 1)
 	{
-	  if (is_end(reader, (const char*)retval->name)) 
+	  if (0) { // DEBUG
+	    xmlChar* tmp = xmlStrdup(xmlTextReaderName(reader));
+	    std::cout << "{" << tmp << "}" << std::flush;
+	    xmlFree(tmp);
+	  }
+
+	  if (is_end(reader, (const char*)retval->name)) // this ends the root node (whatever it's called)
 	    break;
 
-	  if (is_begin(reader, "engine")) // global engine
-	    {
-	      engine_t* engine = parse_engine(reader);
-	      if (engine) {
-		tree.engines.push_back(*engine);
-		delete engine;
-	      }
-	    }
-
-	  else if (is_begin(reader, "engineset")) // enginesets are always global
+	  if (is_begin(reader, "engineset")) // enginesets are always global
 	    {
 	      // create a new engine set and get a ref to it.
 	      tree.enginesets.push_back(engineset_t());
@@ -301,8 +763,17 @@ struct fennekin_tree
 		}
 	    } // done with <engineset>...</engineset>
 
-	  else if (is_begin(reader, "term"))
+	  if (is_begin(reader, "term"))
 	    retval->directChildren.push_back(parse_term(reader, retval));
+
+	  if (is_begin(reader, "engine")) // global engine
+	    {
+	      engine_t* engine = parse_engine(reader);
+	      if (engine) {
+		tree.engines.push_back(*engine);
+		delete engine;
+	      }
+	    }	  
 	}
       
       return retval;
@@ -538,102 +1009,6 @@ struct fennekin_tree
     ofs.close();
   }
 };
-
-
-
-
-
-
-
-
-
-
-int
-main(int argc,char* argv[])
-{
-  if (argc != 1+2)
-    {
-
-      std::cout << "The purpose of this tool is to have a command line version of the"
-	" Fennekin import/export functionality and use the internal memory representation"
-	" of the Fennekin tree data structure.\n\n"
-	"Usage: fconv <input file> <output file>\n\n"
-	"Input can be .fennekin .webdiver .xml .txt .mm\n"
-	"Output is in .fennekin or .mm format\n\n"
-	"The .mm format is the format used by the Freemind mindmapping software.\n"
-	;
-
-      return 1;
-    }
-
-  std::string in_filename = argv[1];
-  std::string out_filename = argv[2];
-
-  // get file extensions
-  size_t pos;
-  pos = in_filename.find_last_of(".");
-  if (pos == std::string::npos) { std::cout << "Input file has no extension: " << in_filename << std::endl; return 1; }
-  auto in_extension = std::string(in_filename.begin()+pos, in_filename.end());
-  pos = out_filename.find_last_of(".");
-  if (pos == std::string::npos) { std::cout << "Output file has no extension: " << out_filename << std::endl; return 1; }
-  auto out_extension = std::string(out_filename.begin()+pos, out_filename.end());
-
-
-  in_type input_type;
-  out_type output_type;
-
-  if (in_extension == ".fennekin") input_type = in_fennekin;
-  else if (in_extension == ".webdiver" || in_extension == ".xml") input_type = in_webdiver;
-  else if (in_extension == ".txt") input_type = in_text;
-  else if (in_extension == ".mm") input_type = in_freemind;
-  else 
-    {
-      std::cout << "Input file extension is " << in_extension << " and can only be one of: .fennekin .webdiver .xml .mm .txt\n";
-      return 1;
-    }
-
-  if (out_extension == ".fennekin") output_type = out_fennekin;
-  else if (out_extension == ".mm") output_type = out_freemind;
-  else
-    {
-      std::cout << "Output file extension is " << out_extension << " and can only be one of: .fennekin .mm\n";
-      return 1;
-    }
-
-  {
-    fennekin_tree tree;
-
-    // read the data file into the internal tree
-    switch (input_type)
-      {
-      case in_fennekin:
-	tree.read_fennekin(in_filename);
-      break;
-      case in_webdiver:
-	tree.read_webdiver(in_filename);
-	break;
-      case in_text:
-	tree.read_text(in_filename);
-	break;
-      case in_freemind:
-	tree.read_freemind(in_filename);
-	break;
-      }
-
-    // write internal tree to data file
-    switch (output_type)
-      {
-      case out_fennekin:
-	tree.write_fennekin(out_filename);
-	break;
-      case out_freemind:
-	tree.write_freemind(out_filename);
-	break;
-      }
-  }
-
-  return 0;
-}
 
 
 

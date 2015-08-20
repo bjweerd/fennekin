@@ -1,0 +1,8 @@
+- allow proxy to allow use with Tor.
+
+- .webdiver and .fennekin file format contain URL's. This is a SECURITY RISK because
+  somebody can give a .fennekin file with evil url's.
+  - proposed measures: parse the url for numeric urls, abuse the firefox services to
+  see if a site is evil. non-numeric url's allow for domain verification. dont' allow
+  file:/// stuff so that no local data is ever read. no ftp:// links, perhaps only
+  allow http:// and https://. Watch my notes to see what else I can do.

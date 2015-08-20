@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <fennekin version="1.0">
 
-    <engine name="twitter" query="http://twitter.com/search?q=$term"/>
-
+  <engine name="twitter" query="http://twitter.com/search?q=$term"/>
+    
 
     <engineset name="en">
         <engine name="google search" query="http://www.google.com/search?q=$encoded_term"/>
