@@ -1,10 +1,9 @@
-bin_PROGRAMS = fennekin fconv xmldump
+bin_PROGRAMS = fennekin fconv
 
 fennekin_SOURCES = main.cc datadir.h datadir.cc document.h document.cc application.h application.cc \
 	main_window.h main_window.cc fennekin_treemodel.h fennekin_treemodel.cc
 
 fconv_SOURCES = fconv.cc xmlstring.hpp
-xmldump_SOURCES = xmldump.cc xmlstring.hpp
 
 if PLATFORM_WINDOWS
   fennekin_SOURCES += fennekin.rc

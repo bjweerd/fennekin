@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <libxml/xmlreader.h>
+#include <libxml/xmlstring.h>
 
 // http://www.xmlsoft.org/html/libxml-xmlstring.html
 class xmlString
