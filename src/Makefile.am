@@ -1,9 +1,8 @@
 bin_PROGRAMS = fennekin fconv
 
-fennekin_SOURCES = main.cc datadir.h datadir.cc document.h document.cc application.h application.cc \
-	main_window.h main_window.cc fennekin_treemodel.h fennekin_treemodel.cc
+fennekin_SOURCES = main.cc datadir.h datadir.cc fennekin_tree.h fennekin_tree.cc xmlstring.hpp
 
-fconv_SOURCES = fconv.cc xmlstring.hpp
+fconv_SOURCES = fconv.cc fennekin_tree.h fennekin_tree.cc xmlstring.hpp
 
 if PLATFORM_WINDOWS
   fennekin_SOURCES += fennekin.rc
@@ -19,13 +18,8 @@ fconv_LDADD = ${LIBXML2_LIBS}
 
 LIBS = 
 
-pkgdata_DATA = Fennekin.png Fennekin.ui Universal.fennekin Languages.fennekin
-EXTRA_DIST = $(pkgdata_DATA) Fennekin.glade Fennekin.ico
-
-Fennekin.ui : Fennekin.glade
-	gtk-builder-convert Fennekin.glade Fennekin.ui
-
-CLEANFILES = Fennekin.ui
+pkgdata_DATA = fennekin.png fennekin.glade Universal.fennekin Languages.fennekin
+EXTRA_DIST = $(pkgdata_DATA) fennekin.ico
 
 .rc.o:
 	$(RC) -i $< $@
