@@ -161,7 +161,6 @@ struct fennekin_tree
 	    {
 	      std::string name = xmlString(xmlTextReaderName(reader));
 	      int node_type = xmlTextReaderNodeType(reader);
-	      int is_empty_element = xmlTextReaderIsEmptyElement(reader);
 
 	      if (name == "term" && node_type == 15)
 		break;
@@ -198,8 +197,6 @@ struct fennekin_tree
 	{
 	  std::string name = xmlString(xmlTextReaderName(reader));
 	  int node_type = xmlTextReaderNodeType(reader);
-	  int is_empty_element = xmlTextReaderIsEmptyElement(reader);
-
 
 	  if (name == rootnode_name && node_type == 15)
 	    break;
@@ -376,6 +373,7 @@ struct fennekin_tree
 		  else { error_msg = "error: root node is empty"; return 1; }
 		}
 		break;
+
 	      case in_webdiver:
 		if (name == "webdiver" && node_type == 1) {
 		  if (!is_empty_element) {
@@ -385,6 +383,7 @@ struct fennekin_tree
 		  else { error_msg = "error: root node is empty"; return 1; }
 		}
 		break;
+
 	      case in_freemind:
 		if (name == "map" && node_type == 1) {
 		  if (!is_empty_element) {
@@ -393,6 +392,10 @@ struct fennekin_tree
 		  }
 		  else { error_msg = "error: root node is empty"; return 1; }
 		}
+		break;
+
+	      default:
+		/* NOTREACHED: supress -Wall -pedantic warnings */
 		break;
 	      }
 	  }
@@ -547,13 +550,20 @@ struct fennekin_tree
 
     if (ofs.is_open()) 
       {
-	// we always write an empty root node because .mm can't have more than one root <node> element (xml forbids it)
-	ofs << "<map version=\"0.9.0\">\n<node text=\"\">\n";
+	// sometimes we write an empty root node because .mm can't have more than one root <node> element (xml forbids it)
+	bool insert_root_node = true;
+
+	if (root->direct_children.size() == 1)
+	  insert_root_node = false;
+
+	ofs << "<map version=\"0.9.0\">\n";
+	if (insert_root_node) ofs << "<node text=\"\">\n";
 	
 	for (auto& child : root->direct_children)
 	  write_freemind_node(ofs, 1, child);
 	
-	ofs << "</node>\n</map>\n";
+	if (insert_root_node) ofs << "</node>\n";
+	ofs << "</map>\n";
 	ofs.close();
       }
     else
